@@ -32,13 +32,13 @@ return_by_td <- function(stockdata, event_date, pre_event, post_event){
 }
 
 # DAYS TO REBOUND --------------------------------------------------------------
-DaysToRebound <- function(stockdata, event.date){
+days_to_rebound <- function(stockdata, event_date){
   # Note: first column of stockdata is a date and second is price
   setnames(stockdata, c("date", "p"))
   
   # trading days
   stockdata[, n := seq(1, .N)]
-  event.td <- which.max(stockdata$date - event.date >= 0) 
+  event.td <- which.max(stockdata$date - event_date >= 0) 
   stockdata[, td := n - event.td]
   
   # days to rebound
@@ -51,32 +51,32 @@ DaysToRebound <- function(stockdata, event.date){
 }
 
 # EVENT STUDY ------------------------------------------------------------------
-EventStudy <- function(stockdata, event.window, estimation.window, event.date,
+event_study <- function(stockdata, event_window, estimation_window, event_date,
                        model = "constant"){
   # Note: first column of stockdata must be a date variable
   setnames(stockdata, c("date", "r"))
   
   # trading days (i.e. time between event date and stock date)
   stockdata[, n := seq(1, .N)]
-  event.td <- which.max(stockdata$date - event.date >= 0) 
+  event.td <- which.max(stockdata$date - event_date >= 0) 
   stockdata[, td := n - event.td]
   
   # model
   if (model == "constant"){
-    lm <- lm(r ~ 1, stockdata[td >= -estimation.window & td < -event.window]) 
+    lm <- lm(r ~ 1, stockdata[td >= -estimation_window & td < -event_window]) 
   } else if (model == "market"){
     print ("market")
   }
   
   # abnormal returns
-  event.data <- stockdata[td >= -event.window & td < event.window, .(td, r)]
+  event.data <- stockdata[td >= -event_window & td < event_window, .(td, r)]
   ar <- event.data$r - predict(lm, event.data)
   sigma <- summary(lm)$sigma
   return(list(ar = ar, sigma = sigma))
 }  
 
 # ABNORMAL RETURN TABLE --------------------------------------------------------
-ARTable <- function(td, ar, sigma, dtr, country, date, coup = FALSE){
+ar_table <- function(td, ar, sigma, dtr, country, date, coup = FALSE){
   # Args:
   #   td: vector of trading days relative to event day for abnormal returns
   #   ar: matrix of abnormal returns

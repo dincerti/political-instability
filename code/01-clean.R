@@ -70,5 +70,5 @@ regime.change <- event[type == "Coup" | type == "Assassination" |
                        .(country, ticker, stock_date, type)]
 
 # SAVE DATA --------------------------------------------------------------------
-save(country.lookup, indices, index, regime.change, 
+save(country.lookup, event, index, regime.change, 
      file = "data/data-clean.RData")
