@@ -1,0 +1,45 @@
+ticker,country,code,pwt_code
+_IBGD,Argentina,1,ARG
+_AORDD,Australia,2,AUS
+BDDSEXD,Bangladesh,3,BGD
+_GSPTSED,Canada,4,CAN
+_IGPAD,Chile,5,CHL
+_IGBCD,Colombia,6,COL
+_BVGD,Ecuador,7,ECU
+_EFGID,Egypt,8,EGY
+_IPDCPD,Emerging Markets,9,
+_CACTD,France,10,FRA
+_ATGD,Greece,11,GRC
+_BSESND,India,12,IND
+_JKSED,Indonesia,13,IDN
+TEPIXD,Iran,14,IRN
+_TA100D,Israel,15,ISR
+_TOPXD,Japan,16,JPN
+_A31,Latin America,17,
+_LITIN1D,Lithuania,18,LTU
+_KLSED,Malaysia,19,MYS
+_NEPSED,Nepal,20,NPL
+_AAXD,Netherlands,21,NLD
+_KSED,Pakistan,22,PAK
+PYPDVGD,Paraguay,23,PRY
+_IGRAD,Peru,24,PER
+_PSID,Philippines,25,PHL
+_PSI20D,Portugal,26,PRT
+_FTSTID,Singapore,27,SGP
+_KS11D,South Korea,28,KOR
+_P31,Southeast Asia,29,
+_SMSID,Spain,30,ESP
+_CSED,Sri Lanka,31,LKA
+_OMXAFGD,Sweden,32,SWE
+_TWIID,Taiwan,33,TWN
+_SETID,Thailand,34,THA
+_TUNINDD,Tunisia,35,TUN
+_XU100D,Turkey,36,TUR
+_FTASD,United Kingdom,37,GBR
+_DJI3D,United States,38,USA
+_PFTSID,Ukraine,39,UKR
+BVMBGD,Uruguay,40,URY
+_IBCD,Venezuela,41,VEN
+_VE1,Venezuela,42,VEN
+_ALSLZD,Zambia,43,ZMB
+_MIWO00D,World,44,

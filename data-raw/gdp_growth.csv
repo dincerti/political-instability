@@ -1,0 +1,36 @@
+eventnumber,country,ticker,pwtcode,growth_pre,growth_post
+1,"Argentina","_IBGD","ARG",.043058,
+2,"Argentina","_IBGD","ARG",,.0141442
+3,"Argentina","_IBGD","ARG",-.0139585,-.015467
+4,"Thailand","_SETID","THA",,
+5,"Thailand","_SETID","THA",,.0088773
+6,"South Korea","_KS11D","KOR",,.0873098
+7,"Thailand","_SETID","THA",.1039404,
+8,"Peru","_IGRAD","PER",-.0252727,.0311772
+9,"Pakistan","_KSED","PAK",.016824,.0272956
+10,"Nepal","_NEPSED","NPL",,.0239182
+11,"Thailand","_SETID","THA",.0453775,.0107998
+12,"Bangladesh","BDDSEXD","BGD",.0304905,.0529335
+14,"United States","_DJI3D","USA",,
+15,"United States","_DJI3D","USA",.0299221,.0358071
+16,"South Korea","_KS11D","KOR",.0719775,
+17,"India","_BSESND","IND",.0204343,.0340724
+18,"Sweden","_OMXAFGD","SWE",.0316845,.0038633
+19,"Sri Lanka","_CSED","LKA",.0432195,
+20,"Israel","_TA100D","ISR",.030931,
+21,"Nepal","_NEPSED","NPL",.0180574,.0243851
+22,"Argentina","_IBGD","ARG",,
+23,"Philippines","_PSID","PHL",.0116301,.0165376
+24,"Bangladesh","BDDSEXD","BGD",.0195718,
+25,"Thailand","_SETID","THA",,
+26,"Pakistan","_KSED","PAK",.0215008,.0240584
+27,"Pakistan","_KSED","PAK",.0240584,.0112447
+28,"Turkey","_XU100D","TUR",,-.0401127
+29,"Indonesia","_JKSED","IDN",.0446838,
+30,"Philippines","_PSID","PHL",.0157431,.0294368
+31,"Argentina","_IBGD","ARG",-.0392749,.0664408
+32,"Lithuania","_LITIN1D","LTU",,.0137473
+33,"Ukraine","_PFTSID","UKR",,.0237347
+34,"Ecuador","_BVGD","ECU",.0393513,.009426
+35,"Nepal","_NEPSED","NPL",.0243851,.0497669
+36,"Tunisia","_TUNINDD","TUN",,
