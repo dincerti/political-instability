@@ -1,4 +1,5 @@
 rm(list = ls())
+library("xtable")
 load("data/data-clean.RData")
 source("code/func.R")
 
@@ -20,7 +21,7 @@ for (i in 1:ncol(ar)){
                                             .(date, p)],
                           event_date = regime.change$stock_date[i])
 }
-td.ew <- seq(-event.window, event.window -1 )
+td.ew <- seq(-event.window, event.window -1)
 
 # ABNORMAL RETURNS TABLES ------------------------------------------------------
 # coups
@@ -30,6 +31,8 @@ artable.coups <- ar_table(td = td.ew, ar = ar[, coup.index],
                           country = regime.change[coup.index, country],
                           date = regime.change[coup.index, stock_date], 
                           coup = TRUE)
+myprint.xtable(artable.coups$car, file = "tables/artable-coups-car.txt")
+myprint.xtable(artable.coups$car.mean, file = "tables/artable-coups-car-mean.txt")
 
 # assassinations
 ass.index <- which(regime.change$type == "Assassination")
@@ -37,6 +40,8 @@ artable.ass <- ar_table(td = td.ew, ar = ar[, ass.index],
                         sigma = sigma[ass.index], dtr = dtr[ass.index],
                         country = regime.change[ass.index, country],
                         date = regime.change[ass.index, stock_date])
+myprint.xtable(artable.ass$car, file = "tables/artable-ass-car.txt")
+myprint.xtable(artable.ass$car.mean, file = "tables/artable-ass-car-mean.txt")
 
 # resignations
 res.index <- which(regime.change$type == "Resignation")
@@ -44,6 +49,8 @@ artable.res <- ar_table(td = td.ew, ar = ar[, res.index],
                         sigma = sigma[res.index], dtr = dtr[res.index],
                         country = regime.change[res.index, country],
                         date = regime.change[res.index, stock_date])
+myprint.xtable(artable.res$car, file = "tables/artable-res-car.txt")
+myprint.xtable(artable.res$car.mean, file = "tables/artable-res-car-mean.txt")
 
 # VENEZUELA PARTIAL COUP -------------------------------------------------------
 ven <- event[ticker == "_IBCD" & stock_date == "2002-04-12"]

@@ -1,5 +1,13 @@
+# xtable print -----------------------------------------------------------------
+myprint.xtable <- function(x, file){
+  print(xtable(x), 
+        include.rownames = FALSE, include.colnames = FALSE,
+        only.contents = TRUE, sanitize.text.function = identity, hline.after = NULL,
+        file = file)
+}
+
 # MATRIX WITH PARENTHESES IN STANDARD ERRORS -----------------------------------
-MatrixSE <- function(est, se){
+matrix_se <- function(est, se){
   m <- matrix(as.vector(rbind(as.vector(est), 
                               paste0("(", as.vector(se), ")"))),
               nrow= 2 * nrow(est))
@@ -34,17 +42,18 @@ return_by_td <- function(stockdata, event_date, pre_event, post_event){
 # DAYS TO REBOUND --------------------------------------------------------------
 days_to_rebound <- function(stockdata, event_date){
   # Note: first column of stockdata is a date and second is price
-  setnames(stockdata, c("date", "p"))
+  x = copy(stockdata)
+  setnames(x, c("date", "p"))
   
   # trading days
-  stockdata[, n := seq(1, .N)]
-  event.td <- which.max(stockdata$date - event_date >= 0) 
-  stockdata[, td := n - event.td]
+  x[, n := seq(1, .N)]
+  event.td <- which.max(x$date - event_date >= 0) 
+  x[, td := n - event.td]
   
   # days to rebound
-  p.init <- stockdata[td == -1, p]
-  if (stockdata[td == 0, p]/p.init < 1){
-    return(which.max(stockdata[td >= 0, p] >= p.init))
+  p.init <- x[td == -1, p]
+  if (x[td == 0, p]/p.init < 1){
+    return(which.max(x[td >= 0, p] >= p.init))
   } else{
     return(NA)
   }
@@ -76,10 +85,17 @@ event_study <- function(stockdata, event_window, estimation_window, event_date,
 }  
 
 # ABNORMAL RETURN TABLE --------------------------------------------------------
+# LaTeX table of abnormal returns
+#
+# Args:
+#   td: vector of trading days relative to event day for abnormal returns.
+#   ar: matrix of abnormal returns.
+#   sigma: standard error returns.
+#   dtr: days to rebound.
+#   country: country in which event occured.
+#   date: date of the event.
+#   coup: Was the event a coup? If yes then TRUE, else FALSE.
 ar_table <- function(td, ar, sigma, dtr, country, date, coup = FALSE){
-  # Args:
-  #   td: vector of trading days relative to event day for abnormal returns
-  #   ar: matrix of abnormal returns
   
   # cumulative abnormal returns for selected time periods
   car <- matrix(NA, nrow = ncol(ar), ncol = 5)
@@ -109,20 +125,31 @@ ar_table <- function(td, ar, sigma, dtr, country, date, coup = FALSE){
   car.se <- formatC(car.se, format="f", digits=3)
   country <- as.vector(rbind(country, ""))
   date <- as.vector(rbind(format(date, format="%m/%d/%Y"), ""))
-  table <-  MatrixSE(car, car.se)
-  table <- cbind(country, date,  table)
+  dtr.str <- ifelse(is.na(dtr), "", formatC(dtr, format = "d", big.mark = ","))
+  dtr.str <- as.vector(rbind(dtr.str, ""))
+  table <-  matrix_se(car, car.se)
+  table <- cbind(country, date,  table, dtr.str)
   
   # table for means
   car.mean <- formatC(car.mean, format="f", digits=3)
   car.mean.se <- formatC(car.mean.se, format="f", digits=3)
-  table.means <-  MatrixSE(car.mean, car.mean.se)
+  table.means <-  matrix_se(car.mean, car.mean.se)
   if (coup == TRUE){
-    names <- as.vector(rbind(c("All coups", "Excluding 04/05/1976"), ""))  
+    name1 <- "\\multicolumn{2}{l}{\\hspace{.2cm}All Coups}"
+    name2 <- "\\multicolumn{2}{l}{\\hspace{.2cm}Excluding 4/5/1976}"
+    name.se <- "\\multicolumn{2}{l}{}"
+    names <- c(name1, name.se, name2, name.se) 
+    dtr.str <- c(mean(dtr, na.rm = TRUE), mean(dtr[-exclude], na.rm = TRUE))
+    dtr.str <- formatC(dtr.str, format = "d", big.mark = ",")
+    dtr.str <- c(dtr.str[1], "", dtr.str[2], "")
   } else{
-    names <- as.vector(rbind(c("Mean", "")))
+    dtr.str <- formatC(mean(dtr, na.rm = TRUE), format = "d", big.mark = ",")
+    dtr.str <- c(dtr.str, "")
+    name <- "\\multicolumn{2}{l}{\\textbf{Mean}}"
+    name.se <- "\\multicolumn{2}{l}{}"
+    names <- as.vector(rbind(c(name, name.se)))
   }
-  
-  table.means <- cbind(names, table.means)
+  table.means <- cbind(names, table.means, dtr.str)
   
   # return
   return(list(car = table, car.mean = table.means))
