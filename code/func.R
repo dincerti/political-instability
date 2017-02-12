@@ -10,7 +10,7 @@ myprint.xtable <- function(x, file){
 matrix_se <- function(est, se){
   m <- matrix(as.vector(rbind(as.vector(est), 
                               paste0("(", as.vector(se), ")"))),
-              nrow= 2 * nrow(est))
+              nrow = 2 * nrow(est))
   return(m)
 }
 
@@ -42,18 +42,17 @@ return_by_td <- function(stockdata, event_date, pre_event, post_event){
 # DAYS TO REBOUND --------------------------------------------------------------
 days_to_rebound <- function(stockdata, event_date){
   # Note: first column of stockdata is a date and second is price
-  x = copy(stockdata)
-  setnames(x, c("date", "p"))
+  setnames(stockdata, c("date", "p"))
   
   # trading days
-  x[, n := seq(1, .N)]
-  event.td <- which.max(x$date - event_date >= 0) 
-  x[, td := n - event.td]
+  stockdata[, n := seq(1, .N)]
+  event.td <- which.max(stockdata$date - event_date >= 0) 
+  stockdata[, td := n - event.td]
   
   # days to rebound
-  p.init <- x[td == -1, p]
+  p.init <- stockdata[td == -1, p]
   if (x[td == 0, p]/p.init < 1){
-    return(which.max(x[td >= 0, p] >= p.init))
+    return(which.max(stockdata[td >= 0, p] >= p.init))
   } else{
     return(NA)
   }

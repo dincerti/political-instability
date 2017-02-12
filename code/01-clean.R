@@ -22,9 +22,14 @@ leaders <- fread("data-raw/leaders_duration.csv")
 
 # revolution dates
 rev <- fread("data-raw/revolutions.csv")
-rev[, num := seq(1, length(Country), 1)]
+rev[, num := seq(1, length(country), 1)]
+rev[, start_date := as.Date(start_date,"%m/%d/%Y")]
+rev[, end_date := as.Date(end_date,"%m/%d/%Y")]
 
 # CLEAN DATA -------------------------------------------------------------------
+# inflation adjusted returns
+#indices[, dr := (real_p - shift(real_p))/shift(real_p), by = "ticker"]
+
 ## continuously compounded returns
 indices[, dr := 100 * log(dr+1)]
 indices[, abs_dr := abs(dr)]
@@ -70,5 +75,5 @@ regime.change <- event[type == "Coup" | type == "Assassination" |
                        .(country, ticker, stock_date, type)]
 
 # SAVE DATA --------------------------------------------------------------------
-save(country.lookup, event, index, regime.change, 
+save(country.lookup, event, index, regime.change, rev,
      file = "data/data-clean.RData")
