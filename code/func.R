@@ -8,9 +8,12 @@ myprint.xtable <- function(x, file){
 
 # MATRIX WITH PARENTHESES IN STANDARD ERRORS -----------------------------------
 matrix_se <- function(est, se){
+  est <- gsub(" ", "", est)
+  se <- gsub(" ", "", se)
   m <- matrix(as.vector(rbind(as.vector(est), 
                               paste0("(", as.vector(se), ")"))),
               nrow = 2 * nrow(est))
+  m <- gsub("\\()", "", m)
   return(m)
 }
 
@@ -163,5 +166,57 @@ Car <- function(td, ar, sigma){
   car <- c(car.b, car.f)
   car.se <- c(car.b.se, car.f.se)
   return(list(car = car, car.se = car.se))
+}
+
+# REGRESSION TABLE WITH STANDARD ERRORS IN PARENTEHSES--------------------------
+# Regression table with standard errors in parentheses
+#
+# Args:
+#   models: List of models
+#   lookup: Option data.frame to lookup variable names. First column is term, the name
+#           of variables in the model. Second column is varname, the name of the variable
+#           to display in the LaTex table. Third column is id, which is the order to display
+#           the variables.
+#   digits: Digits to round coefficients and standard errors to
+#
+# Returns: 
+#   LaTeX table with coefficients (se's in parentheses) and number of observations for each
+#   model listed.
+reg_table <- function(models, lookup = NULL, digits = 3){
+  n.est <- length(models)
+  coef <- se <- vector(mode = "list", length = n.est)
+  obs <- rep(NA, n.est)
+  #r2 <- rep(NA, n.est)
+  for (i in 1:n.est){
+    est <- coeftest(models[[i]], vcov = vcovHC(models[[i]], type = "HC0",
+                                                   cluster="group"))
+    est <- data.frame(tidy(est))
+    colnames(est) <- c("term", paste0(colnames(est)[-1], i))
+    if (!is.null(lookup)){
+      est <- merge(est, lookup, by = "term", all.x = TRUE)
+      est$term <- est$varname
+      est$varname <- NULL
+    }
+    coef[[i]] <- est[, c("term", "id", paste0("estimate", i))]
+    se[[i]] <- est[, c("term", "id", paste0("std.error", i))]
+    obs[i] <- nobs(models[[i]])
+  }
+  coef <- Reduce(function(x, y) merge(x, y, by = c("term", "id"), all = TRUE), coef)
+  se <- Reduce(function(x, y) merge(x, y, by = c("term", "id"), all = TRUE), se)
+  coef <- coef[order(coef$id), ]
+  se <- se[order(se$id), ]
+  se$id <- coef$id <- NULL
+  coef.str <- formatC(as.matrix(coef[, -1]), format = "f", digits = digits)
+  se.str <- formatC(as.matrix(se[, -1]), format = "f", digits = digits)
+  coef.str <- gsub("NA", "", coef.str)
+  se.str <- gsub("NA", "", se.str)
+  table <-  matrix_se(coef.str, se.str)
+  obs <- formatC(obs, format = "d", big.mark = ",")
+  obs <- paste0("\\multicolumn{1}{c}{", obs, "}")
+  table <- rbind(table, obs)
+  names <- c(as.vector(rbind(as.character(coef$term), "")), "Observations")
+  table <- cbind(names, table)
+  rownames(table) <- seq(1, nrow(table))
+  return(table)
 }
   
