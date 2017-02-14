@@ -1,11 +1,47 @@
 rm(list = ls())
 load("data/data-clean.RData")
 source("code/func.R")
+library("data.table")
 library("plm")
 library("lmtest")
 library("broom")
 
-# EFFECT OF PUBLIC PROTESTS ON STOCK DATA --------------------------------------
+# EGYPTIAN REVOLUTION ----------------------------------------------------------
+egypt.es <-  event_study(stockdata = index[ticker == "_EFGID", .(date, dr)],
+                    event_window = 20, estimation_window = 200,
+                    event_date = rev[name == "Egyptian Revolution", start_date],
+                    model = "constant")   
+egypt.es <- c(egypt.es, car(td = egypt.es$td, ar = egypt.es$ar, sigma = egypt.es$sigma))
+egypt.es <- data.table(date = egypt.es$date, td = egypt.es$td,  car = egypt.es$car, 
+                  car.se = egypt.es$car.se)
+egypt.es[, lcar := car - qnorm(.975) * car.se]
+egypt.es[, ucar := car + qnorm(.975) * car.se]
+p <- ggplot(egypt.es, aes(x = date, y = car)) + geom_line() +
+  geom_point(size = .8) +
+  geom_ribbon(aes(ymin = lcar, ymax = ucar), alpha=0.2) +
+  xlab("Date") + ylab("CAR (%)") +
+  geom_hline(aes(yintercept = 0), linetype = 2) + 
+  annotate("text", x = as.Date("02/10/2011", "%m/%d/%Y"), 
+           y = 5, label = "Jan 25: uprising begins", size = 3) +
+  geom_segment(aes(x = as.Date("02/07/2011", "%m/%d/%Y"), y = 4, 
+                   xend = as.Date("01/25/2011", "%m/%d/%Y") , 
+                   yend = 0),
+               arrow = arrow(length = unit(0.01, "npc"))) +
+  annotate("text", x = as.Date("02/25/2011", "%m/%d/%Y"), 
+           y = -14, label = "Feb 11: Mubarak resigns", size = 3) +
+  geom_segment(aes(x = as.Date("02/25/2011", "%m/%d/%Y"), y = -15, 
+                   xend = as.Date("02/11/2011", "%m/%d/%Y") , 
+                   yend = -20),
+               arrow = arrow(length = unit(0.01, "npc"))) +
+  annotate("text", x = as.Date("03/15/2011", "%m/%d/%Y"), 
+           y = -36, label = "Mar 23: stock market reopens", size = 3) +
+  geom_segment(aes(x = as.Date("03/15/2011", "%m/%d/%Y"), y = -35, 
+                   xend = as.Date("2011-03-23"), 
+                   yend = 1.01 * egypt.es[date == as.Date("2011-03-23"), car]),
+               arrow = arrow(length = unit(0.01, "npc")))
+ggsave("figs/egypt-revolution-2011.pdf", p, height = 5, width = 7)
+
+# EFFECT OF PUBLIC PROTESTS ON STOCK PRICES ------------------------------------
 # data 
 index.rev <- vector(mode = "list", length(rev$ticker))
 for (i in 1:length(rev$ticker)){

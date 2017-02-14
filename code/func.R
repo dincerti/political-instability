@@ -54,7 +54,7 @@ days_to_rebound <- function(stockdata, event_date){
   
   # days to rebound
   p.init <- stockdata[td == -1, p]
-  if (x[td == 0, p]/p.init < 1){
+  if (stockdata[td == 0, p]/p.init < 1){
     return(which.max(stockdata[td >= 0, p] >= p.init))
   } else{
     return(NA)
@@ -80,10 +80,10 @@ event_study <- function(stockdata, event_window, estimation_window, event_date,
   }
   
   # abnormal returns
-  event.data <- stockdata[td >= -event_window & td < event_window, .(td, r)]
+  event.data <- stockdata[td >= -event_window & td < event_window, .(date, td, r)]
   ar <- event.data$r - predict(lm, event.data)
   sigma <- summary(lm)$sigma
-  return(list(ar = ar, sigma = sigma))
+  return(list(date = event.data$date, td = event.data$td, ar = ar, sigma = sigma))
 }  
 
 # ABNORMAL RETURN TABLE --------------------------------------------------------
@@ -158,14 +158,17 @@ ar_table <- function(td, ar, sigma, dtr, country, date, coup = FALSE){
 }
 
 # CUMULATIVE ABNORMAL RETURNS --------------------------------------------------
-Car <- function(td, ar, sigma){
-  car.b <- rev(cumsum(rev(ar[which(td < 0)])))
+car <- function(td, ar, sigma){
+  car.b <- rev(cumsum(rev(ar[which(td < -1)])))
   car.b.se <- rev(sigma * sqrt(seq(1, length(car.b))))
   car.f <- cumsum(ar[which(td >= 0)])
   car.f.se <- sigma * sqrt(seq(1, length(car.f)))
-  car <- c(car.b, car.f)
-  car.se <- c(car.b.se, car.f.se)
-  return(list(car = car, car.se = car.se))
+  car.fixed <- ar[which(td == -1)]
+  car.fixed.se <- 0
+  car <- c(car.b, car.fixed, car.f)
+  car <- car - car.fixed
+  car.se <- c(car.b.se, car.fixed.se, car.f.se)
+  return(list(car = car, car.se =  car.se))
 }
 
 # REGRESSION TABLE WITH STANDARD ERRORS IN PARENTEHSES--------------------------

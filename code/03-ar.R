@@ -54,11 +54,10 @@ myprint.xtable(artable.res$car.mean, file = "tables/artable-res-car-mean.txt")
 
 # VENEZUELA PARTIAL COUP -------------------------------------------------------
 ven <- event[ticker == "_IBCD" & stock_date == "2002-04-12"]
-ven.es <- event_study(stockdata = index[ticker == ven$ticker, 
-                                       .(date, dr)],
+ven.es <- event_study(stockdata = index[ticker == ven$ticker, .(date, dr)],
                      event_window = event.window, estimation_window = est.window,
                      event_date = ven$stock_date, model = "constant")  
-ven.es <- c(ven.es, Car(td = td.ew, ar = ven.es$ar, sigma = ven.es$sigma))
+ven.es <- c(ven.es, car(td = td.ew, ar = ven.es$ar, sigma = ven.es$sigma))
 tmp <- data.table(td = td.ew,  ar = ven.es$ar, ar.se = ven.es$sigma)
 tmp[, lower := ar - qnorm(.975) * ar.se]
 tmp[, upper := ar + qnorm(.975) * ar.se]
