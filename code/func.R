@@ -83,7 +83,9 @@ event_study <- function(stockdata, event_window, estimation_window, event_date,
   event.data <- stockdata[td >= -event_window & td < event_window, .(date, td, r)]
   ar <- event.data$r - predict(lm, event.data)
   sigma <- summary(lm)$sigma
-  return(list(date = event.data$date, td = event.data$td, ar = ar, sigma = sigma))
+  car <- calc_car(event.data$td, ar, sigma)
+  return(list(date = event.data$date, td = event.data$td, ar = ar, sigma = sigma,
+              car = car$car, car.se = car$car.se))
 }  
 
 # ABNORMAL RETURN TABLE --------------------------------------------------------
@@ -158,7 +160,7 @@ ar_table <- function(td, ar, sigma, dtr, country, date, coup = FALSE){
 }
 
 # CUMULATIVE ABNORMAL RETURNS --------------------------------------------------
-car <- function(td, ar, sigma){
+calc_car <- function(td, ar, sigma){
   car.b <- rev(cumsum(rev(ar[which(td < -1)])))
   car.b.se <- rev(sigma * sqrt(seq(1, length(car.b))))
   car.f <- cumsum(ar[which(td >= 0)])
