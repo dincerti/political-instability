@@ -1,9 +1,31 @@
 rm(list = ls())
 load("output/regime-change-event-study.RData")
+load("data/data-clean.RData")
 library("data.table")
 library("ggplot2")
 source("code/func.R")
 theme_set(theme_bw())
+
+# NON-PARAMETRIC TESTS ---------------------------------------------------------
+ed <- which(regime.change.es$td == 0)
+
+# coups 
+coup.index <- which(regime.change$type == "Coup")
+ar.mean.coup <- mean(regime.change.es$ar[ed, coup.index])
+ranktest.coup <- rank_test(regime.change.es$ar[, coup.index], 
+                              regime.change.es$td)
+
+# assassinations
+ass.index <- which(regime.change$type == "Assassination")
+ar.mean.ass <- mean(regime.change.es$ar[ed, ass.index])
+ranktest.ass <- rank_test(regime.change.es$ar[, ass.index], 
+                           regime.change.es$td)
+
+# resignations
+res.index <- which(regime.change$type == "Resignation")
+ar.mean.res <- mean(regime.change.es$ar[ed, res.index])
+ranktest.res <- rank_test(regime.change.es$ar[, res.index], 
+                          regime.change.es$td)
 
 # CAR SURROUNDING REGIME CHANGES -----------------------------------------------
 td0.indx <- which(regime.change.es$td == 0)

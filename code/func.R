@@ -196,7 +196,7 @@ mean_car_prepost <- function(ar, sigma, td){
 }
   
 
-# REGRESSION TABLE WITH STANDARD ERRORS IN PARENTEHSES--------------------------
+# REGRESSION TABLE WITH STANDARD ERRORS IN PARENTEHSES -------------------------
 # Regression table with standard errors in parentheses
 #
 # Args:
@@ -248,3 +248,15 @@ reg_table <- function(models, lookup = NULL, digits = 3){
   return(table)
 }
   
+# RANK TEST --------------------------------------------------------------------
+rank_test <- function(ar, td){
+  L2 <- nrow(ar)
+  exp.rank <- (L2 + 1)/2
+  ar.rank <- apply(ar, 2, rank)
+  diff <- ar.rank - exp.rank
+  diff.mean <- apply(diff, 1, mean)
+  sk <- sqrt(mean(diff.mean^2))
+  theta <- diff.mean[which(td == 0)]/sk
+  pval <- 2 * (1 - pnorm(abs(theta)))
+  return(pval)
+}
