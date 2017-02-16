@@ -62,6 +62,8 @@ days_to_rebound <- function(stockdata, event_date){
 }
 
 # EVENT STUDY ------------------------------------------------------------------
+# Returns: list of date, trading day, standard error of regression, and
+#          abnormal return
 event_study <- function(stockdata, event_window, estimation_window, event_date,
                        model = "constant"){
   # Note: first column of stockdata must be a date variable
@@ -83,9 +85,7 @@ event_study <- function(stockdata, event_window, estimation_window, event_date,
   event.data <- stockdata[td >= -event_window & td < event_window, .(date, td, r)]
   ar <- event.data$r - predict(lm, event.data)
   sigma <- summary(lm)$sigma
-  car <- calc_car(event.data$td, ar, sigma)
-  return(list(date = event.data$date, td = event.data$td, ar = ar, sigma = sigma,
-              car = car$car, car.se = car$car.se))
+  return(list(date = event.data$date, td = event.data$td, ar = ar, sigma = sigma))
 }  
 
 # ABNORMAL RETURN TABLE --------------------------------------------------------
@@ -160,7 +160,7 @@ ar_table <- function(td, ar, sigma, dtr, country, date, coup = FALSE){
 }
 
 # CUMULATIVE ABNORMAL RETURNS --------------------------------------------------
-calc_car <- function(td, ar, sigma){
+car_prepost <- function(td, ar, sigma){
   car.b <- rev(cumsum(rev(ar[which(td < -1)])))
   car.b.se <- rev(sigma * sqrt(seq(1, length(car.b))))
   car.f <- cumsum(ar[which(td >= 0)])
@@ -172,6 +172,29 @@ calc_car <- function(td, ar, sigma){
   car.se <- c(car.b.se, car.fixed.se, car.f.se)
   return(list(car = car, car.se =  car.se))
 }
+
+# MEAN CAR ---------------------------------------------------------------------
+car_mean <- function(ar, sigma) {
+  ar.mean <- apply(ar, 1, mean)
+  car.mean <- cumsum(ar.mean)
+  ar.mean.var <- 1/nrow(ar)^2 * sum(sigma^2)
+  car.mean.se <- sqrt(ar.mean.var * seq(1, nrow(ar)))
+  return(data.table(car_mean = car.mean, car_mean_se = car.mean.se))
+}
+
+# MEAN CAR PRE AND POST --------------------------------------------------------
+mean_car_prepost <- function(ar, sigma, td){
+  ar.b <-  ar[rev(which(td < -1)), ]
+  car.mean.b <- data.table(car_mean(ar.b, sigma), td = rev(td[td < -1]))
+  ar.f <-  ar[which(td >= 0), ]
+  car.mean.f <- data.table(car_mean(ar.f, sigma), td = td[td >= 0])
+  car.mean.fixed <- data.table(car_mean = mean(ar[which(td == -1), ]),
+                               car_mean_se = 0, td = -1)
+  car.mean <- rbind(car.mean.b[nrow(car.mean.b):1 ], car.mean.fixed, car.mean.f)
+  car.mean$car_mean <- car.mean$car_mean - car.mean.fixed$car_mean
+  return(car.mean)
+}
+  
 
 # REGRESSION TABLE WITH STANDARD ERRORS IN PARENTEHSES--------------------------
 # Regression table with standard errors in parentheses

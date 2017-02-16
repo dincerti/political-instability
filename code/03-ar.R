@@ -21,14 +21,15 @@ for (i in 1:ncol(ar)){
                      event_date = regime.change$stock_date[i], model = "constant")   
   sigma[i] <- tmp$sigma
   ar[, i] <- tmp$ar
-  car[, i] <- tmp$car
-  car.se[, i] <- tmp$car.se
+  tmp.car <- car_prepost(tmp$td, tmp$ar, tmp$sigma)
+  car[, i] <- tmp.car$car
+  car.se[, i] <- tmp.car$car.se
   dtr[i] <- days_to_rebound(stockdata = index[ticker == regime.change$ticker[i], 
                                             .(date, p)],
                           event_date = regime.change$stock_date[i])
 }
 td.ew <- seq(-event.window, event.window -1)
-regime.change.es <- list(td = td.ew, sigma = sigma, car = car, car.se = car.se) 
+regime.change.es <- list(td = td.ew, sigma = sigma, ar = ar) 
 save(regime.change.es, file = "output/regime-change-event-study.RData")
 
 # ABNORMAL RETURNS TABLES ------------------------------------------------------
@@ -70,6 +71,6 @@ ven.es[, lar := ar - qnorm(.975) * ar.se]
 ven.es[, uar := ar + qnorm(.975) * ar.se]
 p <- ggplot(ven.es[abs(td) <= 10], aes(x = td, y = ar)) + 
   geom_pointrange(aes(ymin = lar, ymax = uar), size = .2) +
-  xlab("Days") + ylab("AR (%)") +
+  xlab("Trading days") + ylab("AR (%)") +
   geom_hline(aes(yintercept = 0), linetype = 2)
 ggsave("figs/venezuela_coup_attempt_2002.pdf", p, height = 5, width = 7)

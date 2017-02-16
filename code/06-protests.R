@@ -12,6 +12,7 @@ egypt.es <-  event_study(stockdata = index[ticker == "_EFGID", .(date, dr)],
                     event_window = 20, estimation_window = 200,
                     event_date = rev[name == "Egyptian Revolution", start_date],
                     model = "constant")   
+egypt.es <- c(egypt.es, car_prepost(egypt.es$td, egypt.es$ar, egypt.es$sigma))
 egypt.es <- data.table(date = egypt.es$date, td = egypt.es$td,  car = egypt.es$car, 
                   car.se = egypt.es$car.se)
 egypt.es[, lcar := car - qnorm(.975) * car.se]
