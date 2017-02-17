@@ -12,20 +12,29 @@ ed <- which(regime.change.es$td == 0)
 # coups 
 coup.index <- which(regime.change$type == "Coup")
 ar.mean.coup <- mean(regime.change.es$ar[ed, coup.index])
-ranktest.coup <- rank_test(regime.change.es$ar[, coup.index], 
+rankpval.coup <- rank_test(regime.change.es$ar[, coup.index], 
                               regime.change.es$td)
+signpval.coup <- sign_test(regime.change.es$ar[ed, coup.index], "negative")
 
 # assassinations
 ass.index <- which(regime.change$type == "Assassination")
 ar.mean.ass <- mean(regime.change.es$ar[ed, ass.index])
 ranktest.ass <- rank_test(regime.change.es$ar[, ass.index], 
                            regime.change.es$td)
+signpval.ass <- sign_test(regime.change.es$ar[ed, ass.index], "negative")
 
 # resignations
 res.index <- which(regime.change$type == "Resignation")
 ar.mean.res <- mean(regime.change.es$ar[ed, res.index])
 ranktest.res <- rank_test(regime.change.es$ar[, res.index], 
                           regime.change.es$td)
+signpval.res <- sign_test(regime.change.es$ar[ed, res.index], "positive")
+
+# absolute value
+ar.mean.abs <- mean(regime.change.es.abs$ar[ed, ])
+ranktest.res <- rank_test(regime.change.es.abs$ar, 
+                          regime.change.es.abs$td)
+signpval.res <- sign_test(regime.change.es.abs$ar[ed, ], "positive")
 
 # CAR SURROUNDING REGIME CHANGES -----------------------------------------------
 td0.indx <- which(regime.change.es$td == 0)

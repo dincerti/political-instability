@@ -10,17 +10,23 @@ source("code/func.R")
 # calculate abnormal returns and days to rebound
 event.window <- 20
 est.window <- 200
-sigma <- rep(NA, nrow(regime.change))
-ar <- matrix(NA, nrow = 2 * event.window, ncol = nrow(regime.change))
+sigma <- sigma.abs <- rep(NA, nrow(regime.change))
+ar <- ar.abs <- matrix(NA, nrow = 2 * event.window, ncol = nrow(regime.change))
 car <- car.se <-  ar
 dtr <- rep(NA, nrow(regime.change))
 for (i in 1:ncol(ar)){
-  tmp <-  event_study(stockdata = index[ticker == regime.change$ticker[i], 
+  tmp <- event_study(stockdata = index[ticker == regime.change$ticker[i], 
                                        .(date, dr)],
                      event_window = event.window, estimation_window = est.window,
-                     event_date = regime.change$stock_date[i], model = "constant")   
+                     event_date = regime.change$stock_date[i], model = "constant") 
+  tmp.abs <- event_study(stockdata = index[ticker == regime.change$ticker[i], 
+                                           .(date, abs(dr))],
+                         event_window = event.window, estimation_window = est.window,
+                         event_date = regime.change$stock_date[i], model = "constant")
   sigma[i] <- tmp$sigma
+  sigma.abs[i] <- tmp.abs$sigma
   ar[, i] <- tmp$ar
+  ar.abs[, i] <- tmp.abs$ar
   tmp.car <- car_prepost(tmp$td, tmp$ar, tmp$sigma)
   car[, i] <- tmp.car$car
   car.se[, i] <- tmp.car$car.se
@@ -30,7 +36,8 @@ for (i in 1:ncol(ar)){
 }
 td.ew <- seq(-event.window, event.window -1)
 regime.change.es <- list(td = td.ew, sigma = sigma, ar = ar) 
-save(regime.change.es, file = "output/regime-change-event-study.RData")
+regime.change.es.abs <- list(td = td.ew, sigma = sigma.abs, ar = ar.abs)
+save(regime.change.es, regime.change.es.abs, file = "output/regime-change-event-study.RData")
 
 # ABNORMAL RETURNS TABLES ------------------------------------------------------
 # coups

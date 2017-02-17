@@ -260,3 +260,18 @@ rank_test <- function(ar, td){
   pval <- 2 * (1 - pnorm(abs(theta)))
   return(pval)
 }
+
+# SIGN TEST --------------------------------------------------------------------
+sign_test <- function(ar0, direction = c("positive", "negative")){
+  direction = match.arg(direction)
+  n <- length(ar0)
+  if (direction == "positive"){
+    x <- sum(ar0 > 0)
+  } else{
+    x <- sum(ar0 < 0)
+  }
+  #binom.test <- binom.test(x, n, p = .5)
+  theta <- ((x/n) - 0.5)*(sqrt(n)/0.5)
+  pval <- 2 * (1 - pnorm(abs(theta)))
+  return(pval)
+}
