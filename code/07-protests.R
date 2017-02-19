@@ -8,13 +8,15 @@ library("broom")
 theme_set(theme_bw())
 
 # EGYPTIAN REVOLUTION ----------------------------------------------------------
-egypt.es <-  event_study(stockdata = index[ticker == "_EFGID", .(date, dr)],
+egypt.es <-  event_study(ticker = index$ticker, date = index$date, dr = index$dr,
+                         event_ticker = "_EFGID",
                     event_window = 20, estimation_window = 200,
                     event_date = rev[name == "Egyptian Revolution", start_date],
-                    model = "constant")   
-egypt.es <- c(egypt.es, car_prepost(egypt.es$td, egypt.es$ar, egypt.es$sigma))
-egypt.es <- data.table(date = egypt.es$date, td = egypt.es$td,  car = egypt.es$car, 
-                  car.se = egypt.es$car.se)
+                    model = "constant", control = FALSE)   
+egypt.es <- c(egypt.es, car_prepost(egypt.es$ar.treat$td, egypt.es$ar.treat$ar,
+                                    egypt.es$sigma.treat))
+egypt.es <- data.table(date = egypt.es$ar.treat$date, td = egypt.es$ar.treat$td,  
+                       car = egypt.es$car, car.se = egypt.es$car.se)
 egypt.es[, lcar := car - qnorm(.975) * car.se]
 egypt.es[, ucar := car + qnorm(.975) * car.se]
 p <- ggplot(egypt.es, aes(x = date, y = car)) + geom_line() +

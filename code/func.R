@@ -1,4 +1,9 @@
-# xtable print -----------------------------------------------------------------
+# CONVERT STRING DATE TO R DATE ------------------------------------------------
+mydate <- function(strdate){
+  return(as.Date(strdate, "%m/%d/%Y"))
+}
+
+# xtable PRINT -----------------------------------------------------------------
 myprint.xtable <- function(x, file){
   print(xtable(x), 
         include.rownames = FALSE, include.colnames = FALSE,
@@ -17,20 +22,38 @@ matrix_se <- function(est, se){
   return(m)
 }
 
+# CALCULATE TRADING DAYS IN EVENT WINDOW ---------------------------------------
+calc_td <- function(stockdata, event_date){
+  stockdata[, n := seq(1, .N), by = "ticker"]
+  if (length(unique(stockdata$ticker)) == 1) {
+      # scenario 1: only 1 ticker 
+      event.td <- which.max(stockdata$date - event_date >= 0) # first trading day on or after event
+      stockdata[, td := n - event.td]
+  } else { 
+      # scenario 2: many tickers (i.e. for control portfolio)
+      stockdata[, event_td := which.max(date - event_date >= 0), by = "ticker"]
+      stockdata[, td := n - event_td]
+      stockdata[, date_diff := date - event_date]
+      stockdata[, date_diff0 := ifelse(td == 0, date_diff, NA)]
+      stockdata[, date_diff0 := mean(date_diff0, na.rm = TRUE), by = "ticker"]
+      stockdata <- stockdata[abs(date_diff0) <= 5]
+      stockdata[, c("event_td", "date_diff", "date_diff0") := NULL]
+  }
+  return(stockdata)
+}
+
 # DAILY RETURNS BY TRADING DAY -------------------------------------------------
-return_by_td <- function(stockdata, event_date, pre_event, post_event){
+return_by_td <- function(stockdata, event_ticker, event_date, pre_event, post_event){
   # Note: first column of stockdata must be a date variable
-  setnames(stockdata, c("date", "r"))
+  stockdata <- stockdata[ticker == event_ticker, .(ticker, date, dr)]
   
   # trading days
-  stockdata[, n := seq(1, .N)]
-  event.td <- which.max(stockdata$date - event_date >= 0) # first trading day on or after event
-  stockdata[, td := n - event.td]
+  stockdata <- calc_td(stockdata, event_date)
   
   # trading window surrounding event
   stockdata <- stockdata[td >= -pre_event & td <= post_event]
   
-  # deal with countries with insufficient observations
+  # deal with countries with insufficient observations (i.e. fill in missing td with NAs)
   if (min(stockdata$td) > - pre_event){
     tmp <- data.table(matrix(NA, nrow = pre - abs(min(stockdata$td)), 
                              ncol = ncol(stockdata)))
@@ -39,18 +62,16 @@ return_by_td <- function(stockdata, event_date, pre_event, post_event){
     tmp$date <- as.Date(tmp$date)
     stockdata <- rbind(tmp, stockdata)
   }
-  return(stockdata$r)
+  return(stockdata$dr)
 }
 
 # DAYS TO REBOUND --------------------------------------------------------------
-days_to_rebound <- function(stockdata, event_date){
-  # Note: first column of stockdata is a date and second is price
-  setnames(stockdata, c("date", "p"))
+days_to_rebound <- function(ticker, date, price, event_ticker, event_date){
+  stockdata <- data.table(ticker = ticker, date = date, p = price)
+  stockdata <- stockdata[ticker == event_ticker]
   
   # trading days
-  stockdata[, n := seq(1, .N)]
-  event.td <- which.max(stockdata$date - event_date >= 0) 
-  stockdata[, td := n - event.td]
+  stockdata <- calc_td(stockdata, event_date)
   
   # days to rebound
   p.init <- stockdata[td == -1, p]
@@ -61,31 +82,62 @@ days_to_rebound <- function(stockdata, event_date){
   }
 }
 
-# EVENT STUDY ------------------------------------------------------------------
-# Returns: list of date, trading day, standard error of regression, and
-#          abnormal return
-event_study <- function(stockdata, event_window, estimation_window, event_date,
-                       model = "constant"){
-  # Note: first column of stockdata must be a date variable
-  setnames(stockdata, c("date", "r"))
-  
-  # trading days (i.e. time between event date and stock date)
-  stockdata[, n := seq(1, .N)]
-  event.td <- which.max(stockdata$date - event_date >= 0) 
-  stockdata[, td := n - event.td]
-  
-  # model
+# EVENT STUDY REGRESSION MODEL -------------------------------------------------
+event_study_mod <- function(stockdata, event_window, estimation_window,
+                            model = c("constant", "maarket")){
+  model <- match.arg(model)
   if (model == "constant"){
-    lm <- lm(r ~ 1, stockdata[td >= -estimation_window & td < -event_window]) 
+    lm <- lm(dr ~ 1, stockdata[td >= -estimation_window & td < -event_window]) 
   } else if (model == "market"){
-    print ("market")
+    print ("Code has not yet been set up for market model")
   }
   
   # abnormal returns
-  event.data <- stockdata[td >= -event_window & td < event_window, .(date, td, r)]
-  ar <- event.data$r - predict(lm, event.data)
+  event.data <- stockdata[td >= -event_window & td < event_window, .(td, dr)]
+  ar <- event.data$dr - predict(lm, event.data)
   sigma <- summary(lm)$sigma
-  return(list(date = event.data$date, td = event.data$td, ar = ar, sigma = sigma))
+  return(list(event_data = event.data, ar = ar, sigma = sigma))
+}
+
+# EVENT STUDY ------------------------------------------------------------------
+# Returns: list of date, trading day, standard error of regression, and
+#          abnormal return
+event_study <- function(ticker, date, dr, event_ticker, event_window, estimation_window, 
+                        event_date, model = "constant", control = FALSE,
+                        custom_v = NULL){
+  # Note: first column of stockdata must be a date variable
+  stockdata <- data.table(ticker = ticker, date = date, dr = dr)
+  
+  # treatment portfolio
+  treatdata <- stockdata[ticker == event_ticker]
+  treatdata <- calc_td(treatdata, event_date)
+  treatdata <- treatdata[td >= -estimation_window & td < event_window]
+  mod.treat <- event_study_mod(treatdata, event_window, 
+                               estimation_window, "constant")
+  ar.treat <- data.table(date = treatdata[td >= -event_window & td < event_window,
+                                          date],
+                        td = mod.treat$event_data$td,
+                         ar = mod.treat$ar)
+  
+  # control portfolio
+  if (control == TRUE){
+    synthdata <- calc_td(stockdata, event_date)
+    synth.control <- synth_control(synthdata, event_ticker, event_window,
+                                   estimation_window, custom_v = custom_v)
+    mod.control <- event_study_mod(synth.control$dr, event_window, 
+                                   estimation_window, "constant")
+    ar.control <- data.table(td = mod.control$event_data$td,
+                             ar = mod.control$ar)
+  }
+  
+  # return
+  l <- list(dr.treat = treatdata[, .(ticker, date, td, dr)],
+            ar.treat = ar.treat, sigma.treat = mod.treat$sigma)
+  if (control == TRUE){
+    l <- c(l, list(ar.control = ar.control, sigma.control = mod.control$sigma,
+                   synth.info = synth.control))
+  }
+  return(l)
 }  
 
 # ABNORMAL RETURN TABLE --------------------------------------------------------
@@ -250,6 +302,9 @@ reg_table <- function(models, lookup = NULL, digits = 3){
   
 # RANK TEST --------------------------------------------------------------------
 rank_test <- function(ar, td){
+  n.na <- apply(ar, 2, function(x) sum(is.na(x)))
+  cols <- which(n.na == 0)
+  ar <- ar[, cols]
   L2 <- nrow(ar)
   exp.rank <- (L2 + 1)/2
   ar.rank <- apply(ar, 2, rank)
@@ -264,6 +319,7 @@ rank_test <- function(ar, td){
 # SIGN TEST --------------------------------------------------------------------
 sign_test <- function(ar0, direction = c("positive", "negative")){
   direction = match.arg(direction)
+  ar0 <- ar0[!is.na(ar0)]
   n <- length(ar0)
   if (direction == "positive"){
     x <- sum(ar0 > 0)
@@ -274,4 +330,106 @@ sign_test <- function(ar0, direction = c("positive", "negative")){
   theta <- ((x/n) - 0.5)*(sqrt(n)/0.5)
   pval <- 2 * (1 - pnorm(abs(theta)))
   return(pval)
+}
+
+# SYNTHETIC CONTROL GROUP ------------------------------------------------------
+synth_control <- function(stockdata, event_ticker, event_window, 
+                          estimation_window, custom_v = NULL){
+  stockdata <- stockdata[td >= -estimation_window & td < event.window]
+  stockdata[, id := .GRP, by = "ticker"]
+  stockdata <- stockdata[!is.na(dr)]
+
+  # number of observations by group
+  max.n <- estimation_window + event_window
+  nobs <- stockdata[, .(N = .N, td1 = td[1]), by = c("id", "ticker")]
+  
+  # first trading day for control must be same or before that of control
+  td1.treat <- nobs[ticker == event_ticker, td1]
+  id.control <- nobs[ticker != event_ticker & td1 <= td1.treat, id]
+  id.event <- nobs[ticker == event_ticker, id]
+  stockdata <- stockdata[td >= td1.treat]
+  
+  ## synth data prep
+  dataprep.out  <-  dataprep(
+    foo  =  stockdata,
+    predictors  =  c("dr"),
+    time.predictors.prior  = td1.treat:(-event.window - 1),
+    special.predictors  =  list(
+      list("dr", td1.treat:(-event.window - 1), "var")),
+    dependent  =  "dr",
+    unit.variable  =  "id",
+    time.variable  =  "td",
+    treatment.identifier  =  id.event,
+    controls.identifier  =  id.control,
+    time.optimize.ssr  =  td1.treat:(-event.window - 1),
+    time.plot  =  td1.treat:(event.window - 1),
+    unit.names.variable = "ticker")
+  synth.out  <-  synth(data.prep.obj  =  dataprep.out, custom.v = custom_v,
+                       optimxmethod  =  c("Nelder-Mead", "BFGS"))
+  
+  ## pred
+  tab <- synth.tab(synth.out, dataprep.out)
+  
+  ## daily returns
+  dr.control.estimation <- dataprep.out$Z0 %*% synth.out$solution.w
+  dr.control.event <- dataprep.out$Y0 %*% synth.out$solution.w
+  dr.control <- data.table(td = as.numeric(c(rownames(dr.control.estimation),
+                                  rownames(dr.control.event))),
+                           dr = c(dr.control.estimation, dr.control.event))
+  
+ ## return
+  return(list(dr = dr.control, tab.pred = tab$tab.pred, tab.v = tab$tab.v,
+              tab.w = tab$tab.w, tab.loss = tab$tab.loss))
+}
+
+# COMBINE EVENT STUDIES --------------------------------------------------------
+combine_event_studies <- function(x, event_country, event_type, event_date){
+  # initialize
+  n <- length(x)
+  td.ew <- x[[1]]$ar.treat$td
+  sigma.treat <- sigma.control <- rep(NA, n)
+  ar.treat <- ar.control <- matrix(NA, nrow = nrow(es[[1]]$ar.treat), ncol = n)
+  car.treat <- car.control <- car.treat.se <- car.control.se <- ar.treat
+  dr.treat <- dr.control <- vector(mode = "list", length = n)
+
+  # store
+  for (i in 1:n){
+    # treatment
+    sigma.treat[i] <- x[[i]]$sigma.treat
+    ar.treat[, i] <- x[[i]]$ar.treat$ar
+    tmp.car.treat <- car_prepost(x[[i]]$ar.treat$td, x[[i]]$ar.treat$ar,
+                             x[[i]]$sigma.treat)
+    car.treat[, i] <- tmp.car.treat$car
+    car.treat.se[, i] <- tmp.car.treat$car.se
+    dr.treat[[i]] <- x[[i]]$dr.treat
+    dr.treat[[i]]$country <- event_country[i]
+    dr.treat[[i]]$type <- event_type[[i]]
+    dr.treat[[i]]$event_date <- event_date[[i]]
+    
+    # control
+    if (!is.null(x[[i]]$ar.control)){
+        sigma.control[i] <- x[[i]]$sigma.control
+        ar.control[, i] <- x[[i]]$ar.control$ar
+        tmp.car.control <- car_prepost(x[[i]]$ar.control$td, x[[i]]$ar.control$ar, 
+                                       x[[i]]$sigma.control)
+        car.control[, i] <- tmp.car.control$car
+        car.control.se[, i] <- tmp.car.control$car.se
+        dr.control[[i]] <- x[[i]]$synth.info$dr
+        dr.control[[i]]$country <- event_country[i]
+        dr.control[[i]]$type <- event_type[[i]]
+        dr.control[[i]]$event_date <- event_date[[i]]
+    } 
+  }
+  dr.treat <- rbindlist(dr.treat)
+  dr.treat[, lab := "Treatment"]
+  dr.control <- rbindlist(dr.control)
+  dr.control[, lab := "Control"]
+  dr <- rbind(dr.treat, dr.control, fill = TRUE)
+  
+  # store
+  l <- list(dr = dr, td = td.ew, sigma.treat = sigma.treat, 
+            ar.treat = ar.treat, car.treat = car.treat, car.treat_se = car.treat.se,
+            sigma.control = sigma.control, ar.control = ar.control, 
+            car.control = car.control, car.control.se = car.control.se)
+  return(l)
 }
