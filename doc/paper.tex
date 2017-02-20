@@ -283,7 +283,6 @@ Standard errors and p-values are calculated using asymptotic t-statistics as in 
   \hline
 \ExpandableInput{../tables/artable-coups-car.txt}
   \hline
-  \textbf{Means} &  &  &  &  &  &  \\
 \ExpandableInput{../tables/artable-coups-car-mean.txt}
    \hline
    \hline
@@ -392,7 +391,7 @@ The key parameter of interest is the conditional variance, $\sigma_{it}^2$. The 
 The smaller figure within \autoref{fig:volatility} expands the volatility estimates to the 250 trading days before and after each regime change. As expected, the volatility estimates stay between a narrow range at nearly all dates except those surrounding the regime change.
 
 \begin{figure}[htb]
-\includegraphics{../figs/daily_mean_absreturn.pdf}
+\includegraphics{../figs/mean-volatility.pdf}
 \caption{Mean of volatility estimates from GARCH(1,1) models}
 \label{fig:volatility}
 \end{figure}
@@ -424,15 +423,12 @@ The second concern is addressed using non-parametric statistical techniques, whi
 &\multicolumn{1}{c}{CAR (0,0)}&\multicolumn{1}{c}{p-value}&\multicolumn{1}{c}{p-value}
 &\multicolumn{1}{c}{p-Value}\\
   \hline
-Coups & -0.182 & 0.008 & 0.083 & 0.235 & 0.980 & 1.000 & 0.034  \\
-Assassinations & -1.101 & 0.043 & 0.157 & -2.342 & 0.236 & 0.157 & 0.688  \\
-Resignations & 6.146 & 0.000 & 0.020 & 0.486 & 0.217 & 0.796 & 0.007 \\
-All (Absolute Value) & 3.725 & 0.000 & 0.004 & 0.335 & 0.144 & 0.612 & 0.001 \\
+\ExpandableInput{../tables/non-parametric-ar0.txt}
    \hline
    \hline
 \end{tabular*}
 \scriptsize
-Notes:
+Notes: Estimates for assassinations do not include the assassination of U.S. president William McKinley in 1901 because no control portfolios are available. 
 \end{threeparttable}
 \end{center}
 \end{table}
@@ -451,17 +447,7 @@ Second, since the direction of the pre-trends is unclear, we examine whether the
 
 It is also worth noting that the post-event CAR(1,k) for $k\in(2,19)$ is not statistically significant for either the ``positive'' or the ``negative'' events. Almost all of the stock-market reaction occurs on the first day that the market could react to the event which suggests that markets respond quickly to political events. This, in turn, implies that markets are reacting to news efficiently and that an event-driven trading strategy would not be profitable.
 
-To check for the possibility that my previous results were spurious, a final placebo check examines whether there are abnormal absolute returns on the event day when the event day is shifted forward and backwards in time. Events are shifted backwards by 5, 10, 15, 20, 25 and 30 trading days and forwards by 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 and 60 trading days.\footnote{Event days are not shifted backwards by more than 30 trading days to ensure than every country in the sample can be included. When events are shifted backwards by more than 30 trading days mean abnormal absolute returns continue to cluster around 0.} Figure~\autoref{fig:time-placebos} graphs the abnormal absolute returns (labeled CAR(0,0) in the figure) against the number of days shifted.
-
-The largest CAR(0,0) occurs when the events have not been shifted in time. Moreover, the backwards shifted event day abnormal absolute return is only statistically different from zero when the event day is shifted backwards by 5 days. On the other hand, the forwards shifted CAR(0,0) is statistically significant when the event day is shifted forward by 5, 10, 15 and 20 days. These findings are consistent with figure~\autoref{fig:volatility}, in which volatility began increasing around 5 trading days before the event and then started decreasing quickly about 20 trading days therafter.
-
-\begin{figure}[!ht]
-\includegraphics{../figs/daily_mean_absreturn.pdf}
-\vspace{-50pt}
-\caption{Time-shifed placebos for absolute abnormal returns}
-\label{fig:time-placebos}
-\end{figure}
-
+Fianlly, to check whether our results are sensitive to model specificaiton, we estimated market models in addition to the baseline constant returns model. We used the MSCI World Index as a proxy for ther market return. [To do: add table for this]  
 
 \section{Public Protests} \label{sec: Public Protests}
 The resignations studied in this paper are those in which leaders left office because of poor performance, public discontent and popular protests. While the previous section showed that the resignations themselves had large effects on stock returns and volatility, it is not unreasonable to expect the political actions preceding the resignations to have similarly large effects on financial markets. Indeed, corporate investors in the 2011 MIGA \textit{World Investment and Political Risk} ranked civil disturbances as the fourth most concerning type of political risk.

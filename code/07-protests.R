@@ -45,7 +45,7 @@ p <- ggplot(egypt.es, aes(x = date, y = car)) + geom_line() +
 ggsave("figs/egypt-revolution-2011.pdf", p, height = 5, width = 7)
 
 # EFFECT OF PUBLIC PROTESTS ON STOCK PRICES ------------------------------------
-# data 
+# data
 index.rev <- vector(mode = "list", length(rev$ticker))
 for (i in 1:length(rev$ticker)){
   index.rev[[i]] <- index[ticker == rev$ticker[i] & date >= (rev$start_date[i] - 250)
@@ -53,15 +53,28 @@ for (i in 1:length(rev$ticker)){
   index.rev[[i]][, rev_no := i]
   index.rev[[i]][, event := ifelse(date >= rev$start_date[i] & 
                                      date <= rev$end_date[i], 1, 0)]
+  index.rev[[i]] <- index.rev[[i]][!is.na(dr)]
+}
+
+# volatility
+garch.spec <- ugarchspec(mean.model = list(armaOrder = c(0,0)), 
+                         distribution.model = "norm")
+for (i in 1:length(rev$ticker)){
+  rc.garchfit <- ugarchfit(spec = garch.spec, data = index.rev[[i]]$dr)
+  index.rev[[i]]$garch_volatility <- rc.garchfit@fit$sigma
+  print(i)
 }
 index.rev <- rbindlist(index.rev)
+
+# panel data
 index.rev <- pdata.frame(index.rev, index = c("rev_no", "date"))
 
 # regressions
 revfit1 <- plm(dr ~ event, data = index.rev, model = "within")
 revfit2 <- plm(abs_dr ~ event, data = index.rev, model = "within")
 revfit3 <- plm(abs_dr ~ event + emerg_abs_dr, data = index.rev, model = "within")
-revfit <- list(revfit1, revfit2, revfit3)
+revfit4 <- plm(garch_volatility ~ event, data = index.rev, model = "within")
+revfit <- list(revfit1, revfit2, revfit3, revfit4)
 nfits <- length(revfit)
 
 # table of results

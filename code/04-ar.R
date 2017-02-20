@@ -15,7 +15,7 @@ artable.coups <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, coup.index],
                           dtr = rc.es$dtr.treat[coup.index],
                           country = regime.change[coup.index, country],
                           date = regime.change[coup.index, stock_date], 
-                          coup = TRUE)
+                          coup = FALSE)
 myprint.xtable(artable.coups$car, file = "tables/artable-coups-car.txt")
 myprint.xtable(artable.coups$car.mean, file = "tables/artable-coups-car-mean.txt")
 

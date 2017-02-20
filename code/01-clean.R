@@ -28,7 +28,7 @@ rev[, end_date := as.Date(end_date,"%m/%d/%Y")]
 
 # CLEAN DATA -------------------------------------------------------------------
 # inflation adjusted returns
-#indices[, dr := (real_p - shift(real_p))/shift(real_p), by = "ticker"]
+indices[, dr := (real_p - shift(real_p))/shift(real_p), by = "ticker"]
 
 ## continuously compounded returns
 indices[, dr := 100 * log(dr+1)]

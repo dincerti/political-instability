@@ -433,3 +433,21 @@ combine_event_studies <- function(x, event_country, event_type, event_date){
             car.control = car.control, car.control.se = car.control.se)
   return(l)
 }
+
+# VOLATILITY DATA --------------------------------------------------------------
+volatility_data <- function(stockdata, event_ticker, event_date, 
+                            date_start = NULL, date_end = NULL<
+                            pre_days, post_days){
+  n <- length(event_ticker)
+  dat <- vector(mode = "list", n)
+  for (i in 1:n){
+    dat[[i]] <- stockdata[ticker == event_ticker[i], .(ticker, date, dr)]
+    dat[[i]] <- calc_td(dat[[i]], 
+                        event_date = event_date[i])
+    dat[[i]] <- dat[[i]][td >= -pre_days & td <= post_days]
+    dat[[i]] <- dat[[i]][complete.cases(dat[[i]])]
+    dat[[i]]$event_date <- event_date[i]
+    dat[[i]]$event_num <- i
+  }
+  return(dat)
+}
