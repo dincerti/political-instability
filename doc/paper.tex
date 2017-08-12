@@ -145,7 +145,9 @@ A common hypothesis is that political instability discourages investment and red
 
 As in \citep{alesina1996political}, we use ``irregular'' regime changes such as coups, assassinations and resignations as an indicator for political instability. The major innovation of this paper is that, in contrast to the aforementioned cross country studies, we analyze the impact of political instability using daily financial data. This enables us to use market expectations to quantify the economic impact of each individual type of regime change. The advantage of this event study approach is that it allows us to isolate the effect of irregular regime changes and mitigate the endogeneity problems that are nearly ubiquitous in cross country regressions.
 
-Our main finding is that financial volatility increases dramatically following (and just before) coup d'etat, assassinations, and resignations. However, these irregular regime changes have disparate effects on the direction of stock returns. Abnormal returns following resignations are large and positive (6\%) while abnormal returns following assassinations are negative and smaller in magnitude (1\%). The impact of coups tends to be negative, but some events such as the temporary ousting of Hugo Chavez during the 2002 Venezuelan coup d'etat attempt result in positive abnormal returns of 20\% or more. This finding is consistent with research that shows that ``good coups'' - coups that lead to democratization and economic liberalization - are not the norm and therefore coups should not be expected to lead to increased economic development and therefore positive market returns (cite). However, while ``good coups'' may be the minority, they do exist, and coups that attempt to overthrow anti-business autocrats may be expected to result in positive abnormal returns as investors see little risk of a replacement government ``worse'' than the status quo. 
+We find that financial volatility increases dramatically following (and just before) coup d'etat, assassinations, and resignations. However, these irregular regime changes have disparate effects on the direction of stock returns. Abnormal returns following resignations are large and positive (6\%) while abnormal returns following assassinations are negative and smaller in magnitude (1\%). The impact of coups tends to be negative, but some events such as the temporary ousting of Hugo Chavez during the 2002 Venezuelan coup d'etat attempt result in positive abnormal returns of 20\% or more. This finding is consistent with research that shows that ``good coups'' - coups that lead to democratization and economic liberalization - are not the norm and therefore coups should not be expected to lead to increased economic development and therefore positive market returns \citep{derpanopoulos2015coups}. However, while ``good coups'' may be the minority, they do exist, and coups that attempt to overthrow anti-business autocrats may be expected to result in positive abnormal returns as investors see little risk of a replacement government ``worse'' than the status quo.
+
+Our main finding is therefore that the \textit{type} of political event is less important to the direction of abnormal returns than the \textit{nature} of the event. Events expected to lead to more stable governance, economic liberalization or democratization are associated with positive returns, while those that consolidate authoritarian rule or poor economic policies have the opposite effect. 
 
 \bigskip
 
@@ -158,13 +160,55 @@ The third strand examines the impact of leaders on political and economic outcom
 The fourth uses event studies to assess political phenomenon. A growing body of work uses political events to estimate the effect of political connections on firm value \citep[e.g.][]{fisman2001estimating,faccio2006politically,goldman2009politically}. Studies in ``forensic economics" have used abnormal returns from political events to locate or examine transactions such as insider trading \citep{dube2011coups}, illegal arms trading \citep{dellavigna2010detecting}, and the impact of hostilities on the financial performance of diamond mining firms in Angola \citep{guidolin2007diamonds}.
 
 \section{Data}
-Political data are primarily drawn from the Center for Systemic Peace's (CSP) Polity IV Coup d'?tat dataset and Coup d'?tat Events handbook. The Coup d'?tat dataset incudes the date of 1) successful coups, 2) attempted coups, 3) plotted coups and 4) alleged coup plots. We focus on successful coups because it is difficult to classify failed coups. \citep[p. 617]{needler1966political} has even gone so far as to say that ``the categories of coups that were aborted, suppressed, or abandoned melt into each other and into a host of other non-coup phenomena so as to defy accounting.''
+Political data are primarily drawn from the Center for Systemic Peace's (CSP) Polity IV Coup d'etat dataset and Coup d'etat Events handbook. The Coup d'etat dataset includes the date of 1) successful coups, 2) attempted coups, 3) plotted coups and 4) alleged coup plots. We focus on successful coups because it is difficult to classify failed coups.\footnote{\citep[p. 617]{needler1966political} has even gone so far as to say that ``the categories of coups that were aborted, suppressed, or abandoned melt into each other and into a host of other non-coup phenomena so as to defy accounting.''} As even successful coups can have disparate outcomes (e.g. a shift from authoritarian rule to democratic rule, or vica versa), we provide a list of coups and their general outcome in \autoref{tab:coup list} below. 
 
-The Coup d'?tat Events handbook provides a list of 1) auto-coups, 2) the ouster of leadership by foreign forces, 3) the ouster of leadership by rebel forces, 4) assassinations of the executive and 5) resignations of the executive due to poor performance and/or loss of authority. Daily financial data is available for countries in categories 4 and 5, so we supplement the coups with assassinations and resignations to form a list of ``irregular'' regime changes. The resignations are those in which the ruling executive was coerced to resign due to poor performance, public discontent and popular demonstrations.
+\singlespacing
+\footnotesize
+\begin{center}
+\begin{longtable}[!ht]{l@{\extracolsep{\fill}}lll}
+\caption{List of Coup d'Etat}
+\label{tab:coup list}\\
+\vspace{-5pt}\\
+\hline
+\multicolumn{1}{c}{Coup Date}&\multicolumn{1}{c}{Country}&\multicolumn{1}{c}{Coup Outcome}\\\hline
+\endfirsthead
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\hline
+\multicolumn{1}{c}{Coup Date}&\multicolumn{1}{c}{Country}&\multicolumn{1}{c}{Coup Outcome}\\\hline
+\hline
+\endhead
+\hline 
+\multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+06/08/1970 & Argentina & Authoritarian to authoritarian\\
+03/22/1971 & Argentina & Authoritarian to democratic\\
+03/24/1976 & Argentina & Democratic to authoritarian\\
+10/06/1976 & Thailand & Democratic to authoritarian\\
+10/20/1977 & Thailand & Authoritarian to authoritarian\\
+12/12/1979 & South Korea & Authoritarian to authoritarian\\
+02/23/1991 & Thailand & Democratic to authoritarian\\
+04/05/1992 & Peru & Democratic to authoritarian\\
+10/12/1999 & Pakistan & Democratic to authoritarian\\
+10/04/2002 & Nepal & Democratic to authoritarian\\
+09/19/2006 & Thailand & Democratic to authoritarian\\
+01/11/2007 & Bangladesh & Authoritarian to authoritarian\\
+04/11/2002 & Venezuela & Failed authoritarian to democratic\\
+\hline
+\hline
+\end{longtable}
+\end{center}
+\doublespacing
+\normalsize
+
+The Coup d'etat Events handbook also provides a list of 1) auto-coups, 2) the ouster of leadership by foreign forces, 3) the ouster of leadership by rebel forces, 4) assassinations of the executive and 5) resignations of the executive due to poor performance and/or loss of authority. Daily financial data is available for countries in categories 4 and 5, so we supplement the coups with assassinations and resignations to form a list of ``irregular'' regime changes. The resignations are those in which the ruling executive was coerced to resign due to poor performance, public discontent and popular demonstrations.
 
 We further supplement the CSP data with leadership data from Archigos Version 2.9, which allows us to identify additional cases in which a ``leader lost power through irregular means.'' Irregular transfers of power are those in which leaders do not leave office ``in a manner prescribed by either explicit rules or established conventions.'' Nearly all removals by irregular means result from the threat or use of force (e.g. coups, revolts and assassinations).
 
-Financial data are from the Global Financial Data database, which includes the longest available time series of stock prices. We collect data on national equity indices and two global equity indices, the S\&P/IFC Emerging Market Investable Composite and the Morgan Stanley Capital International (MSCI) World Index. The S\&P/IFC index includes securities from emerging markets while the MSCI index includes securities from developed markets only. We collect stock index data on every country in which there was a coup or coup attempt, an assassination or failed assassination, or a forced resignation.\footnote{The list of failed assassinations are from \citep{jones2009hit}. Coup attempts are those in category 2 in the CSP Coup d'?tat dataset.}The longest available time series for these stock indices are listed in \autoref{tab:stock list}.
+Financial data are from the Global Financial Data database, which includes the longest available time series of stock prices. We collect data on national equity indices and two global equity indices, the S\&P/IFC Emerging Market Investable Composite and the Morgan Stanley Capital International (MSCI) World Index. The S\&P/IFC index includes securities from emerging markets while the MSCI index includes securities from developed markets only. We collect stock index data on every country in which there was a coup or coup attempt, an assassination or failed assassination, or a forced resignation.\footnote{The list of failed assassinations are from \citep{jones2009hit}. Coup attempts are those in category 2 in the CSP Coup d'etat dataset.} The longest available time series for these stock indices are listed in \autoref{tab:stock list}.
 
 \singlespacing
 \footnotesize
