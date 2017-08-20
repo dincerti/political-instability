@@ -1,6 +1,7 @@
 rm(list = ls())
 library("xtable")
 library("data.table")
+library("Synth")
 load("data/data-clean.RData")
 theme_set(theme_bw())
 source("code/func.R")

@@ -48,7 +48,10 @@ ven.es <- event_study(ticker = index$ticker, date = index$date, dr = index$dr,
 ven.es$ar.treat[, lar := ar - qnorm(.975) * ven.es$sigma.treat]
 ven.es$ar.treat[, uar := ar + qnorm(.975) * ven.es$sigma.treat]
 p <- ggplot(ven.es$ar.treat[abs(td) <= 10], aes(x = td, y = ar)) + 
-  geom_pointrange(aes(ymin = lar, ymax = uar), size = .2) +
+  geom_hline(aes(yintercept = 0), linetype = 2, color = "grey") +
+  geom_vline(aes(xintercept = 0), linetype = 2, color = "grey") +
+  geom_pointrange(aes(ymin = lar, ymax = uar), size = .3) +
   xlab("Trading days") + ylab("AR (%)") +
-  geom_hline(aes(yintercept = 0), linetype = 2)
+  theme_classic()
+print(p)
 ggsave("figs/venezuela_coup_attempt_2002.pdf", p, height = 5, width = 7)

@@ -1,5 +1,5 @@
-% latex table generated in R 3.3.2 by xtable 1.8-2 package
-% Sun Feb 19 18:27:11 2017
+% latex table generated in R 3.4.1 by xtable 1.8-2 package
+% Sun Aug 20 16:51:32 2017
  Argentina & 06/08/1970 & -1.917 & -13.861 & -15.322 & 0.258 & 4.760 & 264 \\ 
    &  & (0.936) & (2.476) & (4.185) & (2.476) & (4.185) &  \\ 
   Argentina & 03/22/1971 & 1.001 & 14.829 & 25.433 & 0.667 & 1.803 &  \\ 

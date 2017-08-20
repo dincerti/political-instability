@@ -196,7 +196,7 @@ Political data are primarily drawn from the Center for Systemic Peace's (CSP) Po
 10/04/2002 & Nepal & Democratic to authoritarian\\
 09/19/2006 & Thailand & Democratic to authoritarian\\
 01/11/2007 & Bangladesh & Authoritarian to authoritarian\\
-04/11/2002 & Venezuela & Failed authoritarian to democratic\\
+04/11/2002 & Venezuela & Partial/failed authoritarian to democratic\\
 \hline
 \hline
 \end{longtable}
@@ -309,8 +309,7 @@ We define the event date as the first trading day in which the market could have
 
 $(0,\tau-1)$ is used to denote the $\tau$-day period beginning with the event day and $(-1,\tau)$ to denote the negative $\tau$-day period beginning with the day prior to the event day. In other words, for cumulative abnormal returns prior to the event date, we aggregate backwards starting at the day of the event. For example, $CAR(-1,-2$) is the sum of the abnormal returns on event date $-1$ and event day $-2$.
 
-We report abnormal returns separately for coups, assassinations and resignations because they may have distinct effects on stock returns. \autoref{tab:AR-coups} shows abnormal returns for national stock indices both preceding and following coup d'etat.
-Standard errors and p-values are calculated using asymptotic t-statistics as in \citep{mackinlay1997event}. \footnote{It is appropriate to use the standard normal distribution to calculate test statistics because the length of the estimation window is sufficiently long (250 trading days).}
+We report abnormal returns separately for coups, assassinations and resignations because they may have distinct effects on stock returns. \autoref{tab:AR-coups} shows abnormal returns for national stock indices both preceding and following coup d'etat. Standard errors and p-values are calculated using asymptotic t-statistics as in \citep{mackinlay1997event}.\footnote{It is appropriate to use the standard normal distribution to calculate test statistics because the length of the estimation window is sufficiently long (250 trading days).} \autoref{tab:AR-coups} contains all coups presented in \autoref{tab:coup list} with the exception of the partial/failed Venezuelan coup attempt of 2002. We examine this event as well, but do not include it in the sample in \autoref{tab:AR-coups} as it does not match our definition of a successful coup. 
 
 \begin{table}[!ht]
 \caption{Abnormal returns following coups} \label{tab:AR-coups}
@@ -337,13 +336,9 @@ Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of 
 \end{center}
 \end{table}
 
-The average coup has a $-2.5\%$ event day AR. Event day ARs for the 1970 coup in Argentina, the 1979 coup in South Korea, the 1991 coup in Thailand, the 1992 coup in Peru, and the 1999 coup in Pakistan are all negative and statistically different than zero. Moreover, all of these cases except Thailand have negative post-event CARs and pre-event CARs that are statistically indistinguishable from zero. In all of these cases, the coup in question either overthrew a democratically elected government or changed governance from one military ruler to another. The initial negative reaction followed by additional post-event negativity is consistent with the expected market reaction from a successful authoritarian coup followed by post-event consolidation of power. 
+The average coup has a $-2.5\%$ event day AR. Event day ARs for the 1970 coup in Argentina, the 1991 coup in Thailand, the 1992 coup in Peru, and the 1999 coup in Pakistan are all negative and statistically different than zero. Moreover, all of these cases except Thailand have negative post-event CARs and pre-event CARs that are statistically indistinguishable from zero. In all of these cases, the coup in question either overthrew a democratically elected government or changed governance from one military ruler to another. The initial negative reaction followed by additional post-event negativity is consistent with the expected market reaction from a successful authoritarian coup followed by post-event consolidation of power. 
 
-Event day ARs are negative for all coups except the 1971 coup in Argentina and the 2002 failed coup d'etat attempt against Hugo Chavez. These results provide evidence that that coups can in fact result in positive abnormal returns. While the 1971 Argentinian coup did result in another military leader, it did so while calling for free and democratic elections and replaced a government that had adopted extreme protectionist economic policies. The ultimately failed coup against Hugo Chavez replaced a left-wing populist government with a new pro-business president.
-
-The failed coup attempt against Hugo Chavez is a perfect natural experiment because investors reacted to an expected regime change twice: first, when Chavez was ousted, and second, when he was reinstated. On the evening of April 11, 2002, coup plotters removed Chavez from office and later detained him. Pedro Carmona, a Venezuelan economist and business leader, was named the transitional President of Venezuela. Two days later, on April 13, 2002, a popular uprising led to Chavez's reinstatement as president. This provides an estimate of the market's valuation of a transition from the Chavez regime to the Carmona regime and its valuation of a transition from the Carmona regime back to the Chavez regime. By extension, it provides an estimate of the impact of a shift from a left-wing populist government to a pro business regime in an emerging market.
-
-\autoref{fig:AR-Ven} provides graphical evidence on the effect of the coup attempt. The top panel shows CARs for the 10 days prior to and following the event, along with 95\% confidence intervals. The daily ARs and corresponding confidence intervals are displayed in the bottom panel. The abnormal return on April 12, the first trading day in which investors could react to the coup, was 19.5\%. The market reacted similarly, albeit in the opposite direction, to Chavez's reinstatement as president: the abnormal return on the next trading day, April 15, 2002, was -14\%.
+Event day ARs are negative for all coups except the 1971 coup in Argentina and the 2002 failed coup d'etat attempt against Hugo Chavez (\autoref{fig:AR-Ven}). These results provide evidence that coups can in fact result in positive abnormal returns. While the 1971 Argentinian coup did result in another military leader, it did so while calling for free and democratic elections and replaced a government that had adopted extreme protectionist economic policies. The ultimately failed coup against Hugo Chavez replaced a left-wing populist government with a new pro-business president.
 
 \begin{figure}[!ht]
 \includegraphics{../figs/venezuela_coup_attempt_2002.pdf}
@@ -351,13 +346,15 @@ The failed coup attempt against Hugo Chavez is a perfect natural experiment beca
 \label{fig:AR-Ven}
 \end{figure}
 
+The failed coup attempt against Hugo Chavez is a perfect natural experiment because investors reacted to an expected regime change twice: first, when Chavez was ousted, and second, when he was reinstated. On the evening of April 11, 2002, coup plotters removed Chavez from office and later detained him. Pedro Carmona, a Venezuelan economist and business leader, was named the transitional President of Venezuela. Two days later, on April 13, 2002, a popular uprising led to Chavez's reinstatement as president. This provides an estimate of the market's valuation of a transition from the Chavez regime to the Carmona regime and its valuation of a transition from the Carmona regime back to the Chavez regime. By extension, it provides an estimate of the impact of a shift from a left-wing populist government to a pro business regime in an emerging market.
+
+\autoref{fig:AR-Ven} provides graphical evidence on the effect of the coup attempt. The top panel shows CARs for the 10 days prior to and following the event, along with 95\% confidence intervals. The daily ARs and corresponding confidence intervals are displayed in the bottom panel. The abnormal return on April 12, the first trading day in which investors could react to the coup, was 19.5\%. The market reacted similarly, albeit in the opposite direction, to Chavez's reinstatement as president: the abnormal return on the next trading day, April 15, 2002, was -14\%.
+
 The results in the figure are particularly striking given the discrepancy between the ARs on event days 0 and 1 and all other days. The only other day in which the ARs are statistically different from zero is on the third trading day after the coup attempt.
 
 The almost 0\% 10-day CAR preceding the coup makes this an ideal case as it implies that investors were unaware of the coup plot. The unexpected nature of the event means that the abnormal returns capture the true value of the regime change from Chavez to Carmona more accurately than they otherwise would.
 
 The results in \autoref{tab:AR-ass} are produced from analyses identical to those table \autoref{tab:AR-coups} but for successful assassinations rather than coups. Like the majority of coups, there is evidence that assassinations decrease stock prices. The mean event day abnormal return is negative and statistically different than zero. However, the result is driven almost entirely by three events: the shooting of U.S. President William McKinley on September 6, 1901; the assassination of U.S. President John F. Kennedy on November 22, 1963; and the assassination of Israeli Prime Minister Yitzhak Rabin on the evening of November 4, 1995.
-
-These results are consistent with our hypothesis that the nature of the political event and its expect impact on policy matters. While the mean effect of assassinations is negative, it is smaller in magnitude than for coups. Unlike a coup, an assassination is typically a random event that will not necessarily cause immediate change in economic policy. As such, we would expect CARs to be negative due to increased instability and uncertainty, but smaller in magnitude to a coup or resignation due to greater expectations of policy inertia.
 
 \begin{table}[!ht]
 \caption{Abnormal returns following assassinations} \label{tab:AR-ass}
@@ -384,9 +381,9 @@ Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of 
 \end{center}
 \end{table}
 
-There is no evidence of post or pre-event CARs in almost any of the assassinations. This is consistent with expectations as assassinations are typically not predictable. As with coups, the number of days that it took the stock market to rebound to pre-event levels is fairly low.\footnote{One exception is the assassination of William Mckinley in which the stock market didn't fully recover for 963 days, or almost 4 calendar years. However, this was likely caused by the Panic of 1901, which began when the stock market crashed on May 17th, 1901, and not by McKinley's death (although the assassination may have exacerbated the panic). In any case, the length of this time period is so long that we omitted it when calculating the mean days to rebound in the figure.}
+These results are consistent with our hypothesis that the nature of the political event and its expect impact on policy matters. While the mean effect of assassinations is negative, it is smaller in magnitude than for coups. Unlike a coup, an assassination is typically a random event that will not necessarily cause immediate change in economic policy. As such, we would expect CARs to be negative due to increased instability and uncertainty, but smaller in magnitude to a coup or resignation due to greater expectations of policy inertia.
 
-In contrast to coups and assassinations, abnormal returns following resignations are large and positive (see \autoref{tab:AR-resignations}). The mean event day abnormal return is over 6\% and event day abnormal returns are only negative and statistically significant at even the ten percent level in one out of the fifteen resignations (Tunisia on June 31, 2011). However, these positive returns are short lived: the 7 day cumulative abnormal return is nearly identical to the event day abnormal return and the 20 day cumulative abnormal return is not statistically different from zero.
+There is no evidence of post or pre-event CARs in almost any of the assassinations. This is consistent with expectations as assassinations are typically not predictable. As with coups, the number of days that it took the stock market to rebound to pre-event levels is fairly low.\footnote{One exception is the assassination of William Mckinley in which the stock market didn't fully recover for 963 days, or almost 4 calendar years. However, this was likely caused by the Panic of 1901, which began when the stock market crashed on May 17th, 1901, and not by McKinley's death (although the assassination may have exacerbated the panic). In any case, the length of this time period is so long that we omitted it when calculating the mean days to rebound in the figure.}
 
 \begin{table}[!ht]
 \caption{Abnormal returns following resignations} \label{tab:AR-resignations}
@@ -412,6 +409,8 @@ Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of 
 \end{threeparttable}
 \end{center}
 \end{table}
+
+In contrast to coups and assassinations, abnormal returns following resignations are large and positive (see \autoref{tab:AR-resignations}). The mean event day abnormal return is over 6\% and event day abnormal returns are only negative and statistically significant at even the ten percent level in one out of the fifteen resignations (Tunisia on June 31, 2011). However, these positive returns are short lived: the 7 day cumulative abnormal return is nearly identical to the event day abnormal return and the 20 day cumulative abnormal return is not statistically different from zero.
 
 These results are also consistent with the idea that the expected impact of a political event on economic policy is highly important to the directionality of returns. The positive event day abnormal return following resignations is not surprising since resignations occurred because of ``poor performance and/or loss of authority.'' Leaders were often ousted following corruption charges, financial crises, and/or political violence. For example, consider Suharto's resignation from office as the President of Indonesia on May 1998, just after the 1997 Asian Financial Crisis.
 
