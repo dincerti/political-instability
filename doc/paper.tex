@@ -7,7 +7,6 @@
 \usepackage[latin1]{inputenc}
 %\usepackage[OT1]{fontenc}
 \usepackage{setspace}
-\usepackage{natbib}
 \usepackage{enumitem}
 \usepackage{url}
 \usepackage[font={bf}]{caption}
@@ -21,9 +20,9 @@
 %\usepackage[varg]{txfonts}  Older version of ``g'' in math.
 
 % bibliography packages
-\usepackage{natbib}
+\usepackage[natbibapa]{apacite}
+\bibliographystyle{apacite}
 \bibpunct{(}{)}{;}{a}{}{,}
-\bibliographystyle{apsr}
 \renewcommand{\bibname}{References}
 
 % hyperref options
@@ -286,7 +285,7 @@ Zambia & Zambia LuSE Index & Jan-02 & Apr-06\\
 
 To gain perspective on the relationship between irregular regime changes and the stock market, \autoref{fig:AV-DR} plots the absolute value of daily stock returns averaged across all events. Returns are for 250 trading days---approximately one calendar year---before and after regime changes.
 
-The absolute value of returns on the event day (trading day 0) are significantly larger than on any other day. In addition, the magnitude of returns begins increasing just before the event day and remains high for a short period after it. This suggests that financial volatility increase during the days surrounding regime changes, although it does not provide any evidence on mean returns.
+The absolute value of returns on the event day (trading day 0) are significantly larger than on any other day. In addition, the magnitude of returns begins increasing just before the event day and remains high for a short period after it. This suggests that financial volatility increases during the days surrounding regime changes, although it does not provide any evidence on mean returns.
 
 \autoref{sec: Irregular Regime Changes} tests these results more formally. It will first analyze coups, assassinations and resignations separately and determine whether they increase mean returns. It will then combine all irregular regime changes and estimate the effect of regime changes on the variance of returns.
 
@@ -442,7 +441,7 @@ There are three potential concerns with the results in \autoref{subsec: Abnormal
 
 To explore the first concern, we create a synthetic control portfolio for each event based on the techniques introduced in \citep{abadie2003economic} and \citep{abadie2010synthetic}. Each country is given a weight which represents its influence in the synthetic control portfolio. The weight is chosen so that the daily returns and the variance of the daily returns of the control portfolio and the event country are most similar in the estimation window. The set of possible countries in the control portfolio consists of all countries listed in \autoref{tab:stock list}.\footnote{See the appendix for a more formal explanation.}
 
-The second concern is addressed using non-parametric statistical techniques, which are free from distributional assumptions. we employ the sign and the rank tests which are based on the sign and the rank of the event day ARs respectively.\footnote{See section 8 in \citep{mackinlay1997event} for more details.} Both tests are less influenced by departures from normality than statistics based on traditional t-tests such as those reported earlier in this paper.
+The second concern is addressed using non-parametric statistical techniques, which are free from distributional assumptions. We employ the sign and the rank tests which are based on the sign and the rank of the event day ARs respectively.\footnote{See section 8 in \citep{mackinlay1997event} for more details.} Both tests are less influenced by departures from normality than statistics based on traditional t-tests such as those reported earlier in this paper.
 
 \autoref{tab:non-parametric} compares event day ARs as well as ``abnormal absolute returns'' between the event country and the synthetic control portfolio using the non-parametric methods discussed above. The ``abnormal absolute returns'' are abnormal returns for the absolute value of stock returns. This is done to combine events since resignations tend to increase returns while assassinations and coups tend to decrease them. The idea that the absolute value of returns might increase during irregular regime changes is similar to the finding that volatility increases and consistent with \autoref{fig:AV-DR}.
 
