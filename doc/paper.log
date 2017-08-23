@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  23 AUG 2017 12:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  23 AUG 2017 14:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -677,7 +677,12 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
  [4] [5]
-[6] <../figs/daily_mean_absreturn.pdf, id=148, 505.89pt x 361.35pt>
+[6]
+
+LaTeX Warning: Reference `sec: Irregular Regime Changes' on page 7 undefined on
+ input line 293.
+
+<../figs/daily_mean_absreturn.pdf, id=147, 505.89pt x 361.35pt>
 File: ../figs/daily_mean_absreturn.pdf Graphic file (type pdf)
 
 <use ../figs/daily_mean_absreturn.pdf>
@@ -691,54 +696,54 @@ Overfull \hbox (36.13373pt too wide) in paragraph at lines 296--297
 
 [7] [8 <../figs/daily_mean_absreturn.pdf>] [9] (../tables/artable-coups-car.txt
 ) (../tables/artable-coups-car-mean.txt) [10]
-<../figs/venezuela_coup_attempt_2002.pdf, id=201, 505.89pt x 361.35pt>
+<../figs/venezuela_coup_attempt_2002.pdf, id=202, 505.89pt x 361.35pt>
 File: ../figs/venezuela_coup_attempt_2002.pdf Graphic file (type pdf)
 
 <use ../figs/venezuela_coup_attempt_2002.pdf>
 Package pdftex.def Info: ../figs/venezuela_coup_attempt_2002.pdf used on input 
-line 346.
+line 349.
 (pdftex.def)             Requested size: 505.88875pt x 361.34912pt.
 
-Overfull \hbox (36.13373pt too wide) in paragraph at lines 346--347
+Overfull \hbox (36.13373pt too wide) in paragraph at lines 349--350
 [][] 
  []
 
 [11] [12 <../figs/venezuela_coup_attempt_2002.pdf>]
 (../tables/artable-ass-car.txt) (../tables/artable-ass-car-mean.txt) [13]
 (../tables/artable-res-car.txt) (../tables/artable-res-car-mean.txt) [14]
-[15] <../figs/mean-volatility.pdf, id=250, 505.89pt x 361.35pt>
+[15] <../figs/mean-volatility.pdf, id=254, 505.89pt x 361.35pt>
 File: ../figs/mean-volatility.pdf Graphic file (type pdf)
 
 <use ../figs/mean-volatility.pdf>
-Package pdftex.def Info: ../figs/mean-volatility.pdf used on input line 435.
+Package pdftex.def Info: ../figs/mean-volatility.pdf used on input line 442.
 (pdftex.def)             Requested size: 505.88875pt x 361.34912pt.
 
-Overfull \hbox (36.13373pt too wide) in paragraph at lines 435--436
+Overfull \hbox (36.13373pt too wide) in paragraph at lines 442--443
 [][] 
  []
 
 [16] [17 <../figs/mean-volatility.pdf>] (../tables/non-parametric-ar0.txt)
-[18] <../figs/mean-car-pos-neg.pdf, id=298, 505.89pt x 361.35pt>
+[18] <../figs/mean-car-pos-neg.pdf, id=302, 505.89pt x 361.35pt>
 File: ../figs/mean-car-pos-neg.pdf Graphic file (type pdf)
 
 <use ../figs/mean-car-pos-neg.pdf>
-Package pdftex.def Info: ../figs/mean-car-pos-neg.pdf used on input line 484.
+Package pdftex.def Info: ../figs/mean-car-pos-neg.pdf used on input line 491.
 (pdftex.def)             Requested size: 505.88875pt x 361.34912pt.
 
-Overfull \hbox (36.13373pt too wide) in paragraph at lines 484--485
+Overfull \hbox (36.13373pt too wide) in paragraph at lines 491--492
 [][] 
  []
 
 [19] [20 <../figs/mean-car-pos-neg.pdf>]
-<../figs/egypt-revolution-2011.pdf, id=323, 505.89pt x 361.35pt>
+<../figs/egypt-revolution-2011.pdf, id=327, 505.89pt x 361.35pt>
 File: ../figs/egypt-revolution-2011.pdf Graphic file (type pdf)
 
 <use ../figs/egypt-revolution-2011.pdf>
 Package pdftex.def Info: ../figs/egypt-revolution-2011.pdf used on input line 5
-03.
+10.
 (pdftex.def)             Requested size: 505.88875pt x 361.34912pt.
 
-Overfull \hbox (36.13373pt too wide) in paragraph at lines 503--504
+Overfull \hbox (36.13373pt too wide) in paragraph at lines 510--511
 [][] 
  []
 
@@ -767,22 +772,29 @@ Overfull \hbox (3.8889pt too wide) detected at line 6
 $\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 118)$ 
  []
 
-) [23] (./paper.bbl [24] [25])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 586.
- [26]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 586.
+) [23] [24] (./paper.bbl [25] [26])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 595.
+ [27]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 595.
  (./paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 586.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 586.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 595.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 595.
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 395CB048B7E9C10853D3607F139A3000;332.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 586.
+(rerunfilecheck)             Checksum: 7FB2442BAD52AA0F22D0E97BB0017986;356.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 595.
  ) 
 Here is how much of TeX's memory you used:
- 11362 strings out of 492995
- 166497 string characters out of 6132704
- 384754 words of memory out of 5000000
- 14559 multiletter control sequences out of 15000+600000
+ 11377 strings out of 492995
+ 166807 string characters out of 6132704
+ 386873 words of memory out of 5000000
+ 14569 multiletter control sequences out of 15000+600000
  21577 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,13n,51p,1380b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -802,10 +814,10 @@ e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 /2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
 017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
 17/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on paper.pdf (26 pages, 294171 bytes).
+Output written on paper.pdf (27 pages, 295095 bytes).
 PDF statistics:
- 455 PDF objects out of 1000 (max. 8388607)
- 397 compressed objects within 4 object streams
- 97 named destinations out of 1000 (max. 500000)
+ 464 PDF objects out of 1000 (max. 8388607)
+ 404 compressed objects within 5 object streams
+ 102 named destinations out of 1000 (max. 500000)
  82 words of extra memory for PDF output out of 10000 (max. 10000000)
 
