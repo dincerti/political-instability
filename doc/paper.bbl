@@ -510,6 +510,31 @@ MacKinlay, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Marinov%
+\ \BBA {} Goemans%
+}{%
+Marinov%
+\ \BBA {} Goemans%
+}{%
+{\protect \APACyear {2014}}%
+}]{%
+marinov2014coups}
+\APACinsertmetastar {%
+marinov2014coups}%
+\begin{APACrefauthors}%
+Marinov, N.%
+\BCBT {}\ \BBA {} Goemans, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Coups and democracy} {Coups and democracy}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{British Journal of Political Science}{44}{4}{799--825}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Needler%
 }{%
 Needler%
@@ -532,6 +557,32 @@ Needler, M.%
 \newblock
 \APACjournalVolNumPages{The American Political Science
   Review}{60}{3}{616--626}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Powell%
+\ \BBA {} Thyne%
+}{%
+Powell%
+\ \BBA {} Thyne%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+powell2011global}
+\APACinsertmetastar {%
+powell2011global}%
+\begin{APACrefauthors}%
+Powell, J\BPBI M.%
+\BCBT {}\ \BBA {} Thyne, C\BPBI L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Global instances of coups from 1950 to 2010: A new
+  dataset} {Global instances of coups from 1950 to 2010: A new dataset}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Peace Research}{48}{2}{249--259}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -612,6 +663,56 @@ Svensson, J.%
   Theory and evidence}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{European Economic Review}{42}{7}{1317--1341}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Thyne%
+\ \BBA {} Powell%
+}{%
+Thyne%
+\ \BBA {} Powell%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+thyne2016coup}
+\APACinsertmetastar {%
+thyne2016coup}%
+\begin{APACrefauthors}%
+Thyne, C\BPBI L.%
+\BCBT {}\ \BBA {} Powell, J\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Coup d?{\'e}tat or Coup d'Autocracy? How Coups Impact
+  Democratization, 1950--2008} {Coup d?{\'e}tat or coup d'autocracy? how coups
+  impact democratization, 1950--2008}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Foreign Policy Analysis}{12}{2}{192--213}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Varol%
+}{%
+Varol%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+varol2011democratic}
+\APACinsertmetastar {%
+varol2011democratic}%
+\begin{APACrefauthors}%
+Varol, O\BPBI O.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The democratic coup d?{\'e}tat} {The democratic coup
+  d?{\'e}tat}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Harvard Journal of International Law}{}{}{}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

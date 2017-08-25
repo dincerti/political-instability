@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  23 AUG 2017 14:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  25 AUG 2017 10:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -682,7 +682,7 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 LaTeX Warning: Reference `sec: Irregular Regime Changes' on page 7 undefined on
  input line 293.
 
-<../figs/daily_mean_absreturn.pdf, id=147, 505.89pt x 361.35pt>
+<../figs/daily_mean_absreturn.pdf, id=161, 505.89pt x 361.35pt>
 File: ../figs/daily_mean_absreturn.pdf Graphic file (type pdf)
 
 <use ../figs/daily_mean_absreturn.pdf>
@@ -696,7 +696,7 @@ Overfull \hbox (36.13373pt too wide) in paragraph at lines 296--297
 
 [7] [8 <../figs/daily_mean_absreturn.pdf>] [9] (../tables/artable-coups-car.txt
 ) (../tables/artable-coups-car-mean.txt) [10]
-<../figs/venezuela_coup_attempt_2002.pdf, id=202, 505.89pt x 361.35pt>
+<../figs/venezuela_coup_attempt_2002.pdf, id=215, 505.89pt x 361.35pt>
 File: ../figs/venezuela_coup_attempt_2002.pdf Graphic file (type pdf)
 
 <use ../figs/venezuela_coup_attempt_2002.pdf>
@@ -711,7 +711,7 @@ Overfull \hbox (36.13373pt too wide) in paragraph at lines 349--350
 [11] [12 <../figs/venezuela_coup_attempt_2002.pdf>]
 (../tables/artable-ass-car.txt) (../tables/artable-ass-car-mean.txt) [13]
 (../tables/artable-res-car.txt) (../tables/artable-res-car-mean.txt) [14]
-[15] <../figs/mean-volatility.pdf, id=254, 505.89pt x 361.35pt>
+[15] <../figs/mean-volatility.pdf, id=267, 505.89pt x 361.35pt>
 File: ../figs/mean-volatility.pdf Graphic file (type pdf)
 
 <use ../figs/mean-volatility.pdf>
@@ -723,7 +723,7 @@ Overfull \hbox (36.13373pt too wide) in paragraph at lines 442--443
  []
 
 [16] [17 <../figs/mean-volatility.pdf>] (../tables/non-parametric-ar0.txt)
-[18] <../figs/mean-car-pos-neg.pdf, id=302, 505.89pt x 361.35pt>
+[18] <../figs/mean-car-pos-neg.pdf, id=315, 505.89pt x 361.35pt>
 File: ../figs/mean-car-pos-neg.pdf Graphic file (type pdf)
 
 <use ../figs/mean-car-pos-neg.pdf>
@@ -735,7 +735,7 @@ Overfull \hbox (36.13373pt too wide) in paragraph at lines 491--492
  []
 
 [19] [20 <../figs/mean-car-pos-neg.pdf>]
-<../figs/egypt-revolution-2011.pdf, id=327, 505.89pt x 361.35pt>
+<../figs/egypt-revolution-2011.pdf, id=340, 505.89pt x 361.35pt>
 File: ../figs/egypt-revolution-2011.pdf Graphic file (type pdf)
 
 <use ../figs/egypt-revolution-2011.pdf>
@@ -791,10 +791,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 595.
  ) 
 Here is how much of TeX's memory you used:
- 11377 strings out of 492995
- 166807 string characters out of 6132704
- 386873 words of memory out of 5000000
- 14569 multiletter control sequences out of 15000+600000
+ 11402 strings out of 492995
+ 167363 string characters out of 6132704
+ 387135 words of memory out of 5000000
+ 14590 multiletter control sequences out of 15000+600000
  21577 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,13n,51p,1380b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -814,10 +814,10 @@ e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 /2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
 017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
 17/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on paper.pdf (27 pages, 295095 bytes).
+Output written on paper.pdf (27 pages, 296968 bytes).
 PDF statistics:
- 464 PDF objects out of 1000 (max. 8388607)
- 404 compressed objects within 5 object streams
- 102 named destinations out of 1000 (max. 500000)
+ 478 PDF objects out of 1000 (max. 8388607)
+ 418 compressed objects within 5 object streams
+ 106 named destinations out of 1000 (max. 500000)
  82 words of extra memory for PDF output out of 10000 (max. 10000000)
 
