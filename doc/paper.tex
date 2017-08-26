@@ -425,6 +425,53 @@ These results are also consistent with the idea that the expected impact of a po
 
 Prior to the crisis, the Indonesian economy suffered from a number of ailments including crony capitalism, poor corporate governance, growing short-term debt and a corrupt banking system \citep{radelet2000onset}. In addition, Suharto's ill health created considerable policy uncertainty, which only added to the financial panic in Indonesia. Indonesia was also hesitant to adopt structural reforms which further weakened its economic image. As a result, the crisis gave additional ammunition to opposition leaders, and public opposition culminated in riots in mid-May 1998. Suharto eventually lost his military support and was forced to resign.
 
+\subsubsection{Public Protests} \label{subsec: Public Protests}
+The resignations studied in this paper are those in which leaders left office because of poor performance, public discontent and popular protests. While the previous section showed that the resignations themselves had large effects on stock returns, it is not unreasonable to expect the political actions preceding the resignations to have similarly large effects on financial markets. Indeed, corporate investors in the 2011 MIGA \textit{World Investment and Political Risk} ranked civil disturbances as the fourth most concerning type of political risk.
+
+A recent example of a popular uprising preceding a resignation is the 2011 Egyptian Revolution that resulted in the overthrow of President Hosni Mubarak's regime.\footnote{Abnormal returns for this event are not shown in \autoref{tab:AR-resignations} because the stock market was closed on the day of Mubarak's resignation.} Clashes between security forces and protestors led to the deaths of hundreds of citizens and injuries to thousands more. The uprising began on January 25, 2011 when millions of protestors demanded the overthrow of the Egyptian leadership. Examples of public discontent included demonstrations, marches, riots, non-violent civil disobedience, and labor strikes.
+
+While the Egyptian Revolution may have had positive pro-democracy effects on the Egpytian political system, its short-term impact on the economy was disastrous. As shown in \autoref{fig:CAR-Egypt}, abnormal returns on the Egyptian Stock Exchange Index (EGX 30) were around -7\% on January 26th and -10\% the day after. To prevent further decline during the uprising, the Egyptian Stock Exchanged closed at the end of trading on January 27th. President Mubarak resigned on February 11, but the market remained closed until March 23, when CARs declined by another 9\%, before rebounding slightly thereafter.
+
+\begin{figure}[!ht]
+\includegraphics{../figs/egypt-revolution-2011.pdf}
+\caption{Cumulative abnormal returns during the Egyptian revolution}
+\label{fig:CAR-Egypt}
+\end{figure}
+
+An important question is whether other popular uprisings have had similar adverse economic consequences. To examine this, we explore all resignations that were driven by significant public protests.\footnote{The set of resignations includes all those listed in either the Coup d'etat Events Handbook or the Archigos Version 4.1 data set with available financial data. In practice, this is the 2011 Egyptian Revolution and the list or resignations in \autoref{tab:AR-resignations}.} Public protests include popular demonstrations, riots, non-violent civil resistance and other forms of public discontent. These events are listed in \autoref{tab:protest-list} in the appendix.
+
+The start and end dates in \autoref{tab:protest-list} are the dates that protests began and leader's resigned respectively. Resignations caused by popular uprisings were identified by examining the descriptions in the Coup d'etat Events Handbook and Archigos Version 4.1. Additional Lexis Nexis searches were used to verify these descriptions.
+
+In \autoref{tab:protest-stocks}, we examine whether public protests influence stock prices. The variable \textit{Protest} is equal to 1 during the dates in which citizens participate in political activities demanding the resignation of the executive and 0 otherwise. Non-protest dates are the 250 days prior to the start dates and after the end dates listed in \autoref{tab:protest-list}.\footnote{The volatility estimates used as the dependent variable in column (4) are estimated on the 250 days prior to the start date, the protest dates, and the 250 days following the end date.}
+
+Column (1) suggests that public protests have no effect on stock returns. However, this occurs because some political movements increase stock prices while others decrease them. As shown in column (2), the absolute value of stock returns are over 2\% higher during public protests. These estimates would be biased if protest dates are correlated with higher world or regional stock market indices. To address this potential confounder, column (3) controls for returns on the S\&P/IFC Emerging Markets Investable Composite Stock Index. The coefficient on \textit{Protest} barely changes and the absolute value of returns are still about 2\% higher during public protests. Finally, column (4) shows that stock volatility is more than 1 percentage point higher during political movements.\footnote{Volatility estimation methodology is described in detail in \autoref{subsec: Volatility}.}
+ 
+
+We therefore find that both volatility and the absolute value of returns increase during times of protest. Similarly to coups, however, the direction of returns is dependent upon the nature of the protest in question. 
+
+\begin{table}[!ht]
+\caption{Effect of public protests on stock prices} \label{tab:protest-stocks}
+\vspace{-5pt}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}d{1.3}d{1.3}d{1.3}d{1.3}}
+  \hline
+  \hline
+\multicolumn{1}{c}{}&\multicolumn{1}{c}{Returns} & \multicolumn{2}{c}{Absolute Value of Returns}&\multicolumn{1}{c}{Volatility}\\
+\cmidrule(r){2-2} \cmidrule(r){3-4} \cmidrule(r){5-5}
+ & \multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+  \hline
+\ExpandableInput{../tables/protest-regtable.txt}
+   \hline
+   \hline
+\end{tabular*}
+\scriptsize
+Notes: Standard errors clustered by event are in parentheses.
+\end{threeparttable}
+\end{center}
+\end{table}
+
 \subsection{Volatility} \label{subsec: Volatility}
 Although irregular regime changes have disparate effects on the direction of stock returns depending on expected policy outcomes, the results from \autoref{subsec: Abnormal Returns} suggest that all of these political events increase financial volatility. However, since stock volatility is not directly observable, one must decide how to best estimate volatility. Our estimates are obtained from a generalized autoregressive conditional heteroskedasticity (GARCH) model estimated using 1000 pre-event days, the event day and 1000 post-event days. As in \citep{jensen2005market} and \citep{leblang2005government}, we use the GARCH (1,1) specification. In particular, for national stock index $i$,
 \begin{align*}
@@ -498,52 +545,6 @@ Second, since the direction of the pre-trends is unclear, we examine whether the
 It is also worth noting that the post-event CAR(1,k) for $k\in(2,19)$ is not statistically significant for either the ``positive'' or the ``negative'' events. Almost all of the stock-market reaction occurs on the first day that the market could react to the event which suggests that markets respond quickly to political events. This, in turn, implies that markets are reacting to news efficiently and that an event-driven trading strategy would not be profitable.
 
 Finally, to check whether our results are sensitive to model specification, we estimated market models in addition to the baseline constant returns model. We used the MSCI World Index as a proxy for their market return. [To do: add table for this]  
-
-\section{Public Protests} \label{sec: Public Protests}
-The resignations studied in this paper are those in which leaders left office because of poor performance, public discontent and popular protests. While the previous section showed that the resignations themselves had large effects on stock returns and volatility, it is not unreasonable to expect the political actions preceding the resignations to have similarly large effects on financial markets. Indeed, corporate investors in the 2011 MIGA \textit{World Investment and Political Risk} ranked civil disturbances as the fourth most concerning type of political risk.
-
-The most recent example of a popular uprising preceding a resignation is the 2011 Egyptian Revolution that resulted in the overthrow of President Hosni Mubarak's regime.\footnote{Abnormal returns for this event are not shown in \autoref{tab:AR-resignations} because the stock market was closed on the day of Mubarak's resignation.} Clashes between security forces and protestors led to the deaths of hundreds of citizens and injuries to thousands more. The uprising began on January 25, 2011 when millions of protestors demanded the overthrow of the Egyptian leadership. Examples of public discontent included demonstrations, marches, riots and non-violent civil disobedience, and labor strikes.
-
-While the Egyptian Revolution may have had positive pro-democracy effects on the Egpytian political system, its short-term impact on the economy was disastrous. As shown in \autoref{fig:CAR-Egypt}, abnormal returns on the Egyptian Stock Exchange Index (EGX 30) were around -7\% on January 26th and -10\% the day after. To prevent further decline during the uprising, the Egyptian Stock Exchanged closed at the end of trading on January 27th. President Mubarak resigned on February 11, but the market remained closed until March 23, when CARs declined by another 9\%, before rebounding slightly thereafter.
-
-\begin{figure}[!ht]
-\includegraphics{../figs/egypt-revolution-2011.pdf}
-\caption{Cumulative abnormal returns during the Egyptian revolution}
-\label{fig:CAR-Egypt}
-\end{figure}
-
-An important question is whether other popular uprisings have had similar adverse economic consequences. To examine this, we explore all resignations that were driven by significant public protests.\footnote{The set of resignations includes all those listed in either the Coup d'etat Events Handbook or the Archigos Version 4.1 data set with available financial data. In practice, this is the 2011 Egyptian Revolution and the list or resignations in \autoref{tab:AR-resignations}.} Public protests include popular demonstrations, riots, non-violent civil resistance and other forms of public discontent. These events are listed in \autoref{tab:protest-list} in the appendix.
-
-The start and end dates in \autoref{tab:protest-list} are the dates that protests began and leader's resigned respectively. Resignations caused by popular uprisings were identified by examining the descriptions in the Coup d'etat Events Handbook and Archigos Version 4.1. Additional Lexis Nexis searches were used to verify these descriptions. Start dates were determined through similar means.
-
-In \autoref{tab:protest-stocks}, we examine whether public protests influence stock prices. The variable \textit{Protest} is equal to 1 during the dates in which citizens participate in political activities demanding the resignation of the executive and 0 otherwise. Non-protest dates are the 250 days prior to the start dates and after the end dates listed in \autoref{tab:protest-list}.\footnote{The volatility estimates used as the dependent variable in column (4) are estimated on the 250 days prior to the start date, the protest dates, and the 250 days following the end date.}
-
-Column (1) suggests that public protests have no effect on stock returns. However, this occurs because some political movements increase stock prices while others decrease them. As shown in column (2), the absolute value of stock returns are over 2\% higher during public protests. These estimates would be biased if protest dates are correlated with higher world or regional stock market indices. To address this potential confounder, column (3) controls for returns on the S\&P/IFC Emerging Markets Investable Composite Stock Index. The coefficient on \textit{Protest} barely changes and the absolute value of returns are still about 2\% higher during public protests. Finally, column (4) shows that stock volatility is more than 1 percentage point higher during political movements. 
-
-We therefore find that both volatility and the absolute value of returns increase during times of protest. Similarly to coups, however, the direction of returns is dependent upon the nature of the protest in question. 
-
-\begin{table}[!ht]
-\caption{Effect of public protests on stock prices} \label{tab:protest-stocks}
-\vspace{-5pt}
-\footnotesize
-\begin{center}
-\begin{threeparttable}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}d{1.3}d{1.3}d{1.3}d{1.3}}
-  \hline
-  \hline
-\multicolumn{1}{c}{}&\multicolumn{1}{c}{Returns} & \multicolumn{2}{c}{Absolute Value of Returns}&\multicolumn{1}{c}{Volatility}\\
-\cmidrule(r){2-2} \cmidrule(r){3-4} \cmidrule(r){5-5}
- & \multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-  \hline
-\ExpandableInput{../tables/protest-regtable.txt}
-   \hline
-   \hline
-\end{tabular*}
-\scriptsize
-Notes: Standard errors clustered by event are in parentheses.
-\end{threeparttable}
-\end{center}
-\end{table}
 
 \section{Conclusion}
 This paper has examined the effects of irregular regime changes on financial returns. It uses an event study approach to show that investors expect irregular regime changes to have large effects on equity returns. This methodology is less susceptible to endogeneity biases than studies that use cross country data.
