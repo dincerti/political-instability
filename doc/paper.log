@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  25 AUG 2017 10:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  25 AUG 2017 15:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -677,12 +677,7 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
  [4] [5]
-[6]
-
-LaTeX Warning: Reference `sec: Irregular Regime Changes' on page 7 undefined on
- input line 293.
-
-<../figs/daily_mean_absreturn.pdf, id=161, 505.89pt x 361.35pt>
+[6] <../figs/daily_mean_absreturn.pdf, id=162, 505.89pt x 361.35pt>
 File: ../figs/daily_mean_absreturn.pdf Graphic file (type pdf)
 
 <use ../figs/daily_mean_absreturn.pdf>
@@ -696,7 +691,7 @@ Overfull \hbox (36.13373pt too wide) in paragraph at lines 296--297
 
 [7] [8 <../figs/daily_mean_absreturn.pdf>] [9] (../tables/artable-coups-car.txt
 ) (../tables/artable-coups-car-mean.txt) [10]
-<../figs/venezuela_coup_attempt_2002.pdf, id=215, 505.89pt x 361.35pt>
+<../figs/venezuela_coup_attempt_2002.pdf, id=216, 505.89pt x 361.35pt>
 File: ../figs/venezuela_coup_attempt_2002.pdf Graphic file (type pdf)
 
 <use ../figs/venezuela_coup_attempt_2002.pdf>
@@ -723,7 +718,7 @@ Overfull \hbox (36.13373pt too wide) in paragraph at lines 442--443
  []
 
 [16] [17 <../figs/mean-volatility.pdf>] (../tables/non-parametric-ar0.txt)
-[18] <../figs/mean-car-pos-neg.pdf, id=315, 505.89pt x 361.35pt>
+[18] <../figs/mean-car-pos-neg.pdf, id=318, 505.89pt x 361.35pt>
 File: ../figs/mean-car-pos-neg.pdf Graphic file (type pdf)
 
 <use ../figs/mean-car-pos-neg.pdf>
@@ -735,7 +730,7 @@ Overfull \hbox (36.13373pt too wide) in paragraph at lines 491--492
  []
 
 [19] [20 <../figs/mean-car-pos-neg.pdf>]
-<../figs/egypt-revolution-2011.pdf, id=340, 505.89pt x 361.35pt>
+<../figs/egypt-revolution-2011.pdf, id=343, 505.89pt x 361.35pt>
 File: ../figs/egypt-revolution-2011.pdf Graphic file (type pdf)
 
 <use ../figs/egypt-revolution-2011.pdf>
@@ -781,20 +776,13 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 595.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 595.
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 7FB2442BAD52AA0F22D0E97BB0017986;356.
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 595.
  ) 
 Here is how much of TeX's memory you used:
- 11402 strings out of 492995
- 167363 string characters out of 6132704
+ 11401 strings out of 492995
+ 167332 string characters out of 6132704
  387135 words of memory out of 5000000
- 14590 multiletter control sequences out of 15000+600000
+ 14589 multiletter control sequences out of 15000+600000
  21577 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,13n,51p,1380b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -814,10 +802,10 @@ e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 /2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
 017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
 17/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on paper.pdf (27 pages, 296968 bytes).
+Output written on paper.pdf (27 pages, 296815 bytes).
 PDF statistics:
- 478 PDF objects out of 1000 (max. 8388607)
- 418 compressed objects within 5 object streams
+ 481 PDF objects out of 1000 (max. 8388607)
+ 421 compressed objects within 5 object streams
  106 named destinations out of 1000 (max. 500000)
  82 words of extra memory for PDF output out of 10000 (max. 10000000)
 
