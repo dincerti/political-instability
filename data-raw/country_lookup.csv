@@ -13,7 +13,7 @@ _ATGD,Greece,11,GRC
 _BSESND,India,12,IND
 _JKSED,Indonesia,13,IDN
 TEPIXD,Iran,14,IRN
-_TA100D,Israel,15,ISR
+_TA125D,Israel,15,ISR
 _TOPXD,Japan,16,JPN
 _A31,Latin America,17,
 _LITIN1D,Lithuania,18,LTU
@@ -22,7 +22,7 @@ _NEPSED,Nepal,20,NPL
 _AAXD,Netherlands,21,NLD
 _KSED,Pakistan,22,PAK
 PYPDVGD,Paraguay,23,PRY
-_IGRAD,Peru,24,PER
+_SPBLPGPT,Peru,24,PER
 _PSID,Philippines,25,PHL
 _PSI20D,Portugal,26,PRT
 _FTSTID,Singapore,27,SGP
@@ -30,7 +30,7 @@ _KS11D,South Korea,28,KOR
 _P31,Southeast Asia,29,
 _SMSID,Spain,30,ESP
 _CSED,Sri Lanka,31,LKA
-_OMXAFGD,Sweden,32,SWE
+_OMXAFGX,Sweden,32,SWE
 _TWIID,Taiwan,33,TWN
 _SETID,Thailand,34,THA
 _TUNINDD,Tunisia,35,TUN
