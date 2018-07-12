@@ -82,6 +82,9 @@ regime.change <- event[type == "Coup" | type == "Assassination" |
                          type == "Resignation", 
                        .(country, ticker, stock_date, type)]
 
+# Drop March 1976 Argentinian coup due to market closure
+regime.change <- regime.change[stock_date != '1976-04-05'] 
+
 # SAVE DATA --------------------------------------------------------------------
 save(country.lookup, event, index, regime.change, rev,
      file = "data/data-clean.RData")
