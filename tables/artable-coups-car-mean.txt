@@ -1,5 +1,5 @@
 % latex table generated in R 3.4.1 by xtable 1.8-2 package
-% Wed Jun 20 14:25:47 2018
+% Sat Jul 14 12:30:44 2018
  \multicolumn{2}{l}{\textbf{Mean}} & -2.137 & 1.545 & 1.543 & 2.010 & 2.074 & 58 \\ 
   \multicolumn{2}{l}{} & (0.424) & (1.121) & (1.896) & (1.121) & (1.896) &  \\ 
   

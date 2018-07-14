@@ -35,6 +35,23 @@ indices[, year := as.numeric(format(date, format = "%Y"))]
 indices[, dow := day.of.week(month, day, year)]
 event[, stock_date := as.Date(stock_date,"%m/%d/%Y")]
 
+# Remove non-daily values from indices dataframe
+indice_info <- read.csv("data-raw/indices.csv", nrows = 45, header = TRUE, 
+                    stringsAsFactors = FALSE)
+
+indice_info <- as.data.table(indice_info)
+
+indice_info$daily = sub('.*Daily From ', '', indice_info$Periodicity)
+indice_info$daily = gsub("To.*$", "", indice_info$daily)
+
+indice_info$daily = as.Date(paste('01', indice_info$daily), format='%d %b %Y')
+indice_info = indice_info[, c('Ticker', 'daily')]
+
+setnames(indice_info, c("ticker", "daily"))
+indices <- merge(indices, indice_info, by="ticker")
+indices <- indices[date >= daily]
+indices = indices[, daily := NULL]
+
 # Correct Argentina data for shift in indexing in 1983 and 1988
 indices[, real_p := ifelse(date >= "1983-01-01" &
                            date < "1988-01-01" &
