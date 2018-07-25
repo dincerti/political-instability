@@ -58,6 +58,32 @@ Abadie, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Aisen%
+\ \BBA {} Veiga%
+}{%
+Aisen%
+\ \BBA {} Veiga%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+aisen2013does}
+\APACinsertmetastar {%
+aisen2013does}%
+\begin{APACrefauthors}%
+Aisen, A.%
+\BCBT {}\ \BBA {} Veiga, F\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {How does political instability affect economic growth?}
+  {How does political instability affect economic growth?}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{European Journal of Political Economy}{29}{}{151--167}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Alesina%
 , {\"O}zler%
 , Roubini%
@@ -297,6 +323,31 @@ Fisman, R.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Fosu%
+}{%
+Fosu%
+}{%
+{\protect \APACyear {1992}}%
+}]{%
+fosu1992political}
+\APACinsertmetastar {%
+fosu1992political}%
+\begin{APACrefauthors}%
+Fosu, A\BPBI K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1992}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Political instability and economic growth: evidence from
+  Sub-Saharan Africa} {Political instability and economic growth: evidence from
+  sub-saharan africa}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Economic Development and Cultural
+  Change}{40}{4}{829--841}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Goldman%
 , Rocholl%
 \BCBL {}\ \BBA {} So%
@@ -432,6 +483,30 @@ Jones, B.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Jong-A-Pin%
+}{%
+Jong-A-Pin%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+jong2009measurement}
+\APACinsertmetastar {%
+jong2009measurement}%
+\begin{APACrefauthors}%
+Jong-A-Pin, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {On the measurement of political instability and its
+  impact on economic growth} {On the measurement of political instability and
+  its impact on economic growth}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{European Journal of Political Economy}{25}{1}{15--29}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Leblang%
 \ \BBA {} Mukherjee%
 }{%
@@ -532,29 +607,6 @@ Marinov, N.%
 {\BBOQ}\APACrefatitle {Coups and democracy} {Coups and democracy}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{British Journal of Political Science}{44}{4}{799--825}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-McGillivray%
-}{%
-McGillivray%
-}{%
-{\protect \APACyear {2003}}%
-}]{%
-mcgillivray2003redistributive}
-\APACinsertmetastar {%
-mcgillivray2003redistributive}%
-\begin{APACrefauthors}%
-McGillivray, F.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2003}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Redistributive politics and stock price dispersion}
-  {Redistributive politics and stock price dispersion}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{British Journal of Political Science}{33}{3}{367--395}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
