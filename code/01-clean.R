@@ -8,9 +8,9 @@ country.lookup <- read.csv("data-raw/country_lookup.csv")
 
 # daily stock returns
 # countries
-f <- list.files("data-raw/indices")
-indices <- lapply(f, function (x) fread(paste0("data-raw/indices/", x)))
-indices <- do.call("rbind", indices)
+indices <- read.csv("data-raw/indices.csv", skip = 49, header = TRUE, 
+                    stringsAsFactors = FALSE)
+indices <- as.data.table(indices)
 indices[, Period_Change := NULL]
 setnames(indices, c("date","ticker","p","dr","real_p"))
 
@@ -18,7 +18,7 @@ setnames(indices, c("date","ticker","p","dr","real_p"))
 event <- fread("data-raw/event_list.csv")
 
 # leader duration
-leaders <- fread("data-raw/leaders_duration.csv")
+#leaders <- fread("data-raw/leaders_duration.csv") # Is this dataset used in any way?
 
 # revolution dates
 rev <- fread("data-raw/revolutions.csv")
@@ -27,13 +27,6 @@ rev[, start_date := as.Date(start_date,"%m/%d/%Y")]
 rev[, end_date := as.Date(end_date,"%m/%d/%Y")]
 
 # CLEAN DATA -------------------------------------------------------------------
-# inflation adjusted returns
-indices[, dr := (real_p - shift(real_p))/shift(real_p), by = "ticker"]
-
-## continuously compounded returns
-indices[, dr := 100 * log(dr+1)]
-indices[, abs_dr := abs(dr)]
-
 ## dates 
 indices[, date := as.Date(date,"%m/%d/%Y")]
 indices[, month := as.numeric(format(date, format = "%m"))]
@@ -41,6 +34,38 @@ indices[, day := as.numeric(format(date, format = "%d"))]
 indices[, year := as.numeric(format(date, format = "%Y"))]
 indices[, dow := day.of.week(month, day, year)]
 event[, stock_date := as.Date(stock_date,"%m/%d/%Y")]
+
+# Remove non-daily values from indices dataframe
+indice_info <- read.csv("data-raw/indices.csv", nrows = 45, header = TRUE, 
+                    stringsAsFactors = FALSE)
+
+indice_info <- as.data.table(indice_info)
+
+indice_info$daily = sub('.*Daily From ', '', indice_info$Periodicity)
+indice_info$daily = gsub("To.*$", "", indice_info$daily)
+
+indice_info$daily = as.Date(paste('01', indice_info$daily), format='%d %b %Y')
+indice_info = indice_info[, c('Ticker', 'daily')]
+
+setnames(indice_info, c("ticker", "daily"))
+indices <- merge(indices, indice_info, by="ticker")
+indices <- indices[date >= daily]
+indices = indices[, daily := NULL]
+
+# Correct Argentina data for shift in indexing in 1983 and 1988
+indices[, real_p := ifelse(date >= "1983-01-01" &
+                           date < "1988-01-01" &
+                           ticker == "_IBGD", real_p * 1000, real_p)]
+
+indices[, real_p := ifelse((date >= '1988-01-01' & ticker == "_IBGD"),
+                           (real_p * 10000000), real_p)]
+
+# inflation adjusted returns
+indices[, dr := (real_p - shift(real_p))/shift(real_p), by = "ticker"]
+
+## continuously compounded returns
+indices[, dr := 100 * log(dr+1)]
+indices[, abs_dr := abs(dr)]
 
 ## market indices
 ticker.market <- c("_MIWO00D", "_IPDCPD", "_A31", "_P31")
@@ -73,6 +98,9 @@ index[, td := seq(1, .N), by = "ticker"]
 regime.change <- event[type == "Coup" | type == "Assassination" |
                          type == "Resignation", 
                        .(country, ticker, stock_date, type)]
+
+# Drop March 1976 Argentinian coup due to market closure
+regime.change <- regime.change[stock_date != '1976-04-05'] 
 
 # SAVE DATA --------------------------------------------------------------------
 save(country.lookup, event, index, regime.change, rev,

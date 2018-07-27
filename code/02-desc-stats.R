@@ -12,7 +12,8 @@ dr <- matrix(NA, nrow = pre + post + 1, ncol = nrow(regime.change))
 for (i in 1:nrow(regime.change)){
   dr[, i] <- return_by_td(stockdata = index,
                           event_ticker = regime.change$ticker[i],
-                          event_date = regime.change$stock_date[i], pre_event = pre, 
+                          event_date = regime.change$stock_date[i], 
+                          pre_event = pre, 
                           post_event = post)  
 }
 

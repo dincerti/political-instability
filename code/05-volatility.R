@@ -38,9 +38,12 @@ for (i in 1:n.rc){
 dat <- rbindlist(dat, fill = TRUE)
 volatility.mean <- dat[, .(mean_garch_volatility = mean(garch_volatility, na.rm = TRUE)),
                              by = c("td")]
-p.volatility <- ggplot(volatility.mean[td >= -250 & td <= 250],
-                       aes(x = td, y = mean_garch_volatility)) + 
-  geom_line() + xlab("Trading days") + ylab("Mean volatility")
+p.volatility <- 
+  ggplot(volatility.mean[td >= -250 & td <= 250],
+         aes(x = td, y = mean_garch_volatility)) + 
+  geom_line(color = "grey48") + 
+  xlab("Trading days") + 
+  ylab("Mean volatility") +
+  theme_classic()
+
 ggsave("figs/mean-volatility.pdf", p.volatility, height = 5, width = 7)
-
-
