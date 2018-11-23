@@ -5,7 +5,7 @@ library("data.table")
 library("plm")
 library("lmtest")
 library("broom")
-theme_set(theme_bw())
+theme_set(theme_minimal())
 
 # EGYPTIAN REVOLUTION ----------------------------------------------------------
 egypt.es <-  event_study(ticker = index$ticker, date = index$date, dr = index$dr,
@@ -60,7 +60,8 @@ for (i in 1:length(rev$ticker)){
 garch.spec <- ugarchspec(mean.model = list(armaOrder = c(0,0)), 
                          distribution.model = "norm")
 for (i in 1:length(rev$ticker)){
-  rc.garchfit <- ugarchfit(spec = garch.spec, data = index.rev[[i]]$dr)
+  rc.garchfit <- ugarchfit(spec = garch.spec, data = index.rev[[i]]$dr,
+                           solver.control = list(tol = 1e-12))
   index.rev[[i]]$garch_volatility <- rc.garchfit@fit$sigma
   print(i)
 }

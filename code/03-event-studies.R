@@ -3,7 +3,6 @@ library("xtable")
 library("data.table")
 library("Synth")
 load("data/data-clean.RData")
-theme_set(theme_bw())
 source("code/func.R")
 
 # EVENT STUDY ------------------------------------------------------------------
@@ -24,7 +23,8 @@ for (i in 1:n.es){
   }
   
   # use custom V in synth to deal with singular matrix in optim
-  if (regime.change$stock_date[i] == mydate("10/4/2002")){
+  if (regime.change$stock_date[i] == mydate("10/4/2002") |
+      regime.change$stock_date[i] == mydate("5/3/1993")){
       custom.v.i <- rep(1, 2)
   } else{
       custom.v.i <- NULL

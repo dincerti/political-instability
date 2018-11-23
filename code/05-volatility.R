@@ -29,7 +29,8 @@ garch.spec <- ugarchspec(mean.model = list(armaOrder = c(0,0)),
 
 # run models
 for (i in 1:n.rc){
-  rc.garchfit <- ugarchfit(spec = garch.spec, data = dat[[i]]$dr)
+  rc.garchfit <- ugarchfit(spec = garch.spec, data = dat[[i]]$dr,
+                           solver.control = list(tol = 1e-6))
   dat[[i]]$garch_volatility <- rc.garchfit@fit$sigma
   print(i)
 }
@@ -44,6 +45,6 @@ p.volatility <-
   geom_line(color = "grey48") + 
   xlab("Trading days") + 
   ylab("Mean volatility") +
-  theme_classic()
+  theme_minimal()
 
 ggsave("figs/mean-volatility.pdf", p.volatility, height = 5, width = 7)

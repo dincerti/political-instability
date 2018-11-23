@@ -2,6 +2,7 @@ rm(list = ls())
 library("xtable")
 library("data.table")
 library("ggplot2")
+library("scales")
 load("data/data-clean.RData")
 load("output/regime-change-event-study.RData")
 theme_set(theme_bw())
@@ -52,6 +53,8 @@ p <- ggplot(ven.es$ar.treat[abs(td) <= 10], aes(x = td, y = ar)) +
   geom_vline(aes(xintercept = 0), linetype = 2, color = "grey") +
   geom_pointrange(aes(ymin = lar, ymax = uar), size = .3) +
   xlab("Trading days") + ylab("AR (%)") +
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
   theme_classic()
 print(p)
 ggsave("figs/venezuela_coup_attempt_2002.pdf", p, height = 5, width = 7)

@@ -4,7 +4,7 @@ load("data/data-clean.RData")
 library("data.table")
 library("ggplot2")
 source("code/func.R")
-theme_set(theme_bw())
+theme_set(theme_minimal())
 
 # NON-PARAMETRIC TESTS ---------------------------------------------------------
 ed <- which(rc.es$td == 0)
