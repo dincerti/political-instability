@@ -317,7 +317,8 @@ rank_test <- function(ar, td){
 }
 
 # SIGN TEST --------------------------------------------------------------------
-sign_test <- function(ar0, direction = c("positive", "negative")){
+sign_test <- function(ar0, direction = c("positive", "negative"),
+                      alternative = c("two.sided", "less", "greater")){
   direction = match.arg(direction)
   ar0 <- ar0[!is.na(ar0)]
   n <- length(ar0)
@@ -326,10 +327,8 @@ sign_test <- function(ar0, direction = c("positive", "negative")){
   } else{
     x <- sum(ar0 < 0)
   }
-  #binom.test <- binom.test(x, n, p = .5)
-  theta <- ((x/n) - 0.5)*(sqrt(n)/0.5)
-  pval <- 2 * (1 - pnorm(abs(theta)))
-  return(pval)
+  binom.test <- binom.test(x, n, p = .5, alternative = alternative)
+  return(binom.test$p.value)
 }
 
 # SYNTHETIC CONTROL GROUP ------------------------------------------------------

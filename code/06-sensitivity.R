@@ -3,6 +3,7 @@ load("output/regime-change-event-study.RData")
 load("data/data-clean.RData")
 library("data.table")
 library("ggplot2")
+library("xtable")
 source("code/func.R")
 theme_set(theme_minimal())
 
@@ -15,7 +16,7 @@ colnames(tab.np) <- c("mean_ar_treat", "rank_pval_treat", "sign_pval_treat",
 indx <- list(coup.index = which(regime.change$type == "Coup"),
              ass.index = which(regime.change$type == "Assassination"),
              res.index = which(regime.change$type == "Resignation"))
-sign.dir <- c("negative", "negative", "positive")
+sign.dir <- c("negative", "negative", "positive", "positive")
 
 ## Treatment
 # mean abnormal return
@@ -28,13 +29,14 @@ tab.np[4, 1] <-  mean(rc.abs.es$ar.treat[ed, ])
 for (i in 1:3){
   tab.np[i, 2] <- rank_test(rc.es$ar.treat[, indx[[i]]], rc.es$td)
 }
-tab.np[4, 2] <-  rank_test(rc.abs.es$ar.treat[, indx[[i]]], rc.abs.es$td)
+tab.np[4, 2] <-  rank_test(rc.abs.es$ar.treat[, ], rc.abs.es$td)
 
 # sign test p-value
 for (i in 1:3){
   tab.np[i, 3] <- sign_test(rc.es$ar.treat[ed, indx[[i]]], sign.dir[i])
 }
-tab.np[4, 3] <-  sign_test(rc.abs.es$ar.treat[ed, indx[[i]]], sign.dir[i])
+tab.np[4, 3] <-  sign_test(rc.abs.es$ar.treat[ed, ], sign.dir[4],
+                           alternative = "greater")
 
 ## Control
 # mean abnormal return
@@ -47,13 +49,14 @@ tab.np[4, 4] <-  mean(rc.abs.es$ar.control[ed, ], na.rm = TRUE)
 for (i in 1:3){
   tab.np[i, 5] <- rank_test(rc.es$ar.control[, indx[[i]]] , rc.es$td)
 }
-tab.np[4, 5] <-  rank_test(rc.abs.es$ar.control[, indx[[i]]], rc.abs.es$td)
+tab.np[4, 5] <-  rank_test(rc.abs.es$ar.control[, ], rc.abs.es$td)
 
 # sign test p-value
 for (i in 1:3){
   tab.np[i, 6] <- sign_test(rc.es$ar.control[ed, indx[[i]]], sign.dir[i])
 }
-tab.np[4, 6] <-  sign_test(rc.abs.es$ar.control[ed, indx[[i]]], sign.dir[i])
+tab.np[4, 6] <- sign_test(rc.abs.es$ar.control[ed, ], sign.dir[4],
+                           alternative = "greater")
 
 ## Wilcoxon rank test
 for (i in 1:3){
