@@ -2,9 +2,57 @@
 rm(list = ls())
 library("data.table")
 library("ggplot2")
+library("xtable")
 load("data/data-clean.RData")
 source("code/func.R")
 theme_set(theme_bw())
+
+# LIST OF EVENTS ---------------------------------------------------------------
+events <- fread("data-raw/event_list.csv")
+events[, boutcome := cut(bpolity, 
+                         breaks = c(-10.1, -6, 5, 10.1),
+                         labels = c("Autocracy", "Anocracy", "Democracy"))]
+events[, boutcome := as.character(boutcome)]
+events[, eoutcome := cut(epolity, 
+                         breaks = c(-10.1, -6, 5, 10.1),
+                         labels = c("Autocracy", "Anocracy", "Democracy"))]
+events[, eoutcome := as.character(eoutcome)]
+events[, eoutcome := ifelse(country == "Thailand" & date == "10/20/77",
+                            "Autocracy",
+                            eoutcome)]
+events[, outcome := paste0(boutcome, " to ", tolower(eoutcome))]
+
+# Coups
+coups <- events[type == "Coup",  .(date, country, outcome)]
+print(xtable(coups), 
+      include.rownames = FALSE, include.colnames = FALSE,
+      only.contents = TRUE, sanitize.text.function = identity,
+       hline.after = NULL,
+      file = "tables/coups.txt")
+
+# Failed coup
+failed_coup <- events[type == "Partial Coup",  .(date, country, outcome)]
+print(xtable(failed_coup), 
+      include.rownames = FALSE, include.colnames = FALSE,
+      only.contents = TRUE, sanitize.text.function = identity,
+       hline.after = NULL,
+      file = "tables/failed_coup.txt")
+
+# Assassinations
+assassinations <- events[type == "Assassination",  .(date, country, outcome)]
+print(xtable(assassinations), 
+      include.rownames = FALSE, include.colnames = FALSE,
+      only.contents = TRUE, sanitize.text.function = identity,
+       hline.after = NULL,
+      file = "tables/assassinations.txt")
+
+# Resignations
+resignations <- events[type == "Resignation",  .(date, country, outcome)]
+print(xtable(resignations), 
+      include.rownames = FALSE, include.colnames = FALSE,
+      only.contents = TRUE, sanitize.text.function = identity,
+       hline.after = NULL,
+      file = "tables/resignations.txt")
 
 # ABSOLUTE VALUE OF DAILY STOCK RETURNS BY DAYS FROM EVENT ---------------------
 pre <- post <- 200
