@@ -1,10 +1,10 @@
 % latex table generated in R 3.4.1 by xtable 1.8-2 package
-% Fri Dec 28 14:28:39 2018
+% Sun Dec 30 13:33:39 2018
  06/30/1970 & Argentina & Autocracy to autocracy \\ 
   03/22/1971 & Argentina & Autocracy to autocracy \\ 
   03/24/1976 & Argentina & Democracy to autocracy \\ 
   10/06/1976 & Thailand & Anocracy to autocracy \\ 
-  10/20/1977 & Thailand & Autocracy to NA \\ 
+  10/20/1977 & Thailand & Autocracy to anocracy \\ 
   12/12/1979 & South Korea & Autocracy to autocracy \\ 
   02/23/1991 & Thailand & Anocracy to anocracy \\ 
   04/05/1992 & Peru & Democracy to anocracy \\ 
