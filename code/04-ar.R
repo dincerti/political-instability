@@ -52,7 +52,7 @@ p <- ggplot(ven.es$ar.treat[abs(td) <= 10], aes(x = td, y = ar)) +
   geom_hline(aes(yintercept = 0), linetype = 2, color = "grey") +
   geom_vline(aes(xintercept = 0), linetype = 2, color = "grey") +
   geom_pointrange(aes(ymin = lar, ymax = uar), size = .3) +
-  xlab("Trading days") + ylab("AR (%)") +
+  xlab("Trading days") + ylab("Abnormal Returns (%)") +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
   theme_classic()
