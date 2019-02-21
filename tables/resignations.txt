@@ -1,5 +1,5 @@
-% latex table generated in R 3.4.1 by xtable 1.8-2 package
-% Sun Dec 30 13:33:39 2018
+% latex table generated in R 3.5.2 by xtable 1.8-3 package
+% Thu Feb 21 11:20:52 2019
  06/17/1982 & Argentina & Autocracy to autocracy \\ 
   02/25/1986 & Philippines & Autocracy to democracy \\ 
   12/06/1990 & Bangladesh & Anocracy to anocracy \\ 
@@ -14,5 +14,5 @@
   12/26/2004 & Ukraine & Democracy to democracy \\ 
   04/20/2005 & Ecuador & Democracy to democracy \\ 
   04/24/2006 & Nepal & Autocracy to democracy \\ 
-  01/14/2011 & Tunisia & Anocracy to anocracy \\ 
+  01/14/2011 & Tunisia & Anocracy to democracy \\ 
   

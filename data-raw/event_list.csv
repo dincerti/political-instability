@@ -36,7 +36,7 @@ number,country,ticker,date,stock_date,leader,type,bpolity,epolity,auth shift,dem
 35,Ukraine,_PFTSID,12/26/2004,12/28/2004,Viktor Yanukovych,Resignation,6,6,0,0,NA,NA,0,0,0,0,0,0
 36,Ecuador,_BVGD,04/20/2005,04/20/2005,Lucio Gutií©rrez,Resignation,6,6,0,0,NA,NA,0,0,0,0,0,0
 37,Nepal,_NEPSED,04/24/2006,04/25/2006,Gyanendra Bir Bikram Shah Dev,Resignation,-6,6,0,1,NA,Left,0,1,0,0,0,0
-38,Tunisia,_TUNINDD,01/14/2011,01/31/2011,Zine El Abidine Ben Ali,Resignation,-4,-4,0,0,Left,NA,1,0,1,0,0,1
+38,Tunisia,_TUNINDD,01/14/2011,01/31/2011,Zine El Abidine Ben Ali,Resignation,-4,7,0,1,Left,NA,1,0,1,0,0,1
 39,Thailand,_SETID,03/26/1977,03/28/1977,Thanin Kraivichien,Failed Coup,-7,-7,0,0,,,,,,,,
 40,Spain,_SMSID,11/17/1979,11/20/1979,Adolfo Suíçrez Gonzíçlez,Failed Coup,9,9,0,0,,,,,,,,
 41,Spain,_SMSID,02/23/1981,02/24/1981,Leopoldo Calvo-Sotelo Bustelo,Failed Coup,9,9,0,0,,,,,,,,
