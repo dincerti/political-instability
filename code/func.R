@@ -387,7 +387,7 @@ combine_event_studies <- function(x, event_country, event_type, event_date){
   n <- length(x)
   td.ew <- x[[1]]$ar.treat$td
   sigma.treat <- sigma.control <- rep(NA, n)
-  ar.treat <- ar.control <- matrix(NA, nrow = nrow(es[[1]]$ar.treat), ncol = n)
+  ar.treat <- ar.control <- matrix(NA, nrow = nrow(x[[1]]$ar.treat), ncol = n)
   car.treat <- car.control <- car.treat.se <- car.control.se <- ar.treat
   dr.treat <- dr.control <- vector(mode = "list", length = n)
 

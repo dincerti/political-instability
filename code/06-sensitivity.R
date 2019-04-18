@@ -74,35 +74,91 @@ event.type <- c("Coups", "Assassinations", "Resignations", "All (Absolute Value)
 tab.np <- cbind(event.type, tab.np)
 myprint.xtable(tab.np, file = "tables/non-parametric-ar0.txt")
 
+# CAR SURROUNDING REGIME CHANGES: POSITIVE VS. NEGATIVE EVENTS -----------------
+car_mean_plot_data <- function(rc_es, indices, label = NULL){
+  car.mean <- mean_car_prepost(ar = rc_es$ar.treat[, indices],
+                               sigma = rc.es$sigma.treat[indices], 
+                               td = rc.es$td)
+  car.mean[, lcar_mean := car_mean - qnorm(.975) * car_mean_se]
+  car.mean[, ucar_mean := car_mean + qnorm(.975) * car_mean_se] 
+  if (!is.null(label)){
+    car.mean[, lab :=  label]    
+  }
+  return(car.mean[, ])
+}
 
-# CAR SURROUNDING REGIME CHANGES -----------------------------------------------
+# Positive vs negative events
+
 pos.events <- which(rc.es$ar.treat[ed, ] >= 0)
 neg.events <- which(rc.es$ar.treat[ed, ] < 0)
 
-# positive events
-car.mean.pos <- mean_car_prepost(ar = rc.es$ar.treat[, pos.events],
-                         sigma = rc.es$sigma.treat[pos.events], 
-                         td = rc.es$td)
-car.mean.pos[, lcar_mean := car_mean - qnorm(.975) * car_mean_se]
-car.mean.pos[, ucar_mean := car_mean + qnorm(.975) * car_mean_se]
-car.mean.pos[, lab := "Positive event"]
-
-# negative events
-car.mean.neg <- mean_car_prepost(ar = rc.es$ar.treat[, neg.events],
-                                 sigma = rc.es$sigma.treat[neg.events], 
-                                 td = rc.es$td)
-car.mean.neg[, lcar_mean := car_mean - qnorm(.975) * car_mean_se]
-car.mean.neg[, ucar_mean := car_mean + qnorm(.975) * car_mean_se]
-car.mean.neg[, lab := "Negative event"]
-
-# plot
+# Create plot data
+car.mean.pos <- car_mean_plot_data(rc.es, pos.events, "Positive event")
+car.mean.neg <- car_mean_plot_data(rc.es, neg.events, "Negative event")
 car.mean <- rbind(car.mean.neg, car.mean.pos)
+
+# Plot
 p.meancar <- ggplot(car.mean, aes(x = td, y = car_mean)) + geom_line() +
   geom_point(size = .8) + facet_wrap(~lab) +
   geom_ribbon(aes(ymin = lcar_mean, ymax = ucar_mean), alpha = 0.2) +
   xlab("Trading days") + ylab("Mean CAR (%)") +
   geom_hline(aes(yintercept = 0), linetype = 2)
 ggsave("figs/mean-car-pos-neg.pdf", p.meancar, height = 5, width = 7)
+
+# CAR SURROUNDING REGIME CHANGES: BY EVENT TYPE --------------------------------
+# Indices
+coup.events <- which(regime.change$type == "Coup")
+ass.events <- which(regime.change$type == "Assassination")
+res.events <- which(regime.change$type == "Resignation")
+
+# Create plot data
+car.mean.coup <- car_mean_plot_data(rc.es, coup.events, "Coup")
+car.mean.ass <- car_mean_plot_data(rc.es, ass.events, "Assassination")
+car.mean.res <- car_mean_plot_data(rc.es, res.events, "Resignation")
+car.mean <- rbind(car.mean.coup, car.mean.ass, car.mean.res)
+
+# Plot
+p.meancar <- ggplot(car.mean, aes(x = td, y = car_mean)) + geom_line() +
+  geom_point(size = .8) + facet_wrap(~lab) +
+  geom_ribbon(aes(ymin = lcar_mean, ymax = ucar_mean), alpha = 0.2) +
+  xlab("Trading days") + ylab("Mean CAR (%)") +
+  geom_hline(aes(yintercept = 0), linetype = 2)
+ggsave("figs/mean-car-by-regime-change-type.pdf", p.meancar, height = 5, width = 7)
+
+# CAR SURROUNDING REGIME CHANGES: PLACEBO CHECKS --------------------------------
+event.window <- 20
+est.window <- 200
+n.es <- nrow(regime.change)
+es.placebo <- vector(mode = "list", n.es)
+dtr.treat <- rep(NA, n.es)
+event.date.move <- 365
+
+# Run event studies
+for (i in 1:n.es){
+  es.placebo[[i]] <- event_study(ticker = index$ticker, date = index$date, dr = index$dr,
+                                 event_ticker = regime.change$ticker[i],
+                                 event_window = event.window, estimation_window = est.window,
+                                 event_date = regime.change$stock_date[i] + event.date.move, 
+                                 model = "constant",
+                                 control = FALSE, custom_v = NULL)  
+}
+rc.es.placebo <- combine_event_studies(es.placebo, event_country = regime.change$country,
+                                       event_type = regime.change$type, 
+                                       event_date = regime.change$stock_date + event.date.move)
+
+# Create plot data
+car.mean.coup.placebo <- car_mean_plot_data(rc.es.placebo, coup.events, "Coup")
+car.mean.ass.placebo <- car_mean_plot_data(rc.es.placebo, ass.events, "Assassination")
+car.mean.res.placebo <- car_mean_plot_data(rc.es.placebo, res.events, "Resignation")
+car.mean.placebo <- rbind(car.mean.coup.placebo, car.mean.ass.placebo, car.mean.res.placebo)
+
+# Plot
+p.meancar.placebo <- ggplot(car.mean.placebo, aes(x = td, y = car_mean)) + geom_line() +
+  geom_point(size = .8) + facet_wrap(~lab) +
+  geom_ribbon(aes(ymin = lcar_mean, ymax = ucar_mean), alpha = 0.2) +
+  xlab("Trading days") + ylab("Mean CAR (%)") +
+  geom_hline(aes(yintercept = 0), linetype = 2)
+ggsave("figs/mean-car-by-regime-change-type-placebo.pdf", p.meancar.placebo, height = 5, width = 7)
 
 # DAILY RETURN PLOTS: CONTROL VS TREATMENT -------------------------------------
 # daily return by event
