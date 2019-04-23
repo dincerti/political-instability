@@ -126,39 +126,76 @@ p.meancar <- ggplot(car.mean, aes(x = td, y = car_mean)) + geom_line() +
 ggsave("figs/mean-car-by-regime-change-type.pdf", p.meancar, height = 5, width = 7)
 
 # CAR SURROUNDING REGIME CHANGES: PLACEBO CHECKS --------------------------------
-event.window <- 20
-est.window <- 200
-n.es <- nrow(regime.change)
-es.placebo <- vector(mode = "list", n.es)
-dtr.treat <- rep(NA, n.es)
-event.date.move <- 365
-
-# Run event studies
-for (i in 1:n.es){
-  es.placebo[[i]] <- event_study(ticker = index$ticker, date = index$date, dr = index$dr,
-                                 event_ticker = regime.change$ticker[i],
-                                 event_window = event.window, estimation_window = est.window,
-                                 event_date = regime.change$stock_date[i] + event.date.move, 
-                                 model = "constant",
-                                 control = FALSE, custom_v = NULL)  
+# Run placebo event studies
+run_placebo_tests <- function(event_date_move){
+  # Setup
+  event.window <- 20
+  est.window <- 200
+  n.es <- nrow(regime.change)
+  es.placebo <- vector(mode = "list", n.es)
+  dtr.treat <- rep(NA, n.es)  
+  
+  # Run event studies
+  for (i in 1:n.es){
+    es.placebo[[i]] <- event_study(ticker = index$ticker, date = index$date, dr = index$dr,
+                                   event_ticker = regime.change$ticker[i],
+                                   event_window = event.window, estimation_window = est.window,
+                                   event_date = regime.change$stock_date[i] + event_date_move, 
+                                   model = "constant",
+                                   control = FALSE, custom_v = NULL)  
+  }
+  rc.es.placebo <- combine_event_studies(es.placebo, event_country = regime.change$country,
+                                         event_type = regime.change$type, 
+                                         event_date = regime.change$stock_date + event_date_move)
+  
+  # Create plot data
+  car.mean.coup.placebo <- car_mean_plot_data(rc.es.placebo, coup.events, "Coup")
+  car.mean.ass.placebo <- car_mean_plot_data(rc.es.placebo, ass.events, "Assassination")
+  car.mean.res.placebo <- car_mean_plot_data(rc.es.placebo, res.events, "Resignation")
+  car.mean.placebo <- rbind(car.mean.coup.placebo, car.mean.ass.placebo, car.mean.res.placebo)
+  
+  # Return
+  return(car.mean.placebo)
 }
-rc.es.placebo <- combine_event_studies(es.placebo, event_country = regime.change$country,
-                                       event_type = regime.change$type, 
-                                       event_date = regime.change$stock_date + event.date.move)
 
-# Create plot data
-car.mean.coup.placebo <- car_mean_plot_data(rc.es.placebo, coup.events, "Coup")
-car.mean.ass.placebo <- car_mean_plot_data(rc.es.placebo, ass.events, "Assassination")
-car.mean.res.placebo <- car_mean_plot_data(rc.es.placebo, res.events, "Resignation")
-car.mean.placebo <- rbind(car.mean.coup.placebo, car.mean.ass.placebo, car.mean.res.placebo)
+event.date.move <- c(seq(-20, 20, by = 5), seq(25 + 85, 365, 85))
+car.mean.placebo <- vector(mode = "list", length = length(event.date.move))
+names(car.mean.placebo) <- event.date.move
+for (i in 1:length(event.date.move)){
+  car.mean.placebo[[i]] <- run_placebo_tests(event.date.move[i])
+  print(paste0("Completed time-shifted placebo with date shifted by ", 
+               event.date.move[i],
+                " days."))
+}
+tmp <- run_placebo_tests(365)
 
-# Plot
-p.meancar.placebo <- ggplot(car.mean.placebo, aes(x = td, y = car_mean)) + geom_line() +
+
+# Plot of CARs with event day shifted forward by 365 days
+p.meancar.placebo <- ggplot(car.mean.placebo[["365"]], 
+                            aes(x = td, y = car_mean)) + geom_line() +
   geom_point(size = .8) + facet_wrap(~lab) +
   geom_ribbon(aes(ymin = lcar_mean, ymax = ucar_mean), alpha = 0.2) +
   xlab("Trading days") + ylab("Mean CAR (%)") +
   geom_hline(aes(yintercept = 0), linetype = 2)
-ggsave("figs/mean-car-by-regime-change-type-placebo.pdf", p.meancar.placebo, height = 5, width = 7)
+ggsave("figs/mean-car-by-regime-change-type-placebo.pdf", p.meancar.placebo, 
+       height = 5, width = 7)
+
+# Plot of event day ARs with event day shifted forward 
+ar.mean.placebo <- rbindlist(lapply(car.mean.placebo, function(x) x[td == 0]))
+ar.mean.placebo[, shift := rep(event.date.move, each = 3)]
+p.meanar.placebo <- ggplot(ar.mean.placebo, 
+                           aes(x = factor(shift), y = car_mean)) +
+  geom_point(size = .8) + 
+  geom_pointrange(aes(ymin = lcar_mean, ymax = ucar_mean), size = .3) +
+  facet_wrap(~lab) +
+  xlab("Number of days shifted from event date") + 
+  ylab("Mean event day AR (%)") +
+  geom_hline(aes(yintercept = 0), linetype = 2, color = "grey") +
+  geom_vline(aes(xintercept = which(event.date.move == 0)), 
+             linetype = 2, color = "grey") +
+  theme_bw()
+ggsave("figs/mean-ar-by-regime-change-type-placebo.pdf", p.meanar.placebo, 
+       height = 5, width = 7)
 
 # DAILY RETURN PLOTS: CONTROL VS TREATMENT -------------------------------------
 # daily return by event

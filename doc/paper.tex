@@ -61,6 +61,7 @@
 \usepackage{afterpage}
 \usepackage{float}
 \usepackage[section]{placeins}
+\usepackage[export]{adjustbox}
 
 % theorem package
 \usepackage{theorem}
@@ -458,11 +459,34 @@ The key parameter of interest is the conditional variance, $\sigma_{it}^2$. The 
 \end{figure}
 
 \subsection{Robustness} \label{subsec: Robustness}
-There are three potential concerns with the results in \autoref{subsec:abnormal-returns}. First, the abnormal returns could have been driven by factors unrelated to the regime changes. Second, the reported means are based on small sample sizes so confidence intervals based on normally distributed abnormal returns may be inappropriate. Third, the true effects of irregular regime changes on firm value may be underestimated if investors had apriori information.
+There are a number of potential concerns with the results in \autoref{subsec:abnormal-returns}. First, the abnormal returns could have been driven by factors unrelated to the regime changes.  Second, the true effects of irregular regime changes on firm value may be underestimated if investors had apriori information. Third, the reported means are based on small sample sizes so confidence intervals based on normally distributed abnormal returns may be inappropriate.
 
-To explore the first concern, we create a synthetic control portfolio for each event based on the techniques introduced in \citet{abadie2003economic} and \citet{abadie2010synthetic}. Each country is given a weight which represents its influence in the synthetic control portfolio. The weight is chosen so that the daily returns and the variance of the daily returns of the control portfolio and the event country are most similar in the estimation window. The set of possible countries in the control portfolio consists of all countries listed in \autoref{tab:stock-list}.\footnote{See the appendix for a more formal explanation.}
+We explore these concerns in a number of ways. First, we reestimate mean CARs on a set of time-shifted placebo dates. Means are computed across all events within a given type of regime change. We shift event dates surrounding the actual event date backwards and forwards in increments of five days (-20, 15, 10, 5, 0, 5, 10, 15, and 20 days). In addition, we extend the forward shifted event date out to one year (110, 195, 285, and 365 days) to capture dates that are likely to be completely unaffected by the regime change. 
 
-The second concern is addressed using non-parametric statistical techniques, which are free from distributional assumptions. We employ the sign and the rank tests which are based on the sign and the rank of the event day ARs respectively.\footnote{See section 8 in \citet{mackinlay1997event} for more details.} Both tests are less influenced by departures from normality than statistics based on traditional t-tests such as those reported earlier in this paper. \autoref{tab:non-parametric} compares event day ARs as well as ``abnormal absolute returns'' between the event country and the synthetic control portfolio using the non-parametric methods discussed above. The ``abnormal absolute returns'' are abnormal returns for the absolute value of stock returns. This is done to combine events since resignations tend to increase returns while assassinations and coups tend to decrease them. The idea that the absolute value of returns might increase during irregular regime changes is similar to the finding that volatility increases and is consistent with \autoref{fig:AV-DR}.
+\autoref{fig:mean-car-by-regime-change} compares mean CARs estimated using the actual event date (\autoref{subfig:mean-car-by-regime-change-actual}) to CARs estimated with the event date shifted 1-year (365 days) into the future (\autoref{subfig:mean-car-by-regime-change-placebo}). \autoref{subfig:mean-car-by-regime-change-actual}---which reproduces the tabular results presented in \autoref{subsec:abnormal-returns}---shows that assassinations and coups are associated with negative event day ARs while resignations are associated with positive event day ARs. For coups and assassinations, most of the stock-market reaction occurs on the first day that the market could react to the event which implies that markets are responding quickly to negative political events. On the other hand, the effect of positive event seems to be longer lasting with CARs increasing during the 20-day post-event window. The abnormal returns in \autoref{subfig:mean-car-by-regime-change-placebo} are considerably different: there is no discernible event day ARs when the event day is shifted forward for any of the regime change types suggesting that the results in this paper are not simply an artifact of the data. Moreover, while CARs estimated using the actual event date for resignations trend upwards following the event day, there is no consistent trend in \autoref{subfig:mean-car-by-regime-change-placebo}.  
+
+\begin{figure}
+\centering
+\begin{subfigure}{\textwidth}
+\centering
+\includegraphics[max size={.8\textwidth}{.8\textheight}]{../figs/mean-car-by-regime-change-type.pdf}
+\caption{Actual event date} \label{subfig:mean-car-by-regime-change-actual}
+\end{subfigure}
+\begin{subfigure}{\textwidth}
+\centering
+\includegraphics[max size={.8\textwidth}{.8\textheight}]{../figs/mean-car-by-regime-change-type-placebo.pdf}
+\caption{Event date shifted forward by one year} \label{subfig:mean-car-by-regime-change-placebo}
+\end{subfigure}
+\caption{Mean cumulative abnormal returns by type of regime change}\label{fig:mean-car-by-regime-change}
+\end{figure}
+
+To ensure that results of the placebo test based on 1-year did not occur by chance, \autoref{fig:mean-event-day-ar-by-regime-change} plots event-day abnormal against the number of days shifted. There are a few instances (e.g., for coups and resignations) in which there are statistically significant ARs in the same direction as those on the actual event day in the post-event window (0 days to 20 days), but they are always smaller in magnitude than the ARs estimated using the actual event date. For resignations, there is no consistent pattern in the AR in the post-event window as both positive and negative ARs are observed. When estimates are based on dates shifted further into the future (110 days and beyond) the ARs are centered around zero. Overall, these results reinforce the main results: the ARs on the actual event date capture most of effect of the regime change, although effects can sometimes persist in the short event window following the event date. 
+
+These figures also provide evidence on the extent to which regime changes appear to be unexpected. For instance, the CARs prior to assassinations and coups presented in \autoref{subfig:mean-car-by-regime-change-actual} tend to be close to zero, suggesting that investors were unaware that a negative event was likely to occur in the coming days. For resignations, CARs trend downward in the 10 days prior to the event; however, if investors were aware that a resignation were about to occur one would expect the pre-event CARs to be positive given the positive CARs observed in the post-event window. Overall, there is thus little evidence that the CARs in the post-event window are not capturing most of the effect caused by the regime changes.
+
+Second, we create a synthetic control portfolio for each event based on the techniques introduced in \citet{abadie2003economic} and \citet{abadie2010synthetic}. Each country is given a weight which represents its influence in the synthetic control portfolio. The weight is chosen so that the daily returns and the variance of the daily returns of the control portfolio and the event country are most similar in the estimation window. The set of possible countries in the control portfolio consists of all countries listed in \autoref{tab:stock-list}.\footnote{See \autoref{Appendix} for a more formal explanation.}
+
+Non-parametric statistical techniques that are free from distributional assumptions are used to address concerns about inferences from small sample sizes. We employ the sign and the rank tests, which are based on the sign and the rank of the event day ARs respectively.\footnote{See section 8 in \citet{mackinlay1997event} for more details.} Both tests are less influenced by departures from normality than statistics based on traditional t-tests such as those reported earlier in this paper. \autoref{tab:non-parametric} compares event day ARs as well as ``abnormal absolute returns'' between the event country and the synthetic control portfolio using the non-parametric methods discussed above. The ``abnormal absolute returns'' are abnormal returns for the absolute value of stock returns. This is done to combine events since resignations tend to increase returns while assassinations and coups tend to decrease them. The idea that the absolute value of returns might increase during irregular regime changes is similar to the finding that volatility increases and is consistent with \autoref{fig:AV-DR}.
 
 \begin{table}[!ht]
 \caption{Non-parametric tests of the impact of regime changes} \label{tab:non-parametric}
@@ -492,17 +516,7 @@ Notes: Estimates for assassinations do not include the assassination of U.S. pre
 \end{center}
 \end{table}
 
-As shown in \autoref{tab:non-parametric}, the mean event day abnormal returns for coups, assassinations and resignations are all statistically different from zero at the 1\% level using the rank test statistic and the abnormal returns for coups and assassinations are significant at at least the 10\% level using the sign test. In addition, abnormal absolute returns for all events are statistically significant at the 5\% level using both the rank and sign statistics. On the other hand, the event day abnormal returns for the control portfolio are never statistically different from zero at even the 10\% level. Finally, the difference in means between the regime change country and the control portfolio are statistically different from zero for coups (1\% level), assassinations (10\% level), resignations (5\% level), and all events combined (1\% level) when using two-sided p-values from the Wilcoxon rank test.\footnote{The Wilcoxon rank test is a non-parametric statistical technique that can be used to compare differences between matched samples.} In sum, these results suggests that the results from section~\autoref{subsec:abnormal-returns} are not an artifact of deviations from normality or confounding world events.
-
-The third concern, which is that the political events in this paper are not unexpected, is addressed in a number of ways. First, one can note that although some of the irregular regime changes have statistically significant pre-event CAR's, most of them do not, and the ones that do not always move in the same direction [This is not true for a couple of the coups. I am also a bit unclear on the logic of why the directionality being the same is evidence of the event being unexpected?]. For example, there was a positive 14.7\% 7-day CAR preceding the resignation of President Fernando de la Rua of Argentina in December of 2001, even though the resignation was associated with large positive event day abnormal returns.
-
-\begin{figure}[!ht]
-\includegraphics{../figs/mean-car-pos-neg.pdf}
-\caption{Mean cumulative abnormal returns surrounding regime changes}
-\label{fig:CAR-mean}
-\end{figure}
-
-Second, since the direction of the pre-trends is unclear, we examine whether there are different pre-trends for events with positive stock reactions than for events with negative stock reactions. As shown in \autoref{fig:CAR-mean}, neither the ``positive'' nor ``negative'' events have pre-event CAR's that are statistically different from 0 [We need to address that this is not true for the positive events. To me it looks like the Indonesian and Thai resignations are driving the negative pre-event CARs.]. Furthermore, for negative events, almost all of the stock-market reaction occurs on the first day that the market could react to the event which implies that markets are responding quickly to negative political events. On the other hand, the effect of positive event seems to be longer lasting with CARs increasing during the 20-day post-event window. 
+As shown in \autoref{tab:non-parametric}, the mean event day abnormal returns for coups, assassinations and resignations are all statistically different from zero at the 1\% level using the rank test statistic and the abnormal returns for coups and assassinations are significant at at least the 10\% level using the sign test. In addition, abnormal absolute returns for all events are statistically significant at the 5\% level using both the rank and sign statistics. On the other hand, the event day abnormal returns for the control portfolio are never statistically different from zero at even the 10\% level. Finally, the difference in means between the regime change country and the control portfolio are statistically different from zero for coups (1\% level), assassinations (10\% level), resignations (5\% level), and all events combined (1\% level) when using two-sided p-values from the Wilcoxon rank test.\footnote{The Wilcoxon rank test is a non-parametric statistical technique that can be used to compare differences between matched samples.} In sum, the synthetic control and small sample tests therefore suggest that the main results are not a result of deviations from normality or confounding world events.
 
 \section{Conclusion}
 This paper has examined the effects of irregular regime changes on financial returns. It uses an event study approach to show that investors expect irregular regime changes to have large effects on equity returns. This methodology is less susceptible to endogeneity biases than studies that use cross country data.
@@ -516,6 +530,9 @@ Our findings suggest that abnormal returns are likely positive following resigna
 \appendix
 \setcounter{table}{0}
 \renewcommand\thetable{\Alph{section}.\arabic{table}}
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{A\arabic{figure}}
+
 \section{Appendix} \label{Appendix}
 \begin{table}[!ht]
 \caption{List of public protests preceding resignations} \label{tab:protest-list}
@@ -546,6 +563,12 @@ Egypt & Egyptian Revolution & 1/25/2011 & 2/11/2001\\
 \end{threeparttable}
 \end{center}
 \end{table}
+
+\begin{figure}[!ht]
+\includegraphics{../figs/mean-ar-by-regime-change-type-placebo.pdf}
+\caption{Time-shifted placebo sensitivity analysis of mean event day abnormal return by type of regime change}
+\label{fig:mean-event-day-ar-by-regime-change}
+\end{figure}
 
 \subsection{Synthetic Control Portfolio}
 Let $\boldsymbol{R}_{k}$ be the vector of returns for the event country in the estimation window, $\boldsymbol{R}_{-k}$ be the vector of returns for all other countries in the estimation window, $\boldsymbol{X}_1=(\boldsymbol{R}_{k},\var(\boldsymbol{R}_{k}))$, $\boldsymbol{X}_0=(\boldsymbol{R}_{-k},\var(\boldsymbol{R}_{-k}))$, and $\boldsymbol{W}_{-k}$ be a $((N-1) \times 1)$ vector of weights where $N$ is the number of countries listed in \autoref{tab:stock-list}. Then $\boldsymbol{W}^*$ is chosen to minimize $(\boldsymbol{X}_1-\boldsymbol{X}_0\boldsymbol{W})'\boldsymbol{V}(\boldsymbol{X}_1-\boldsymbol{X}_0\boldsymbol{W})$ subject to $w_i\geq0$ $(i = 1,2,\ldots,N-1)$ and $\sum_i^{N-1} w_i = 1$, and the vector $\boldsymbol{V}$ is chosen so that stock returns for the control portfolio during the estimation window are are close as possible to the event country.\footnote{See \citet{abadie2003economic} for further details.}
