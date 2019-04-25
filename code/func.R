@@ -236,17 +236,16 @@ car_mean <- function(ar, sigma) {
 
 # MEAN CAR PRE AND POST --------------------------------------------------------
 mean_car_prepost <- function(ar, sigma, td){
-  ar.b <-  ar[rev(which(td < -1)), ]
-  car.mean.b <- data.table(car_mean(ar.b, sigma), td = rev(td[td < -1]))
+  ar.b <-  ar[rev(which(td <= -1)), ]
+  car.mean.b <- data.table(car_mean(ar.b, sigma), td = rev(td[td <= -1]))
   ar.f <-  ar[which(td >= 0), ]
   car.mean.f <- data.table(car_mean(ar.f, sigma), td = td[td >= 0])
-  car.mean.fixed <- data.table(car_mean = mean(ar[which(td == -1), ]),
-                               car_mean_se = 0, td = -1)
-  car.mean <- rbind(car.mean.b[nrow(car.mean.b):1 ], car.mean.fixed, car.mean.f)
-  car.mean$car_mean <- car.mean$car_mean - car.mean.fixed$car_mean
+  car.mean.f[, td := td + 1]
+  car.mean.0 <- data.table(car_mean = 0,
+                           car_mean_se = 0, td = 0)
+  car.mean <- rbind(car.mean.b[nrow(car.mean.b):1 ], car.mean.0, car.mean.f)
   return(car.mean)
 }
-  
 
 # REGRESSION TABLE WITH STANDARD ERRORS IN PARENTEHSES -------------------------
 # Regression table with standard errors in parentheses

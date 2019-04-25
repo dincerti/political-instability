@@ -88,7 +88,6 @@ car_mean_plot_data <- function(rc_es, indices, label = NULL){
 }
 
 # Positive vs negative events
-
 pos.events <- which(rc.es$ar.treat[ed, ] >= 0)
 neg.events <- which(rc.es$ar.treat[ed, ] < 0)
 
@@ -106,15 +105,10 @@ p.meancar <- ggplot(car.mean, aes(x = td, y = car_mean)) + geom_line() +
 ggsave("figs/mean-car-pos-neg.pdf", p.meancar, height = 5, width = 7)
 
 # CAR SURROUNDING REGIME CHANGES: BY EVENT TYPE --------------------------------
-# Indices
-coup.events <- which(regime.change$type == "Coup")
-ass.events <- which(regime.change$type == "Assassination")
-res.events <- which(regime.change$type == "Resignation")
-
 # Create plot data
-car.mean.coup <- car_mean_plot_data(rc.es, coup.events, "Coup")
-car.mean.ass <- car_mean_plot_data(rc.es, ass.events, "Assassination")
-car.mean.res <- car_mean_plot_data(rc.es, res.events, "Resignation")
+car.mean.coup <- car_mean_plot_data(rc.es, indx$coup.index, "Coup")
+car.mean.ass <- car_mean_plot_data(rc.es, indx$ass.index, "Assassination")
+car.mean.res <- car_mean_plot_data(rc.es, indx$res.index, "Resignation")
 car.mean <- rbind(car.mean.coup, car.mean.ass, car.mean.res)
 
 # Plot
@@ -149,9 +143,9 @@ run_placebo_tests <- function(event_date_move){
                                          event_date = regime.change$stock_date + event_date_move)
   
   # Create plot data
-  car.mean.coup.placebo <- car_mean_plot_data(rc.es.placebo, coup.events, "Coup")
-  car.mean.ass.placebo <- car_mean_plot_data(rc.es.placebo, ass.events, "Assassination")
-  car.mean.res.placebo <- car_mean_plot_data(rc.es.placebo, res.events, "Resignation")
+  car.mean.coup.placebo <- car_mean_plot_data(rc.es.placebo, indx$coup.index, "Coup")
+  car.mean.ass.placebo <- car_mean_plot_data(rc.es.placebo, indx$ass.index, "Assassination")
+  car.mean.res.placebo <- car_mean_plot_data(rc.es.placebo, indx$res.index, "Resignation")
   car.mean.placebo <- rbind(car.mean.coup.placebo, car.mean.ass.placebo, car.mean.res.placebo)
   
   # Return
@@ -193,7 +187,9 @@ p.meanar.placebo <- ggplot(ar.mean.placebo,
   geom_hline(aes(yintercept = 0), linetype = 2, color = "grey") +
   geom_vline(aes(xintercept = which(event.date.move == 0)), 
              linetype = 2, color = "grey") +
-  theme_bw()
+    theme_bw() +
+   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+         axis.text.x = element_text(angle = 45))
 ggsave("figs/mean-ar-by-regime-change-type-placebo.pdf", p.meanar.placebo, 
        height = 5, width = 7)
 
