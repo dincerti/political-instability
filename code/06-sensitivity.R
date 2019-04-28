@@ -175,7 +175,7 @@ ggsave("figs/mean-car-by-regime-change-type-placebo.pdf", p.meancar.placebo,
        height = 5, width = 7)
 
 # Plot of event day ARs with event day shifted forward 
-ar.mean.placebo <- rbindlist(lapply(car.mean.placebo, function(x) x[td == 0]))
+ar.mean.placebo <- rbindlist(lapply(car.mean.placebo, function(x) x[td == 1]))
 ar.mean.placebo[, shift := rep(event.date.move, each = 3)]
 p.meanar.placebo <- ggplot(ar.mean.placebo, 
                            aes(x = factor(shift), y = car_mean)) +
