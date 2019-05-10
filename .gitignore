@@ -1,4 +1,26 @@
+# R files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# LaTeX files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.synctex.gz
+
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
