@@ -46,15 +46,43 @@ ven.es <- event_study(ticker = index$ticker, date = index$date, dr = index$dr,
                       event_ticker = ven$ticker,
                      event_window = 20, estimation_window = 200,
                      event_date = ven$stock_date, model = "constant", control = FALSE)  
+
 ven.es$ar.treat[, lar := ar - qnorm(.975) * ven.es$sigma.treat]
 ven.es$ar.treat[, uar := ar + qnorm(.975) * ven.es$sigma.treat]
+
 p <- ggplot(ven.es$ar.treat[abs(td) <= 10], aes(x = td, y = ar)) + 
   geom_hline(aes(yintercept = 0), linetype = 2, color = "grey") +
   geom_vline(aes(xintercept = 0), linetype = 2, color = "grey") +
   geom_pointrange(aes(ymin = lar, ymax = uar), size = .3) +
-  xlab("Trading days") + ylab("Abnormal Returns (%)") +
+  xlab("Trading days") + 
+  ylab("Abnormal Returns (%)") +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
   theme_classic()
 print(p)
+
 ggsave("figs/venezuela_coup_attempt_2002.pdf", p, height = 5, width = 7)
+
+# VENEZUELA 1992 COUP ATTEMPT --------------------------------------------------
+ven92 <- event[ticker == "_VE1" & stock_date == "1992-11-27"]
+ven92.es <- event_study(ticker = index$ticker, date = index$date, dr = index$dr,
+                      event_ticker = ven92$ticker,
+                      event_window = 20, estimation_window = 200,
+                      event_date = ven92$stock_date, model = "constant", control = FALSE)  
+
+ven92.es$ar.treat[, lar := ar - qnorm(.975) * ven92.es$sigma.treat]
+ven92.es$ar.treat[, uar := ar + qnorm(.975) * ven92.es$sigma.treat]
+
+p <- ggplot(ven92.es$ar.treat[abs(td) <= 10], aes(x = td, y = ar)) + 
+  geom_hline(aes(yintercept = 0), linetype = 2, color = "grey") +
+  geom_vline(aes(xintercept = 0), linetype = 2, color = "grey") +
+  geom_pointrange(aes(ymin = lar, ymax = uar), size = .3) +
+  xlab("Trading days") + 
+  ylab("Abnormal Returns (%)") +
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+  scale_y_continuous(limits = c(-12, 12),
+                     breaks = scales::pretty_breaks(n = 10)) +
+  theme_classic()
+print(p)
+
+ggsave("figs/venezuela_coup_attempt_1992.pdf", p, height = 5, width = 7)
