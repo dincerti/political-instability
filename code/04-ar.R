@@ -86,3 +86,37 @@ p <- ggplot(ven92.es$ar.treat[abs(td) <= 10], aes(x = td, y = ar)) +
 print(p)
 
 ggsave("figs/venezuela_coup_attempt_1992.pdf", p, height = 5, width = 7)
+
+
+# TURKEY 2016 COUP ATTEMPT -----------------------------------------------------
+
+# Add 2016 Turkey failed coup to data.table
+event = rbind(event,list(85, "Turkey", "_XU100D", "07/15/2016", 
+                 as.Date("07/18/2016", "%m/%d/%Y"),
+                 "Recep Tayyip Erdoğan", "Failed Coup", 
+                 NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA))
+
+
+turk16 <- event[ticker == "_XU100D" & stock_date == "2016-07-18"]
+turk16.es <- event_study(ticker = index$ticker, date = index$date, dr = index$dr,
+                      event_ticker = turk16$ticker,
+                      event_window = 20, estimation_window = 200,
+                      event_date = turk16$stock_date, model = "constant", control = FALSE)  
+
+turk16.es$ar.treat[, lar := ar - qnorm(.975) * turk16.es$sigma.treat]
+turk16.es$ar.treat[, uar := ar + qnorm(.975) * turk16.es$sigma.treat]
+
+p <- ggplot(turk16.es$ar.treat[abs(td) <= 10], aes(x = td, y = ar)) + 
+  geom_hline(aes(yintercept = 0), linetype = 2, color = "grey") +
+  geom_vline(aes(xintercept = 0), linetype = 2, color = "grey") +
+  geom_pointrange(aes(ymin = lar, ymax = uar), size = .3) +
+  xlab("Trading days") + 
+  ylab("Abnormal Returns (%)") +
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
+  scale_y_continuous(limits = c(-12, 12),
+                     breaks = scales::pretty_breaks(n = 10)) +
+  theme_classic()
+print(p)
+
+ggsave("figs/turkey_coup_attempt_2016.pdf", p, height = 5, width = 7)
+
