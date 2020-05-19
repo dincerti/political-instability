@@ -9,6 +9,14 @@ theme_set(theme_bw())
 source("code/func.R")
 
 # ABNORMAL RETURNS TABLES ------------------------------------------------------
+# Add authoritarian versus democratic shift information to data
+auth_dem <- event[type == "Coup" | type == "Assassination" |
+                  type == "Resignation", 
+                  .(country, ticker, stock_date, `auth shift`, `dem shift`)]
+
+regime.change <- merge(regime.change, auth_dem, 
+                       by = c("country", "ticker", "stock_date"))
+
 # coups
 coup.index <- which(regime.change$type == "Coup")
 artable.coups <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, coup.index],
@@ -40,6 +48,28 @@ artable.res <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, res.index],
 myprint.xtable(artable.res$car, file = "tables/artable-res-car.txt")
 myprint.xtable(artable.res$car.mean, file = "tables/artable-res-car-mean.txt")
 
+# Authoritarian
+auth.index <- which(regime.change$`auth shift` == 1)
+artable.auth <- ar_table(td = rc.es.auth$td, ar = rc.es.auth$ar.treat[, auth.index],
+                          sigma = rc.es.auth$sigma.treat[auth.index], 
+                          dtr = rc.es.auth$dtr.treat[auth.index],
+                          country = regime.change[auth.index, country],
+                          date = regime.change[auth.index, stock_date], 
+                          coup = FALSE)
+myprint.xtable(artable.auth$car, file = "tables/artable-auth-car.txt")
+myprint.xtable(artable.auth$car.mean, file = "tables/artable-auth-car-mean.txt")
+
+# Democratic
+dem.index <- which(regime.change$`dem shift` == 1)
+artable.dem <- ar_table(td = rc.es.dem$td, ar = rc.es.dem$ar.treat[, dem.index],
+                          sigma = rc.es.dem$sigma.treat[dem.index], 
+                          dtr = rc.es.dem$dtr.treat[dem.index],
+                          country = regime.change[dem.index, country],
+                          date = regime.change[dem.index, stock_date], 
+                          coup = FALSE)
+myprint.xtable(artable.dem$car, file = "tables/artable-dem-car.txt")
+myprint.xtable(artable.dem$car.mean, file = "tables/artable-dem-car-mean.txt")
+
 # VENEZUELA PARTIAL COUP -------------------------------------------------------
 ven <- event[ticker == "_IBCD" & stock_date == "2002-04-12"]
 ven.es <- event_study(ticker = index$ticker, date = index$date, dr = index$dr,
@@ -64,7 +94,12 @@ print(p)
 ggsave("figs/venezuela_coup_attempt_2002.pdf", p, height = 5, width = 7)
 
 # VENEZUELA 1992 COUP ATTEMPT --------------------------------------------------
-ven92 <- event[ticker == "_VE1" & stock_date == "1992-11-27"]
+
+# Change event day to 11/30 
+event <- event[, stock_date := dplyr::if_else(stock_date == "1992-11-27", 
+                               as.Date("1992-11-30"), stock_date)]
+
+ven92 <- event[ticker == "_VE1" & stock_date == "1992-11-30"]
 ven92.es <- event_study(ticker = index$ticker, date = index$date, dr = index$dr,
                       event_ticker = ven92$ticker,
                       event_window = 20, estimation_window = 200,

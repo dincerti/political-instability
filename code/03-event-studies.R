@@ -6,6 +6,14 @@ load("data/data-clean.RData")
 source("code/func.R")
 
 # EVENT STUDY ------------------------------------------------------------------
+# Add authoritarian versus democratic shift information to data
+auth_dem <- event[type == "Coup" | type == "Assassination" |
+                  type == "Resignation", 
+                  .(country, ticker, stock_date, `auth shift`, `dem shift`)]
+
+regime.change <- merge(regime.change, auth_dem, 
+                       by = c("country", "ticker", "stock_date"))
+
 # calculate abnormal returns and days to rebound
 event.window <- 20
 est.window <- 200
@@ -51,7 +59,7 @@ for (i in 1:n.es){
   print(i)
 }
 
-# combine event studies
+# combine event studies: by type of regime change
 rc.es <- combine_event_studies(es, event_country = regime.change$country,
                                           event_type = regime.change$type, 
                                           event_date = regime.change$stock_date)
@@ -60,5 +68,24 @@ rc.abs.es <- combine_event_studies(es.abs, event_country = regime.change$country
                                           event_type = regime.change$type, 
                                           event_date = regime.change$stock_date)
 
+# combine event studies: by authoritarian shift
+rc.es.auth <- combine_event_studies(es, event_country = regime.change$country,
+                                          event_type = regime.change$`auth shift`, 
+                                          event_date = regime.change$stock_date)
+rc.es.auth <- c(rc.es, list(dtr.treat = dtr.treat))
+rc.abs.es.auth <- combine_event_studies(es.abs, event_country = regime.change$country,
+                                          event_type = regime.change$`auth shift`, 
+                                          event_date = regime.change$stock_date)
+
+# combine event studies: by democratic shift
+rc.es.dem <- combine_event_studies(es, event_country = regime.change$country,
+                                          event_type = regime.change$`dem shift`, 
+                                          event_date = regime.change$stock_date)
+rc.es.dem <- c(rc.es, list(dtr.treat = dtr.treat))
+rc.abs.es.dem <- combine_event_studies(es.abs, event_country = regime.change$country,
+                                          event_type = regime.change$`dem shift`, 
+                                          event_date = regime.change$stock_date)
+
 # save 
-save(rc.es, rc.abs.es, file = "output/regime-change-event-study.RData")
+save(rc.es, rc.abs.es, rc.es.auth, rc.abs.es.auth, rc.es.dem, rc.abs.es.dem,
+     file = "output/regime-change-event-study.RData")

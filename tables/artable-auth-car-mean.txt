@@ -1,0 +1,5 @@
+% latex table generated in R 3.6.1 by xtable 1.8-4 package
+% Mon May 18 14:05:27 2020
+ \multicolumn{2}{l}{\textbf{Mean}} & -2.204 & 0.283 & 0.740 & 3.034 & 2.248 & 8 \\ 
+  \multicolumn{2}{l}{} & (0.585) & (1.548) & (2.616) & (1.548) & (2.616) &  \\ 
+  
