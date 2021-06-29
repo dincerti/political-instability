@@ -143,11 +143,11 @@
 \singlespacing
 \begin{abstract}
 \noindent
-Political instability is commonly thought to discourage investment and reduce economic growth. However, we find that different types of ``irregular'' regime changes have disparate effects on stock returns. Using an event study approach, we examine daily returns of national stock indices in every country that experienced an irregular regime change subject to data availability. We show that abnormal returns following resignations are large and positive (+4\%), while those following assassinations are negative and smaller in magnitude (-2\%). The impact of coups tends to be negative (-2\%), but examination of the 2002 failed coup against Hugo Chavez reveals returns of +10\%. We find suggestive evidence that authoritarian or anti-capitalist regime changes are more likely to be perceived negatively by investors than democratic or pro-business changes.  The expected direction and magnitude of abnormal returns is therefore dependent on the type of regime change and its expected impact on economic policy. 
+Political instability is commonly thought to discourage investment and reduce economic growth. We challenge this theory by finding that different types of instability have disparate effects on stock returns. Using an event study approach, we examine daily returns of national stock indices in every country that experienced an irregular regime change subject to data availability. Abnormal returns following resignations are large and positive (+4\%), while those following assassinations are negative and smaller in magnitude (-2\%). The impact of coups tends to be negative (-2\%), but examination of the 2002 failed coup against Hugo Chavez reveals returns of +10\%. We find suggestive evidence that authoritarian or anti-capitalist regime changes are more likely to be perceived negatively by investors than democratic or pro-business changes.  The expected direction and magnitude of abnormal returns is therefore dependent on the type of regime change and its expected impact on economic policy. 
 
 
 \end{abstract}
-\doublespacing
+%\doublespacing
 
 \clearpage
 \pagenumbering{arabic}
@@ -155,135 +155,41 @@ Political instability is commonly thought to discourage investment and reduce ec
 %\section{Introduction} \label{sec:Introduction}
 \newpage
 
-The image of a coup or popular uprising ousting an autocratic ruler and installing a democratic government is an evocative one. However, both recent events and prior research suggest that coups rarely lead to democracy. In the wake of the Arab Spring---in which rulers were deposed in four countries---only Tunisia ultimately transitioned to democracy. These results are in line with prior research that claims that in autocracies coups rarely lead to democratization, and in democracies they cause instability \citep{derpanopoulos2015coups, powell2011global, thyne2016coup, varol2011democratic}.
+Investors, multinational firms, development agencies, and aid organizations rank political risk as a top consideration when making investment decisions in emerging markets.\footnote{In the \citet{wipr2013} report (most recent), executives of multinational enterprises ranked political risk as the second most important constraint for foreign direct investment (FDI) in developing countries (after macroeconomic instability). In \citet{wipr2011} and  \citet{wipr2012}, political risk was ranked the most important constraint for FDI in developing countries - even greater than macroeconomic instability.}  
 
-Of course, coups and other regime changes not only impact a country's political environment but its economy as well. For instance, investors, multinational firms, development agencies, and aid organizations rank political risk as a top consideration when making investment decisions in emerging markets.\footnote{In the 2013 Multilateral Investment Guarantee Agency (MIGA) \citet{wipr2013} report (the last report published), executives of multinational enterprises (MNEs) ranked political risk as the second most important constraint for foreign direct investment (FDI) in developing countries over the next three years (after macroeconomic instability). In \citet{wipr2011} and  \citet{wipr2012}, political risk was ranked the most important constraint for FDI in developing countries - even greater than macroeconomic instability. The types of political risk of most concern to investors in developing countries (ranked in order of importance) were 1) adverse regulatory changes, 2) breaches of contract, 3) transfers and convertibility restrictions, 4) civil disturbances, 5) non-honoring of government guarantees, 6) expropriation nationalization, 7) terrorism and 8) war.} Common rationales are that unstable governments act myopically and adopt inefficient policies. Unstable governments have, for example, been argued to be less likely to invest in the legal system and the protection of property rights \citep{svensson1998investment}, and to be more likely to increases taxes \citep{devereux1998political}.\footnote{\citet{devereux1998political} proposes a model in which political instability causes governments to leave fewer assets to their successors which forces them into increasing capital taxes. The knowledge of future taxation then causes the private sector to reduce current investment which reduces future output.} 
+Unstable governments have, for example, been argued to be less likely to invest in the legal system and the protection of property rights \citep{svensson1998investment}, and to be more likely to increases taxes \citep{devereux1998political}. This is supported by empirical research showing that political instability---as measured by regime change frequency, political violence, or indices of uncertainty derived from news reports---is negatively correlated with investment, financial development, and GDP growth in cross country regressions \citep{aisen2013does, alesina1996income, alesina1996political, fosu1992political, jong2009measurement, roe2011political, baker2016measuring} and that the variance of stock market returns increases in response to economic policy uncertainty \citep{leblang2005government, jensen2005market, liu2015economic}.
 
-These theories are supported by empirical research that suggests political instability---as measured by regime change frequency, political violence, or indices of uncertainty derived from news reports---is negatively correlated with investment, financial development, and GDP growth in cross country regressions \citep{aisen2013does, alesina1996income, alesina1996political, fosu1992political, jong2009measurement, roe2011political, baker2016measuring} and that the variance of stock market returns increases in response to economic policy uncertainty \citep{leblang2005government, jensen2005market, liu2015economic}.
+In contrast to these cross country studies, we: (1) examine the impact of various types of instability (coups, resignations, assassinations, and protests) separately, and (2) conduct our analysis using event studies of daily financial data. Event studies examine the effect of an unexpected event on stock prices \textit{at the time of the event} (i.e. a local average treatment effect) to determine if returns are systematically different from predicted. This interrupted time-series approach mitigates the endogeneity problems ubiquitous in previous cross country regressions. Confounding events would need to also occur on the same day, and do so for a large portion of all of our independently tested events in order to influence our estimates.\footnote{A growing body of work uses event studies to assess political phenomenon.  For example, political events have been used to estimate the effect of political connections on firm value \citep[e.g.,][]{fisman2001estimating,faccio2006politically,goldman2009politically}.} 
 
-In this study, we examine the impact of ``irregular'' regime changes and public protests on market performance, but remain agnostic about the direction of the effect. Stock market returns are used as an indicator of whether investors view different types of potentially destabilizing political events as ``good'' for future returns. Beyond the large changes in real wealth created by extreme stock market volatility, empirical research has tied future production growth rates to variation in stock returns \citep{schwert1990stock, fama1990stock}.
+%Stock market returns are used as an indicator of whether investors view different types of potentially destabilizing political events as ``good'' for future returns. Beyond the large changes in real wealth created by extreme stock market volatility, empirical research has tied future production growth rates to variation in stock returns \citep{schwert1990stock, fama1990stock}.
 
-In contrast to the aforementioned cross country studies, we conduct our analysis using event studies of daily financial data and provide separate estimates by source of instability. Event studies examine the effect of an unexpected event on stock prices \textit{at the time of the event} (i.e. a local average treatment effect), and seek to determine if returns at the time of event are abnormal (i.e., systematically different from predicted). An ``abnormal return'' therefore reflects the difference between the observed return and the predicted return. We use daily data as it allows for more precise measurement of abnormal returns. This interrupted time-series approach mitigates the endogeneity problems ubiquitous in the cross country regression approaches---confounding events would need to also occur on the same day, and do so for a large portion of all of our independently tested events in order to influence our estimates.\footnote{A growing body of work uses event studies to assess political phenomenon.  For example, political events have been used to estimate the effect of political connections on firm value \citep[e.g.][]{fisman2001estimating,faccio2006politically,goldman2009politically}. Studies in ``forensic economics" have used abnormal returns from political events to locate or examine transactions such as insider trading \citep{dube2011coups}, illegal arms trading \citep{dellavigna2010detecting}, and the impact of hostilities on the financial performance of diamond mining firms in Angola \citep{guidolin2007diamonds}.} 
+%An ``abnormal return'' therefore reflects the difference between the observed return and the predicted return. We use daily data as it allows for more precise measurement of abnormal returns. 
 
-We analyze 13 successful coups, 8 assassinations, 15 forced resignations, and 11 public protests. We recognize that this does not represent a full list of historical coups, assassinations, resignations, and public protests, but are restricted to the sample of events for which national-level daily financial data is available. We also examine the failed 2002 Venezuelan coup, as it provides a case that allows us to estimate the effects of both a seemingly successful pro-business coup, and the immediate reinstatement of a left-wing populist. Our study therefore not only uses an event-study approach to enhance the reliability of our estimates, but simultaneously examines a relatively large sample that enhances external validity and allows us to show that different types of political events have disparate effects. 
+We analyze 13 successful coups, 8 assassinations, 15 forced resignations, and 11 public protests---the full sample of events for which national-level daily financial data is available.  Like previous research, we find that coups, assassinations, resignations, and public protests all cause large increases in financial volatility. However, we also find that abnormal returns are large and positive (+4\%) following resignations and tend to be negative and smaller in magnitude following assassinations and coups (-2\%). We also examine the failed 2002 Venezuelan coup, as it allows us to estimate the effects of both a pro-business coup (+10\%), and the reinstatement of a left-wing populist (-8\%) on the same market.
 
-We find that coups, assassinations, resignations, and public protests cause large increases in financial volatility. However, the magnitude and direction of the effects differ by type of regime change. On average, abnormal returns following resignations are large and positive (+4\%) while abnormal returns following assassinations and coups tend to be negative and smaller in magnitude (-2\%). We also find suggestive evidence that authoritarian regime changes are more likely to lead to negative returns that democratic regime changes. Finally, we examine the effect of pro versus anti business regime change via an in-depth examination of the seemingly successful but ultimately failed coup against Hugo Chavez in 2002. Stock prices increased dramatically (+10\%) after the failed overthrow of Chavez's socialist regime and decreased by approximately the same magnitude following his return to leadership.
+Our primary contributions are empirical and methodological. Empirically, we show that while political instability concerns investors, instability does not systematically depress investment. Investors recognize when instability may be in their favor. Methodologically, we employ a method less susceptible to endogeneity concerns, and integrate event studies with synthetical control methods to allow for control portfolios in situations where an obvious control portfolio candidate is not present. While we do not view theoretical development as our main contribution, we do find evidence that authoritarian regime changes are more likely to lead to negative returns, and that leaders who are clearly pro-business can be rewarded by investors, even if they use extra-judicial methods to take power.
 
-\singlespacing
+%Our study therefore not only uses an event-study approach to enhance the reliability of our estimates, but simultaneously examines a relatively large sample that enhances external validity and allows us to show that different types of political events have disparate effects. 
+
 \section{Reexamining how markets respond to irregular regime changes}
-\doublespacing
 
-Conventional theory and cross-country empirical evidence suggests that political instability depresses financial returns \citep{irshad2017relationship, le2006political, lensink2000capital, boutchkova2012precarious, lehkonen2015democracy}. However, if market returns reflect investor expectations about future economic growth and expected returns, there are reasons to believe such hypotheses may be overly simplistic. 
+Conventional theory and cross-country empirical evidence suggests that political instability depresses financial returns \citep{irshad2017relationship, le2006political, lensink2000capital, boutchkova2012precarious, lehkonen2015democracy}. However, if market returns reflect investor expectations about future economic growth and expected returns, such hypotheses may be overly simplistic. Investors may view even a coup as a ``positive'' event if the current regime is anti-business or anti-global.
 
-First, a change in regime may be seen as a positive event if the current regime is regarded as anti-business or anti-global. Regime changes that attempt to overthrow anti-business autocrats may be expected to result in positive abnormal returns as investors see little risk of a replacement government ``worse'' than the status quo.
+An active debate exists on the subject of ``good coups''---i.e., coups that lead to democratization or economic liberalization---and their effect on economic growth.  Most research suggests that ``good coups'' are not the norm \citep{derpanopoulos2015coups, powell2011global, thyne2016coup, varol2011democratic}, and others argue that the negative effects of uncertainty dominate the positive effects of coups staged by pro growth factions \citep{alesina1996political}, or that the expected impact of coups on economic growth is neutral as some enhance growth and others depress it \citep{londregan1990poverty}. But while ``good coups'' may be the minority, they have become more frequent \citep{marinov2014coups} and could have positive economic effects \citep{meyersson2016political, girardi2018institution}. Previous research therefore suggests that on average coups should not be expected to lead to increased economic development or positive market returns, but that positive returns associated with ``good coups'' could occasionally be present. As our event study approach also allows us to individual coups separately from others, we can evaluate this prediction. 
 
-An active debate exists on the subject of ``good coups''---i.e. coups that lead to democratization or economic liberalization---and their effect on economic growth. \citet{alesina1996political} take the possibility of a new government adopting better economic policies seriously, but argue that the negative effects of uncertainty dominate the positive effects of coups staged by pro growth factions. \citet{alesina1996income} argue that ``unconstitional'' regime changes such as coups are worse for economic growth than other types of political instability, while \citet{londregan1990poverty} find that coups have no impact on economic growth and hypothesize that this may be because there is a bimodal distribution of coups, some of which enhance growth and others which restrict it. However, most research suggests that ``good coups'' are not the norm \citep{derpanopoulos2015coups, powell2011global, thyne2016coup, varol2011democratic}. But while ``good coups'' may be the minority, some evidence suggests that they have become more frequent \citep{marinov2014coups} and could have positive economic effects. \citet{meyersson2016political} finds that coup attempts that occur in democratic regimes are associated with negative GDP growth, while those that occur in autocratic regimes are associated with positive GDP growth. In another study examining the outcome variable as our own---financial returns---\citet{girardi2018institution} show that Salvador Allende's socialist government was associated with declines in stock prices while the coup that replaced him boosted them. 
+Not all regime changes are equivalent---resignations, assassinations, and coups are all examples of sudden regime changes and have been used as proxies for instability in previous research. Some regime changes---such as the sudden resignation of an ineffective leader---may even lead to increased stability. By contrast, assassinations can occur seemingly at random, and a successor may be unclear. Coups can occur in the name of democracy or autocracy, and in general signal relative weakness in the current political system. These differences are often overlooked in past empirical strategies, which have proxied for instability in terms of the number of coups \citep{londregan1990poverty, alesina1996political}, assassinations or revolutions \citep{barro1991economic}, or have combined various metrics into single indices \citep{alesina1996income, venieris1986income, gupta1990economics, jong2009measurement}.\footnote{Note that these studies vary by metrics included in the indices, method of aggregation, and outcome variable of interest.} By contrast, we estimate effects separately for coups, assassinations, resignations, and protests.
 
-Previous research therefore suggests that on average coups should not be expected to lead to increased economic development or positive market returns, but that positive returns associated with ``good coups'' could occasionally be present. We shed light on this theory as our event study approach also allows us to examine ``good coups''---coups that lead to democratization or economic liberalization---separately from others. As we are not limited to a single case study, we can provide both a cross-country and within-case analysis. 
-
-Second, not all regime changes are equivalent---resignations, assassinations, and coups are all examples of sudden regime changes and have been used as proxies for instability in previous research. However, some regime changes may actually lead to increased stability. Resignations, for example, often occur when an ineffective leader steps down. Assassinations, by contrast, are not always related to the effectiveness of a leader, can occur seemingly at random, and the successor to the assassinated leader may be unclear. Coups can occur in the name of democracy or autocracy, and in general signal relative weakness in the current political system. These differences are often overlooked in past empirical strategies, which have proxied for instability in terms of the number of coups \citep{londregan1990poverty, alesina1996political}, assassinations or revolutions \citep{barro1991economic}, or have combined various metrics into single indices \citep{alesina1996income, venieris1986income, gupta1990economics}.\footnote{Note that these studies vary by metrics included in the indices, method of aggregation, and outcome variable of interest.} In another cross-country regression study, \citet{jong2009measurement} disaggregates instability into four main metrics, one of which is regime changes, but does not subset below this metric. By contrast---recognizing the different degrees of instability that these events may reflect---we estimate effects separately for coups, assassinations, resignations, and protests. Our event study approach affords us this freedom without encountering the statistical power issues that would arise in a regression setting.
-
-Different types of regime changes may therefore have disparate effects on markets, just as they may differentially effect overall economic growth. Taken together, the theory and research above suggests that coups should on average lead to negative returns, but sometimes lead to positive returns when the coup's instigators are clearly more pro market than the regime they replace. Assassinations should have a neutral or negative impact as they increase uncertainty, but institutional responses to assassinations vary by country. By contrast, resignations may be viewed positively on average, as they typically signal the departure of an ineffective leader. 
+Different types of regime changes may therefore have disparate effects on markets and/or economic growth. Taken together, the theory and research above suggests that coups should on average lead to negative returns, but sometimes lead to positive returns when the coup's instigators are clearly more pro market than the regime they replace. Assassinations should have a neutral or negative impact as they increase uncertainty, but institutional responses to assassinations vary by country. By contrast, resignations may be viewed positively on average, as they typically signal the departure of an ineffective leader. 
 
 Our empirical findings validate these predictions. We find that the type of political event and its expected impact on economic policy determines the direction of abnormal returns. Events expected to lead to more stable governance, economic liberalization, or democratization (such as willful resignations and coups that overthrow protectionist or leftist autocrats) are associated with positive returns, while those that consolidate authoritarian rule (e.g. military coups), exacerbate poor economic policies, or merely increase policy uncertainty (such as assassinations) have the opposite effect.
 
 \section{Data}
 
-Financial data are from the Global Financial Data database, which includes the longest available daily time series of stock prices. We collect data on national equity indices and two global equity indices, the S\&P/IFC Emerging Market Investable Composite and the Morgan Stanley Capital International (MSCI) World Index. The S\&P/IFC index includes securities from emerging markets while the MSCI index includes securities from developed markets only. We collect national stock index data on every country in which there was a coup or coup attempt, an assassination or failed assassination, or a forced resignation and for which daily financial data is available.\footnote{The list of failed assassinations are from \citet{jones2009hit}. Coup attempts are those in category 2 in the CSP Coup d'etat dataset.} The longest available daily time series for these stock indices are listed in \autoref{tab:stock-list}.
+Financial data are from the Global Financial Data database, which includes the longest available daily time series of stock prices. We collect national stock index data on every country in which there was a coup or coup attempt, an assassination or failed assassination, or a forced resignation and for which daily financial data is available.\footnote{The list of failed assassinations are from \citet{jones2009hit}. Coup attempts are those in category 2 in the CSP Coup d'etat dataset.} The longest available daily time series for these stock indices are listed in \autoref{tab:stock-list}.
 
-\begin{table}[!ht]
-\caption{List of stock indices} \label{tab:stock-list}
-\vspace{-5pt}
-\footnotesize
-\begin{center}
-\begin{threeparttable}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}lll}
-  \hline
-  \hline
-  \multicolumn{1}{c}{Date}&\multicolumn{1}{c}{Country}&\multicolumn{1}{c}{Begin Date} &\multicolumn{1}{c}{Start Date}\\
-  \hline
-Argentina & Beunos Aires SE General Index & Dec-66 & Jan-17\\
-Australia & Australia ASX All Ordinaries & Jan-58 & Jan-17\\
-Bangladesh & Dhaka SE Index & Jan-90 & Jan-17\\
-Canada & Canada S\&P/TSX 300 Composite & Jan-76 & Jan-17\\
-Chile & Santiago IGBC General Index & Jan-75 & Jan-17\\
-Colombia & Colombia IGBC General Index & Jan-92 & Jan-17\\
-Ecuador & Ecuador Bolsa de Valores de Guayaquil (BVG) & Jan-94 & Jan-17\\
-Egypt & Cairo SE Index & Dec-92 & Jan-17\\
-Emerging Market & S\&P/IFC Emerging Markets Investable Composite & Jul-95 & Jan-17\\
-Greece & Athens SE General Index & Oct-88 & Jan-17\\
-India & Bombday SE SENSEX & Apr-79 & Jan-17\\
-Indonesia & Jakarta SE Composite Index & Apr-83 & Jan-17\\
-Iran & Tehran SE Price Index & Jan-95 & Jan-17\\
-Israel & Tel Aviv 100 Index & May-87 & Jan-17\\
-Japan & Tokyo SE Price Index (TOPIX) & Jan-53 & Jan-17\\
-Latin America & Dow Jones Latin America Index & Jan-92 & Jan-17\\
-Lithuania & Lithuania Lit-10 Index & Jan-99 & May-05\\
-Malaysia & Malaysia KLSE Composite & Jan-80 & Jan-17\\
-Nepal & Nepal NEPSE Stock Index & Jan-01 & Jan-17\\
-Netherlands & Netherlands All-Share Price Index & Jan-80 & Jan-17\\
-Pakistan & Karachi SE 100 Index & Jan-89 & Jan-17\\
-Paraguay & Asuncion SE PDV General Index & Oct-93 & Sep-08\\
-Peru & Lima SE General Index & Jan-82 & Jan-17\\
-Philippines & Manila SE Composite Index & Jan-86 & Jan-17\\
-Portugal & Oporto PSI-20 Index & Jan-86 & Jan-17\\
-Singapore & Singapore FTSE ST Index & Jul-65 & Jan-17\\
-South Korea & Korea SE Stock Price Index  & Jan-62 & Jan-17\\
-Southeast Asia & Dow Jones Southeast Asia Index & Jan-92 & Jan-17\\
-Spain & Madrid SE General Index & Aug-71 & Jan-17\\
-Sri Lanka & Colombo SE All-Share Index & Dec-84 & Jan-17\\
-Sweden & Sweden OMX Affarsvarlden General Index & Jan-80 & Jan-17\\
-Taiwan & Taiwan SE Capitalization Weighted Index & Jan-67 & Jan-17\\
-Thailand & Thailand SET General Index & Apr-75 & Jan-17\\
-Tunisia & Tunisia SE Index & Dec-97 & Jan-17\\
-Turkey & Instanbul IMKB 100 Price Index & Oct-87 & Jan-17\\
-Ukraine & Ukraine PFTS OTC Index & Jan-98 & Jan-17\\
-United Kingdom & UK FTSE All-Share Index & Nov-62 & Jan-17\\
-United States & Dow Jones Industrial Average & Feb-1885 & Jan-17\\
-Uruguay & Bolsa de Valores de Montevideo Index & Jan-08 & Jul-16\\
-Venezuela & Dow Jones Venezuela Stock Index & Jan-92 & Jul-07\\
-Venezuela & Caracas SE General Index & Jan-94 & Jan-17\\
-World & MSCI World Price Index & Jan-76 & Jan-17\\
-Zambia & Lusaka SE Index & Jan-02 & Apr-06\\
-Zambia & Lusaka SE Index & Jul-11 & Jan-17\\
-   \hline
-   \hline
-\end{tabular*}
-\end{threeparttable}
-\end{center}
-\end{table}
+Political data are primarily drawn from the Center for Systemic Peace's (CSP) Polity IV Coup d'etat dataset and Coup d'etat Events handbook. The Coup d'etat dataset includes the date of 1) successful coups, 2) attempted coups, 3) plotted coups and 4) alleged coup plots. We focus on successful coups because it is difficult to classify failed coups, and the choice of dataset and classification methodology would directly alter our findings.\footnote{\citet[p. 617]{needler1966political} has gone so far as to say that ``the categories of coups that were aborted, suppressed, or abandoned melt into each other and into a host of other non-coup phenomena so as to defy accounting,'' the Center for Systemic Peace states that it is ``confident that [its] list of successful coups is comprehensive'' but does not extend this confidence to attempted or failed coups, and \citet{powell2011global} state that it is ``difficult to identify more ambiguous forms of coup activity, such as coup failures, plots, and rumors.''} 
 
-Political data are primarily drawn from the Center for Systemic Peace's (CSP) Polity IV Coup d'etat dataset and Coup d'etat Events handbook. The Coup d'etat dataset includes the date of 1) successful coups, 2) attempted coups, 3) plotted coups and 4) alleged coup plots. We focus on successful coups because it is difficult to classify failed coups, and the choice of dataset and classification methodology would directly alter our findings. \citet[p. 617]{needler1966political} has gone so far as to say that ``the categories of coups that were aborted, suppressed, or abandoned melt into each other and into a host of other non-coup phenomena so as to defy accounting,'' the Center for Systemic Peace states that it is ``confident that [its] list of successful coups is comprehensive'' but does not extend this confidence to attempted or failed coups, and \citet{powell2011global} state that it is ``difficult to identify more ambiguous forms of coup activity, such as coup failures, plots, and rumors.''
-
-\begin{table}[!ht]
-\caption{Regime changes} \label{tab:regime-changes}
-\vspace{-5pt}
-\footnotesize
-\begin{center}
-\begin{threeparttable}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ll}
-  \hline
-  \hline
-  \multicolumn{1}{c}{Date}&\multicolumn{1}{c}{Country}&\multicolumn{1}{c}{Political Outcome}\\
-  \hline
-   \multicolumn{3}{c}{\textbf{Coups}}\\ 
-\ExpandableInput{../tables/coups.txt} \\
-   \multicolumn{3}{c}{\textbf{Failed coup}}\\ 
-\ExpandableInput{../tables/failed_coup.txt}\\
-  \multicolumn{3}{c}{\textbf{Assassinations}}\\ 
-\ExpandableInput{../tables/assassinations.txt}\\
-  \multicolumn{3}{c}{\textbf{Resignations}}\\ 
-\ExpandableInput{../tables/resignations.txt}
-   \hline
-   \hline
-\end{tabular*}
-\scriptsize
-Notes: The Polity score is used to classify political outcomes as follows: autocracy = $-10 \leq \rm{score} \leq -6$, anocracy = $-5 \leq \rm{score} \leq 5$, and democracy = $6 \leq \rm{score} \leq 10$.
-\end{threeparttable}
-\end{center}
-\end{table}
-
-The Coup d'etat Events handbook also provides a list of 1) auto-coups\footnote{Defined by Center for Systemic Peace as the ``occurrence of subversion of the constitutional order by a ruling (usually elected) executive and the imposition of an autocratic regime."}, 2) the ouster of leadership by foreign forces, 3) the ouster of leadership by rebel forces, 4) assassinations of the executive and 5) resignations of the executive due to poor performance and/or loss of authority. Daily financial data is available for countries in categories 4 and 5, so we supplement the coups with assassinations and resignations to form a list of ``irregular'' regime changes. The resignations are those in which the ruling executive was coerced to resign due to poor performance, public discontent and popular demonstrations. Note that the Polity IV definition of ``poor performance'' is not synonymous with poor \textit{economic} performance, and in practice the reasons cited for resignation across events are: loss in conflict/war, anti-authoritarian protest, corruption scandals, Supreme Court ruling against unconstitutional actions, contested elections, and abuse of power. 
+The Coup d'etat Events handbook also provides a list of 1) auto-coups\footnote{Defined by Center for Systemic Peace as the ``occurrence of subversion of the constitutional order by a ruling (usually elected) executive and the imposition of an autocratic regime."}, 2) the ouster of leadership by foreign forces, 3) the ouster of leadership by rebel forces, 4) assassinations of the executive and 5) resignations of the executive due to poor performance and/or loss of authority. Daily financial data is available for countries in categories 4 and 5, so we supplement the coups with assassinations and resignations to form a list of ``irregular'' regime changes. The resignations are those in which the ruling executive was coerced to resign due to poor performance, public discontent and popular demonstrations.\footnote{Note that the Polity IV definition of ``poor performance'' is not synonymous with poor \textit{economic} performance, and in practice the reasons cited for resignation across events are: loss in conflict/war, anti-authoritarian protest, corruption scandals, Supreme Court ruling against unconstitutional actions, contested elections, and abuse of power.} 
 
 %loss in conflict/war (Argentina), anti-authoritarian protest (Philippines, Bangladesh, Nepal, Tunisia), corruption scandal (Philippines, Lithuania), constitutional ruling (Pakistan), contested election (Ukraine), abuse of power (Ecuador) Thailand?
 
@@ -291,14 +197,12 @@ We further supplement the CSP data with leadership data from Archigos Version 4.
 
 A list of the political events in our dataset is shown in \autoref{tab:regime-changes}. Coups tend to have the largest impact on the level of democratization as a number of countries have subsequently transitioned from democracies to anocracies or autocracies. On the other hand, neither assassinations or resignations have much of an impact on the level of democratization. 
 
-The discussion above shows that there is considerable debate about classification of regime changes. We recognize that some readers may feel that certain events are missing based on their own substantive knowledge. However, we choose to rely on commonly used third-party classifications in order to minimize the possibility that our results are driven by our own subjective classifications. The one exception is that we separately study the failed coup attempt in Venezuela in April 2002 in which the President of Venezuela, Hugo Chavez, was removed from office for two days because it provides a natural test of the impact of the seemingly successful removal of a left-wing populist with a pro-business regime, and the ensuing reinstatement of a left-wing populist. 
+The discussion above shows that there is considerable debate about classification of regime changes. We recognize that some readers may feel that certain events are missing based on their own substantive knowledge. We rely on commonly used third-party classifications in order to minimize the possibility that our results are driven by our own subjective classifications. The one exception is that we separately analyze the failed coup attempt in Venezuela in April 2002 in which President Hugo Chavez was removed from office for two days, as it provides a natural test of the impact of the seemingly successful removal of a left-wing populist with a pro-business regime, and the ensuing reinstatement of a left-wing populist. 
 
-To gain perspective on the relationship between irregular regime changes and the stock market, \autoref{fig:AV-DR} plots the absolute value of daily stock returns averaged across all events. Returns are for 200 trading days before and after regime changes. The absolute value of returns on the event day (trading day 0) are significantly larger than on any other day. In addition, the magnitude of returns begins increasing just before the event day and remains high for a short period after. This suggests that financial volatility increases during the days surrounding regime changes, although it does not provide any evidence on mean returns.
-
-\nameref{sec: Impact of Political Instability on Stock Returns} tests these results more formally. It will first formally estimate the amount of volatility surrounding all irregular regime changes, then analyze coups, assassinations and resignations separately and determine what impact they have on mean returns.
+\autoref{fig:AV-DR} plots the absolute value of daily stock returns averaged across all events and show that the absolute value of returns on the event day (day 0) are significantly larger than on any other day. In addition, the magnitude of returns begins increasing just before the event day and remains high for a short period after. This suggests that financial volatility increases during the days surrounding regime changes, although it does not provide any evidence on mean returns. \nameref{sec: Impact of Political Instability on Stock Returns} tests these results more formally. It will first formally estimate the amount of volatility surrounding all irregular regime changes, then analyze coups, assassinations and resignations separately and determine what impact they have on mean returns.
 
 \begin{figure}[!ht]
-\includegraphics{../figs/daily_mean_absreturn.pdf}
+\includegraphics[width = 17cm]{../figs/daily_mean_absreturn.pdf}
 \caption{Absolute value of daily returns}
 \label{fig:AV-DR}
 \end{figure}
@@ -308,7 +212,7 @@ To gain perspective on the relationship between irregular regime changes and the
 
 \subsection{Volatility} \label{subsec: Volatility}
 
-We begin our analysis by studying the effect of irregular regime changes on financial volatility. Since stock volatility is not directly observable, one must decide how to best estimate volatility. Our estimates are obtained from a generalized autoregressive conditional heteroskedasticity (GARCH) model estimated using 1000 pre-event days, the event day and 1000 post-event days. As in \citet{jensen2005market} and \citet{leblang2005government}, we use the GARCH (1,1) specification. In particular, for national stock index $i$,
+We first examine the effect of irregular regime changes on financial volatility. Our estimates are obtained from a generalized autoregressive conditional heteroskedasticity (GARCH) model estimated using 1000 pre-event days, the event day and 1000 post-event days. As in \citet{jensen2005market} and \citet{leblang2005government}, we use the GARCH (1,1) specification. In particular, for national stock index $i$,
 \begin{align*}
 R_{it}=\mu_i + \epsilon_{it},\hspace{1cm} \epsilon_{it}\sim \mathcal{N}\left(0,\sigma_{it}^2\right),
 \end{align*}
@@ -594,7 +498,6 @@ A preliminary test of mechanisms suggests that democratic regime changes are typ
 
 There are a number potential avenues for future research. First, more research is needed to identify the pro and anti market characteristics of regime changes. There may be pro or anti market features of regime changes that are more nuanced than those identified in this paper. Similarly, it would be useful to identify additional mechanisms through which regime changes effect stock returns. In the case of Chile,  \citet{girardi2018institution} show that increasing stock market valuations were caused by changes in private property rights rather than economic growth prospects or wage costs. Research focusing on the mechanisms in other settings would help generalize these findings. Lastly, it would be helpful to determine the extent to which stock market returns translate to broader economic development outcomes. \citet{meyersson2016political} has made progress on this front by examining the impact of coups on a number of outcomes in addition to economic growth including investment, debt, inflation, infant mortality, and years of schooling. It would be fruitful to examine whether the direction of the effects of different types of regime changes on these outcomes are consistent with their stock market effects, or if investor perceptions are at odds with certain development goals. Such research can help enlarge the body of evidence on the extent to which regime changes cause institutional and political change, and, in turn, have significant consequences for economic development.
 
-
 \newpage
 \appendix
 \setcounter{secnumdepth}{1}
@@ -604,7 +507,99 @@ There are a number potential avenues for future research. First, more research i
 \renewcommand\thefigure{\Alph{section}.\arabic{figure}}
 
 \section{Appendix} \label{sec: appendix}
+\newpage
 
+\subsection{Data} \label{subsec: data}
+
+\begin{table}[!htb]
+\caption{List of stock indices} \label{tab:stock-list}
+\vspace{-5pt}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}lll}
+  \hline
+  \hline
+  \multicolumn{1}{c}{Date}&\multicolumn{1}{c}{Country}&\multicolumn{1}{c}{Begin Date} &\multicolumn{1}{c}{Start Date}\\
+  \hline
+Argentina & Beunos Aires SE General Index & Dec-66 & Jan-17\\
+Australia & Australia ASX All Ordinaries & Jan-58 & Jan-17\\
+Bangladesh & Dhaka SE Index & Jan-90 & Jan-17\\
+Canada & Canada S\&P/TSX 300 Composite & Jan-76 & Jan-17\\
+Chile & Santiago IGBC General Index & Jan-75 & Jan-17\\
+Colombia & Colombia IGBC General Index & Jan-92 & Jan-17\\
+Ecuador & Ecuador Bolsa de Valores de Guayaquil (BVG) & Jan-94 & Jan-17\\
+Egypt & Cairo SE Index & Dec-92 & Jan-17\\
+Emerging Market & S\&P/IFC Emerging Markets Investable Composite & Jul-95 & Jan-17\\
+Greece & Athens SE General Index & Oct-88 & Jan-17\\
+India & Bombday SE SENSEX & Apr-79 & Jan-17\\
+Indonesia & Jakarta SE Composite Index & Apr-83 & Jan-17\\
+Iran & Tehran SE Price Index & Jan-95 & Jan-17\\
+Israel & Tel Aviv 100 Index & May-87 & Jan-17\\
+Japan & Tokyo SE Price Index (TOPIX) & Jan-53 & Jan-17\\
+Latin America & Dow Jones Latin America Index & Jan-92 & Jan-17\\
+Lithuania & Lithuania Lit-10 Index & Jan-99 & May-05\\
+Malaysia & Malaysia KLSE Composite & Jan-80 & Jan-17\\
+Nepal & Nepal NEPSE Stock Index & Jan-01 & Jan-17\\
+Netherlands & Netherlands All-Share Price Index & Jan-80 & Jan-17\\
+Pakistan & Karachi SE 100 Index & Jan-89 & Jan-17\\
+Paraguay & Asuncion SE PDV General Index & Oct-93 & Sep-08\\
+Peru & Lima SE General Index & Jan-82 & Jan-17\\
+Philippines & Manila SE Composite Index & Jan-86 & Jan-17\\
+Portugal & Oporto PSI-20 Index & Jan-86 & Jan-17\\
+Singapore & Singapore FTSE ST Index & Jul-65 & Jan-17\\
+South Korea & Korea SE Stock Price Index  & Jan-62 & Jan-17\\
+Southeast Asia & Dow Jones Southeast Asia Index & Jan-92 & Jan-17\\
+Spain & Madrid SE General Index & Aug-71 & Jan-17\\
+Sri Lanka & Colombo SE All-Share Index & Dec-84 & Jan-17\\
+Sweden & Sweden OMX Affarsvarlden General Index & Jan-80 & Jan-17\\
+Taiwan & Taiwan SE Capitalization Weighted Index & Jan-67 & Jan-17\\
+Thailand & Thailand SET General Index & Apr-75 & Jan-17\\
+Tunisia & Tunisia SE Index & Dec-97 & Jan-17\\
+Turkey & Instanbul IMKB 100 Price Index & Oct-87 & Jan-17\\
+Ukraine & Ukraine PFTS OTC Index & Jan-98 & Jan-17\\
+United Kingdom & UK FTSE All-Share Index & Nov-62 & Jan-17\\
+United States & Dow Jones Industrial Average & Feb-1885 & Jan-17\\
+Uruguay & Bolsa de Valores de Montevideo Index & Jan-08 & Jul-16\\
+Venezuela & Dow Jones Venezuela Stock Index & Jan-92 & Jul-07\\
+Venezuela & Caracas SE General Index & Jan-94 & Jan-17\\
+World & MSCI World Price Index & Jan-76 & Jan-17\\
+Zambia & Lusaka SE Index & Jan-02 & Apr-06\\
+Zambia & Lusaka SE Index & Jul-11 & Jan-17\\
+   \hline
+   \hline
+\end{tabular*}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{table}[!ht]
+\caption{Regime changes} \label{tab:regime-changes}
+\vspace{-5pt}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ll}
+  \hline
+  \hline
+  \multicolumn{1}{c}{Date}&\multicolumn{1}{c}{Country}&\multicolumn{1}{c}{Political Outcome}\\
+  \hline
+   \multicolumn{3}{c}{\textbf{Coups}}\\ 
+\ExpandableInput{../tables/coups.txt} \\
+   \multicolumn{3}{c}{\textbf{Failed coup}}\\ 
+\ExpandableInput{../tables/failed_coup.txt}\\
+  \multicolumn{3}{c}{\textbf{Assassinations}}\\ 
+\ExpandableInput{../tables/assassinations.txt}\\
+  \multicolumn{3}{c}{\textbf{Resignations}}\\ 
+\ExpandableInput{../tables/resignations.txt}
+   \hline
+   \hline
+\end{tabular*}
+\scriptsize
+Notes: The Polity score is used to classify political outcomes as follows: autocracy = $-10 \leq \rm{score} \leq -6$, anocracy = $-5 \leq \rm{score} \leq 5$, and democracy = $6 \leq \rm{score} \leq 10$.
+\end{threeparttable}
+\end{center}
+\end{table}
 
 \subsection{Public Protests} \label{subsec: Public Protests}
 
