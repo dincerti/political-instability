@@ -211,8 +211,7 @@ The discussion above shows that there is considerable debate about classificatio
 \end{centering}
 \end{figure}
 
-
-\section{Impact of Political Instability on Stock Returns} \label{sec: Impact of Political Instability on Stock Returns}
+\section{Estimation strategy} \label{sec: estimation}
 
 \subsection{Volatility} \label{subsec: Volatility}
 
@@ -227,17 +226,9 @@ where $\mu_i$ is a constant and,
 
 The key parameter of interest is the conditional variance, $\sigma_{it}^2$. The one-period-ahead volatility forecasts, $\sigma_{it}$, are larger when $\epsilon_{i,t-1}^2$ and $\sigma_{i,t-1}^2$ are larger. In other words, the model predicts that large shocks will be followed by other large shocks.
 
-\autoref{fig:volatility} shows the mean volatility ($\overline{\sigma_t}$) estimates across all irregular regime changes for 250 trading days prior to and 250 days after each event. Volatility stays between a narrow range at nearly all dates except those surrounding the regime change. Volatility appears to increase slowly just before the regime change, albeit not to a degree out of line with previous fluctuations. This may suggest that investors sometimes have information about the events before they occur. Nonetheless, there is still an enormous volatility jump on the day of the regime change. Volatility then decreases to normal levels within a month of the event.
+\subsection{Abnormal returns} \label{subsec:abnormal-returns}
 
-\begin{figure}[!htb]
-\includegraphics[scale = 0.9]{../figs/mean-volatility.pdf}
-\caption{Mean of volatility estimates from GARCH(1,1) models}
-\label{fig:volatility}
-\end{figure}
-
-\subsection{Estimation strategy: abnormal returns} \label{subsec:abnormal-returns}
-
-We now turn to the magnitude and direction of the effect of irregular regime changes on stock returns. We follow the standard event study methodology as presented by, among others, \citet{mackinlay1997event} and \citet{campbell1997econometrics}. Normal performance is measured with a constant mean return model,
+For the magnitude and direction of the effect of irregular regime changes on stock returns, we follow the standard event study methodology as presented by, among others, \citet{mackinlay1997event} and \citet{campbell1997econometrics}. Normal performance is measured with a constant mean return model,
 \begin{align} \label{eqn:market-model}
 R_{it}=\mu_{i}+\epsilon_{it},
 \end{align}
@@ -249,102 +240,45 @@ We use a constant mean return model instead of a market model to maximize the nu
 
 More formally, let $\boldsymbol{R}_{k}$ be the vector of returns for the event country in the estimation window, $\boldsymbol{R}_{-k}$ be the vector of returns for all other countries in the estimation window, $\boldsymbol{X}_1=(\boldsymbol{R}_{k},\var(\boldsymbol{R}_{k}))$, $\boldsymbol{X}_0=(\boldsymbol{R}_{-k},\var(\boldsymbol{R}_{-k}))$, and $\boldsymbol{W}_{-k}$ be a $((N-1) \times 1)$ vector of weights where $N$ is the number of countries listed in \autoref{tab:stock-list}. Then $\boldsymbol{W}^*$ is chosen to minimize $(\boldsymbol{X}_1-\boldsymbol{X}_0\boldsymbol{W})'\boldsymbol{V}(\boldsymbol{X}_1-\boldsymbol{X}_0\boldsymbol{W})$ subject to $w_i\geq0$ $(i = 1,2,\ldots,N-1)$ and $\sum_i^{N-1} w_i = 1$, and the vector $\boldsymbol{V}$ is chosen so that stock returns for the control portfolio during the estimation window are are close as possible to the event country.\footnote{See \citet{abadie2003economic} for further details.} The set of possible countries in the control portfolio consists of all countries listed in \autoref{tab:stock-list}, and the results are presented in \nameref{subsec: Robustness}.
 
+\section{Impact of Political Instability on Stock Returns} \label{sec: Impact of Political Instability on Stock Returns}
+
+\subsection{Volatility} \label{subsec: volatility}
+
+\autoref{fig:volatility} shows the mean volatility ($\overline{\sigma_t}$) estimates across all irregular regime changes for 250 trading days prior to and 250 days after each event. Volatility stays between a narrow range at nearly all dates except those surrounding the regime change. Volatility appears to increase slowly just before the regime change, albeit not to a degree out of line with previous fluctuations. This may suggest that investors sometimes have information about the events before they occur. Nonetheless, there is still an enormous volatility jump on the day of the regime change. Volatility then decreases to normal levels within a month of the event.
+
+\begin{figure}[!htb]
+\includegraphics[scale = 0.8]{../figs/mean-volatility.pdf}
+\caption{Mean of volatility estimates from GARCH(1,1) models}
+\label{fig:volatility}
+\end{figure}
+
 \subsection{Coups} \label{subsec: Coups}
 
-\autoref{tab:AR-coups} shows abnormal returns for national stock indices both preceding and following coup d'etat. \autoref{tab:AR-coups} contains all coups presented in \autoref{tab:regime-changes}, with the exception of the Argentinian coup of March 24, 1976 which is excluded from our analysis because the stock market remained closed for twelve days following the event.\footnote{Treating this twelve day period as a single day CARs results in a positive abnormal return of 58\%, a fluctuation that seems qualitatively unreasonable.} 
+\begin{figure}[!htb]
+\centering
+\includegraphics[max size={\textwidth}{.8\textheight}]{../figs/mean-car-by-regime-change-type.pdf}
+\caption{Mean cumulative abnormal returns by type of regime change}\label{fig:mean-car-by-regime-change}
+\end{figure}
 
-\begin{table}[!htb]
-\caption{Abnormal returns following coups} \label{tab:AR-coups}
-\vspace{-5pt}
-\footnotesize
-\begin{center}
-\begin{threeparttable}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
-  \hline
-  \hline
-\multicolumn{2}{c}{} & \multicolumn{3}{c}{Post-Event CAR} & \multicolumn{2}{c}{Pre-Event CAR} & \multicolumn{1}{c}{\multirow{2}{*}{Days to}}\\
-\cmidrule(r){3-5} \cmidrule(r){6-7}
-\multicolumn{1}{c}{Country} & \multicolumn{1}{c}{Event Date} & \multicolumn{1}{c}{(0,0)} & \multicolumn{1}{c}{(0,6)} & \multicolumn{1}{c}{(0,19)} & \multicolumn{1}{c}{(-1,-7)} & \multicolumn{1}{c}{(-1,-20)} & \multicolumn{1}{c}{rebound}\\
-  \hline
-\ExpandableInput{../tables/artable-coups-car.txt}
-  \hline
-\ExpandableInput{../tables/artable-coups-car-mean.txt}
-   \hline
-   \hline
-\end{tabular*}
-\scriptsize
-Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of trading days following a negative stock return for the national stock index to return to pre-event level (it is calculated if the price decreases on the event day, not if the event day abnormal return is negative). Returns are inflation adjusted. 
-\end{threeparttable}
-\end{center}
-\end{table}
+\autoref{fig:mean-car-by-regime-change} shows the mean cumulative abnormal returns by each type of regime change we analyze. 
 
-The average coup has a $-2.1\%$ event day AR. Event day ARs for the 1970 coup in Argentina, the 1991 coup in Thailand, the 1992 coup in Peru, and the 1999 coup in Pakistan are all negative and statistically different than zero. Moreover, all of these cases except Thailand have negative post-event CARs and pre-event CARs that are statistically indistinguishable from zero. In all of these cases, the coup either overthrew a democratically elected government or changed governance from one military ruler to another. The initial negative reaction followed by additional post-event negativity is consistent with the expected market reaction from a successful authoritarian coup followed by post-event consolidation of power. 
+Individual results for all coups in our sample and mean results for all coups can be found in \autoref{tab:AR-coups}. The average coup has a $-2.1\%$ event day AR. Event day ARs for the 1970 coup in Argentina, the 1991 coup in Thailand, the 1992 coup in Peru, and the 1999 coup in Pakistan are all negative and statistically different than zero. Moreover, all of these cases except Thailand have negative post-event CARs and pre-event CARs that are statistically indistinguishable from zero. In all of these cases, the coup either overthrew a democratically elected government or changed governance from one military ruler to another. The initial negative reaction followed by additional post-event negativity is consistent with the expected market reaction from a successful authoritarian coup followed by post-event consolidation of power. 
 
 The only events with positive ARs are the 1971 coup in Argentina and the 2002 coup in Nepal. These results provide evidence that coups do not necessarily lead to negative abnormal returns. While the 1971 Argentinian coup did result in another military leader, it did so while calling for free and democratic elections and replaced a government that had adopted extreme protectionist economic policies. In fact, by 1973 Argentina had transitioned to a democracy.\footnote{Based on Center for System Peace Polity IV polity score of 6. Values of 6-10 are defined as democracies.} The 2002 coup in Nepal resulted in a monarchical restoration, but occurred after the country's prime minister postponed general elections, itself a democratically subversive action.  
 
 \subsection{Assassinations} \label{subsec: Assassinations}
 
-The results in \autoref{tab:AR-ass} are produced from analyses identical to those in \autoref{tab:AR-coups} but for successful assassinations rather than coups. Like the majority of coups, there is evidence that assassinations decrease stock prices. The mean event day abnormal return is negative and statistically different than zero. 
+Like the majority of coups, there is evidence that assassinations decrease stock prices ( see \autoref{fig:mean-car-by-regime-change}). The results in \autoref{tab:AR-ass} are produced from analyses identical to those in \autoref{tab:AR-coups} but for assassinations rather than coups. The mean event day abnormal return is negative and statistically different than zero. 
 
 %However, the result is driven by five events: the shooting of U.S. President William McKinley on September 6, 1901; the assassination of U.S. President John F. Kennedy on November 22, 1963; the assassination of Indian Prime Minister Indira Gandhi on October 31, 1984; the suicide bombing that killed Sri Lankan president Ranasinghe Premadasa on May 1, 1993; and the assassination of Israeli Prime Minister Yitzhak Rabin on the evening of November 4, 1995.
-
-\begin{table}[!htb]
-\caption{Abnormal returns following assassinations} \label{tab:AR-ass}
-\vspace{-5pt}
-\footnotesize
-\begin{center}
-\begin{threeparttable}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
-  \hline
-  \hline
-\multicolumn{2}{c}{} & \multicolumn{3}{c}{Post-Event CAR} & \multicolumn{2}{c}{Pre-Event CAR} & \multicolumn{1}{c}{\multirow{2}{*}{Days to}}\\
-\cmidrule(r){3-5} \cmidrule(r){6-7}
-\multicolumn{1}{c}{Country} & \multicolumn{1}{c}{Event Date} & \multicolumn{1}{c}{(0,0)} & \multicolumn{1}{c}{(0,6)} & \multicolumn{1}{c}{(0,19)} & \multicolumn{1}{c}{(-1,-7)} & \multicolumn{1}{c}{(-1,-20)} & \multicolumn{1}{c}{rebound}\\
-  \hline
-\ExpandableInput{../tables/artable-ass-car.txt}
-  \hline
-\ExpandableInput{../tables/artable-ass-car-mean.txt}
-   \hline
-   \hline
-\end{tabular*}
-\scriptsize
-Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of trading days following a negative stock return for the national stock index to return to pre-event level (it is calculated if the price decreases on the event day, not if the event day abnormal return is negative). Returns are inflation adjusted. 
-\end{threeparttable}
-\end{center}
-\end{table}
 
 These results are consistent with our hypothesis that assassinations should have a negative effect as they occur seemingly at random and increase uncertainty. While the mean effect of assassinations is negative, it is smaller in magnitude than for coups. Unlike a coup, an assassination may not necessarily be expected to cause immediate change in economic policy, particularly in the presence of an institutionalized line of succession. As such, we would expect CARs to be negative due to increased instability and uncertainty, but smaller in magnitude to a coup or resignation due to greater expectations of policy inertia.
 
 There is no evidence of post or pre-event CARs in almost any of the assassinations. This is consistent with expectations as assassinations are typically not predictable. As with coups, the number of days that it took the stock market to rebound to pre-event levels is fairly low.\footnote{One exception is the assassination of William Mckinley in which the stock market didn't fully recover for 963 days, or almost 4 calendar years. However, this was likely caused by the Panic of 1901, which began when the stock market crashed on May 17th, 1901, and not by McKinley's death (although the assassination may have exacerbated the panic).}
 
-\begin{table}[!ht]
-\caption{Abnormal returns following resignations} \label{tab:AR-resignations}
-\vspace{-5pt}
-\footnotesize
-\begin{center}
-\begin{threeparttable}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
-  \hline
-  \hline
-\multicolumn{2}{c}{} & \multicolumn{3}{c}{Post-Event CAR} & \multicolumn{2}{c}{Pre-Event CAR} & \multicolumn{1}{c}{\multirow{2}{*}{Days to}}\\
-\cmidrule(r){3-5} \cmidrule(r){6-7}
-\multicolumn{1}{c}{Country} & \multicolumn{1}{c}{Event Date} & \multicolumn{1}{c}{(0,0)} & \multicolumn{1}{c}{(0,6)} & \multicolumn{1}{c}{(0,19)} & \multicolumn{1}{c}{(-1,-7)} & \multicolumn{1}{c}{(-1,-20)} & \multicolumn{1}{c}{rebound}\\
-  \hline
-\ExpandableInput{../tables/artable-res-car.txt}
-  \hline
-\ExpandableInput{../tables/artable-res-car-mean.txt}
-   \hline
-   \hline
-\end{tabular*}
-\scriptsize
-Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of trading days following a negative stock return for the national stock index to return to pre-event level (it is calculated if the price decreases on the event day, not if the event day abnormal return is negative). Returns are inflation adjusted. 
-\end{threeparttable}
-\end{center}
-\end{table}
-
 \subsection{Resignations} \label{subsec: Resignations}
 
-In contrast to coups and assassinations, abnormal returns following resignations are large and positive (see \autoref{tab:AR-resignations}). The mean event day abnormal return is over 4\% and the positive returns are persistent and grow larger over time (mean 20-day CAR $\approx$ 12\%). Furthermore, event day ARs are only negative and statistically significant at even the ten percent level in two out of the fifteen resignations (Pakistan on April 19, 1993 and Tunisia on June 31, 2011).
+In contrast to coups and assassinations, abnormal returns following resignations are large and positive (see \autoref{fig:mean-car-by-regime-change} and \autoref{tab:AR-resignations}). The mean event day abnormal return is over 4\% and the positive returns are persistent and grow larger over time (mean 20-day CAR $\approx$ 12\%). Furthermore, event day ARs are only negative and statistically significant at even the ten percent level in two out of the fifteen resignations (Pakistan on April 19, 1993 and Tunisia on June 31, 2011).
 
 These results are again consistent with our hypothesis that different events will have disparate effects, and that resignations may lead to positive returns as resignations typically occur because of poor performance and/or loss of authority. Among our sample of events, leaders were ousted following loss in conflict/war, anti-authoritarian protest, corruption scandals, Supreme Court ruling against unconstitutional actions, contested elections, and abuse of power. 
 
@@ -367,9 +301,11 @@ A similar analysis is not possible for shifts from pro or anti business leaders,
 
 
 \begin{figure}[!ht]
-\includegraphics{../figs/venezuela_coup_attempt_2002.pdf}
+\begin{centering}
+\includegraphics[max size={\textwidth}{.8\textheight}]{../figs/venezuela_coup_attempt_2002.pdf}
 \caption{Abnormal returns surrounding the 2002 Venezuelan coup attempt}
 \label{fig:AR-Ven}
+\end{centering}
 \end{figure}
 
 %The ultimately failed Venezuelan coup against Hugo Chavez replaced a left-wing populist government with a new pro-business president, and therefore provides a natural test of the effects of both pro-business and anti-business regime changes separately from simple uncertainty because investors reacted to an expected regime change twice: first, when Chavez was ousted, and second, when he was reinstated. On the evening of April 11, 2002, coup plotters removed Chavez from office and later detained him. Pedro Carmona, a Venezuelan economist and business leader, was named the transitional President of Venezuela. Two days later, on April 13, 2002, a popular uprising led to Chavez's reinstatement as president. This provides an estimate of the market's valuation of a transition from the Chavez regime to the Carmona regime and its valuation of a transition from the Carmona regime back to the Chavez regime. By extension, it provides an estimate of the impact of a shift from a left-wing populist government to a pro business regime in an emerging market. 
@@ -382,26 +318,17 @@ A similar analysis is not possible for shifts from pro or anti business leaders,
 
 There are some potential concerns with the results in the \nameref{subsec: Coups}, \nameref{subsec: Assassinations}, and \nameref{subsec: Resignations} sections. First, the abnormal returns could have been driven by factors unrelated to the regime changes.  Second, the true effects of regime changes on firm value may be underestimated if investors had apriori information. Third, the reported means are based on small sample sizes so confidence intervals based on normally distributed abnormal returns may be inappropriate.
 
-We explore these concerns in two ways. First, we reestimate mean CARs on a set of time-shifted placebo dates, with means computed across all events for each type of regime change. We shift event dates surrounding the actual event date backwards and forwards in increments of five days (-20, 15, 10, 5, 0, 5, 10, 15, and 20 days). In addition, we extend the forward shifted event dates to one year (110, 195, 285, and 365 days) to capture dates that are likely to be completely unaffected by the regime change. The general intuition is that we should not observe significant abnormal returns when performing an identical test on dates where no intervention (i.e. a politically unstable event) occurred. Observing such effects would call the research design and modeling assumptions into question, and raise concerns that the abnormal returns were caused by factors other than the regime changes. 
+We explore these concerns in two ways. First, we reestimate mean CARs on a set of time-shifted placebo dates, with means computed across all events for each type of regime change. We shift event dates surrounding the actual event date backwards and forwards in increments of five days (-20, 15, 10, 5, 0, 5, 10, 15, and 20 days). In addition, we extend the forward shifted event dates to one year (110, 195, 285, and 365 days) to capture dates that are likely to be completely unaffected by the regime change. The intuition is that we should not observe significant abnormal returns when performing an identical test on dates where no intervention (i.e. a politically unstable event) occurred. Observing such effects would call the research design and modeling assumptions into question, and raise concerns that the abnormal returns were caused by factors other than the regime changes. 
 
-\autoref{fig:mean-car-by-regime-change} compares mean CARs estimated using the actual event date (\autoref{subfig:mean-car-by-regime-change-actual}) to CARs estimated with the event date shifted 1-year (365 days) into the future (\autoref{subfig:mean-car-by-regime-change-placebo}). \autoref{subfig:mean-car-by-regime-change-actual}---which reproduces the tabular results presented in the \nameref{subsec: Coups}, \nameref{subsec: Assassinations}, and \nameref{subsec: Resignations} sections---shows that assassinations and coups are associated with negative event day ARs while resignations are associated with positive event day ARs. In contrast, there are no discernible abnormal returns in \autoref{subfig:mean-car-by-regime-change-placebo}. The event day ARs are considerably smaller in magnitude and are not statistically different from zero for either coups or resignations. Moreover, while CARs estimated using the actual event date for resignations trend upwards following the event day, there is no consistent trend in the placebo analysis. \autoref{fig:mean-car-by-regime-change} therefore suggests that the main results are not merely an artifact of the data.  
+\autoref{subfig:mean-car-by-regime-change-placebo} shows CARs estimated with the event date shifted 1-year (365 days) into the future. In contrast to \autoref{fig:mean-car-by-regime-change}, there are no discernible abnormal returns in \autoref{subfig:mean-car-by-regime-change-placebo}. The event day ARs are considerably smaller in magnitude and are not statistically different from zero for either coups or resignations. Moreover, while CARs estimated using the actual event date for resignations trend upwards following the event day, there is no consistent trend in the placebo analysis. \autoref{fig:mean-car-by-regime-change} therefore suggests that the main results are not merely an artifact of the data.  
 
 \begin{figure}[!htb]
 \centering
-\begin{subfigure}{\textwidth}
-\centering
-\includegraphics[max size={.8\textwidth}{.8\textheight}]{../figs/mean-car-by-regime-change-type.pdf}
-\caption{Actual event date} \label{subfig:mean-car-by-regime-change-actual}
-\end{subfigure}
-\begin{subfigure}{\textwidth}
-\centering
-\includegraphics[max size={.8\textwidth}{.8\textheight}]{../figs/mean-car-by-regime-change-type-placebo.pdf}
+\includegraphics[max size={\textwidth}{.8\textheight}]{../figs/mean-car-by-regime-change-type-placebo.pdf}
 \caption{Event date shifted forward by one year} \label{subfig:mean-car-by-regime-change-placebo}
-\end{subfigure}
-\caption{Mean cumulative abnormal returns by type of regime change}\label{fig:mean-car-by-regime-change}
 \end{figure}
 
-To ensure that results of the placebo test based on 1-year did not occur by chance, \autoref{fig:mean-event-day-ar-by-regime-change} plots event-day abnormal against the number of days shifted. There are a few instances in which there are statistically significant (at the 5\% level) ARs in the same direction as those on the actual event day, but they are always smaller in magnitude than the ARs estimated using the actual event date. Most of the statistically significant placebo estimates also occur when dates are shifted within the post-event window (days 0-20), a period during which stock returns remain volatile and, in the case of resignations, there is a consistent upward trend in the CARs. When dates are shifted forward further ($\geq$ 110 days), the event day AR is only statistically significant in one case (day 365 for assassinations). Overall, these results reinforce the main results: the ARs on the actual event date capture most of effect of the regime change, although effects can sometimes persist in the short event window following the event date. 
+To ensure that results of the placebo test based on 1-year did not occur by chance, \autoref{fig:mean-event-day-ar-by-regime-change} plots event-day abnormal against the number of days shifted. There are a few instances in which there are statistically significant (at the 5\% level) ARs in the same direction as those on the actual event day, but they are always smaller in magnitude than the ARs estimated using the actual event date and most  occur when dates are shifted within the post-event window (days 0-20), a period during which stock returns remain volatile and, in the case of resignations, there is a consistent upward trend in the CARs. When dates are shifted forward further ($\geq$ 110 days), the event day AR is only statistically significant in one case (day 365 for assassinations). Overall, these results reinforce the main results: the ARs on the actual event date capture most of effect of the regime change, although effects can sometimes persist in the short event window following the event date. 
 
 These figures also provide evidence on the extent to which regime changes appear to be unexpected. For instance, the CARs prior to assassinations and coups presented in \autoref{subfig:mean-car-by-regime-change-actual} tend to be close to zero, suggesting that investors were unaware that a negative event was likely to occur in the coming days. For resignations, CARs trend downward in the 10 days prior to the event; however, if investors were aware that a resignation were about to occur one would expect the pre-event CARs to be positive given the positive CARs observed in the post-event window. There is thus little evidence that the CARs in the post-event window are not capturing most of the effect caused by the regime changes.
 
@@ -556,11 +483,96 @@ Notes: The Polity score is used to classify political outcomes as follows: autoc
 \end{center}
 \end{table}
 
+\subsection{Coups} \label{subsec: coups appendix}
+
+\autoref{tab:AR-coups} shows abnormal returns for national stock indices both preceding and following coup d'etat. \autoref{tab:AR-coups} contains all coups presented in \autoref{tab:regime-changes}, with the exception of the Argentinian coup of March 24, 1976 which is excluded from our analysis because the stock market remained closed for twelve days following the event.\footnote{Treating this twelve day period as a single day CARs results in a positive abnormal return of 58\%, a fluctuation that seems qualitatively unreasonable.} 
+
+\begin{table}[H]
+\caption{Abnormal returns following coups} \label{tab:AR-coups}
+\vspace{-5pt}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
+  \hline
+  \hline
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Post-Event CAR} & \multicolumn{2}{c}{Pre-Event CAR} & \multicolumn{1}{c}{\multirow{2}{*}{Days to}}\\
+\cmidrule(r){3-5} \cmidrule(r){6-7}
+\multicolumn{1}{c}{Country} & \multicolumn{1}{c}{Event Date} & \multicolumn{1}{c}{(0,0)} & \multicolumn{1}{c}{(0,6)} & \multicolumn{1}{c}{(0,19)} & \multicolumn{1}{c}{(-1,-7)} & \multicolumn{1}{c}{(-1,-20)} & \multicolumn{1}{c}{rebound}\\
+  \hline
+\ExpandableInput{../tables/artable-coups-car.txt}
+  \hline
+\ExpandableInput{../tables/artable-coups-car-mean.txt}
+   \hline
+   \hline
+\end{tabular*}
+\scriptsize
+Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of trading days following a negative stock return for the national stock index to return to pre-event level (it is calculated if the price decreases on the event day, not if the event day abnormal return is negative). Returns are inflation adjusted. 
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\subsection{Assassinations} \label{subsec: ass appendix}
+
+\begin{table}[H]
+\caption{Abnormal returns following assassinations} \label{tab:AR-ass}
+\vspace{-5pt}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
+  \hline
+  \hline
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Post-Event CAR} & \multicolumn{2}{c}{Pre-Event CAR} & \multicolumn{1}{c}{\multirow{2}{*}{Days to}}\\
+\cmidrule(r){3-5} \cmidrule(r){6-7}
+\multicolumn{1}{c}{Country} & \multicolumn{1}{c}{Event Date} & \multicolumn{1}{c}{(0,0)} & \multicolumn{1}{c}{(0,6)} & \multicolumn{1}{c}{(0,19)} & \multicolumn{1}{c}{(-1,-7)} & \multicolumn{1}{c}{(-1,-20)} & \multicolumn{1}{c}{rebound}\\
+  \hline
+\ExpandableInput{../tables/artable-ass-car.txt}
+  \hline
+\ExpandableInput{../tables/artable-ass-car-mean.txt}
+   \hline
+   \hline
+\end{tabular*}
+\scriptsize
+Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of trading days following a negative stock return for the national stock index to return to pre-event level (it is calculated if the price decreases on the event day, not if the event day abnormal return is negative). Returns are inflation adjusted. 
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\subsection{Resignations} \label{subsec: resignation appendix}
+
+\begin{table}[H]
+\caption{Abnormal returns following resignations} \label{tab:AR-resignations}
+\vspace{-5pt}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
+  \hline
+  \hline
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Post-Event CAR} & \multicolumn{2}{c}{Pre-Event CAR} & \multicolumn{1}{c}{\multirow{2}{*}{Days to}}\\
+\cmidrule(r){3-5} \cmidrule(r){6-7}
+\multicolumn{1}{c}{Country} & \multicolumn{1}{c}{Event Date} & \multicolumn{1}{c}{(0,0)} & \multicolumn{1}{c}{(0,6)} & \multicolumn{1}{c}{(0,19)} & \multicolumn{1}{c}{(-1,-7)} & \multicolumn{1}{c}{(-1,-20)} & \multicolumn{1}{c}{rebound}\\
+  \hline
+\ExpandableInput{../tables/artable-res-car.txt}
+  \hline
+\ExpandableInput{../tables/artable-res-car-mean.txt}
+   \hline
+   \hline
+\end{tabular*}
+\scriptsize
+Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of trading days following a negative stock return for the national stock index to return to pre-event level (it is calculated if the price decreases on the event day, not if the event day abnormal return is negative). Returns are inflation adjusted. 
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\newpage
+
 \subsection{Public Protests} \label{subsec: Public Protests}
 
 The resignations studied in this paper are those in which leaders left office because of poor performance, public discontent and popular protests. It is therefore not unreasonable to expect the political actions preceding the resignations to have similarly large effects on financial markets.\footnote{Indeed, corporate investors in the 2013 MIGA \textit{World Investment and Political Risk} ranked civil disturbances as the fourth most concerning type of political risk.} To examine this, we explore all resignations that were driven by significant popular demonstrations, riots, non-violent civil resistance and other forms of public discontent (see \autoref{tab:protest-list}).\footnote{The set of resignations includes all those listed in either the Coup d'etat Events Handbook or the Archigos Version 4.1 data set with available financial data. In practice, this is the 2011 Egyptian Revolution and the list of resignations in \autoref{tab:AR-resignations}.}
 
-\begin{table}[!ht]
+\begin{table}[H]
 \caption{List of public protests preceding resignations} \label{tab:protest-list}
 \vspace{-5pt}
 \footnotesize
