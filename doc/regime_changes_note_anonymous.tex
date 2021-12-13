@@ -445,7 +445,7 @@ There are a number of avenues for future research. First, more research is neede
 \begin{table}[H]
 \caption{List of stock indices} \label{tab:stock-list}
 \vspace{-5pt}
-\footnotesize
+\scriptsize
 \begin{center}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}lll}
@@ -507,7 +507,7 @@ Zambia & Lusaka SE Index & Jul-11 & Jan-17\\
 \begin{table}[H]
 \caption{Regime changes} \label{tab:regime-changes}
 \vspace{-5pt}
-\footnotesize
+\scriptsize
 \begin{center}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ll}
@@ -534,32 +534,33 @@ Notes: The Polity score is used to classify political outcomes as follows: autoc
 
 \begin{figure}[!ht]
 \begin{centering}
-\includegraphics[width = 15cm]{../figs/daily_mean_absreturn.pdf}
+\includegraphics[width = 0.6\textwidth]{../figs/daily_mean_absreturn.pdf}
 \caption{Absolute value of daily returns}
 \label{fig:AV-DR}
 \end{centering}
 \end{figure}
 
-\clearpage
-\newpage
+\begin{figure}[!htb]
+\centering
+\includegraphics[width = 0.6\textwidth]{../figs/mean-volatility.pdf}
+\caption{Mean of volatility estimates from GARCH(1,1) models}
+\label{fig:volatility}
+\end{figure}
+
+%\clearpage
+%\newpage
 
 \subsection{Synthetic control methods} \label{subsec: synth}
 
 Formally, let $\boldsymbol{R}_{k}$ be the vector of returns for the event country in the estimation window, $\boldsymbol{R}_{-k}$ be the vector of returns for all other countries in the estimation window, $\boldsymbol{X}_1=(\boldsymbol{R}_{k},\var(\boldsymbol{R}_{k}))$, $\boldsymbol{X}_0=(\boldsymbol{R}_{-k},\var(\boldsymbol{R}_{-k}))$, and $\boldsymbol{W}_{-k}$ be a $((N-1) \times 1)$ vector of weights where $N$ is the number of countries listed in \autoref{tab:stock-list}. Then $\boldsymbol{W}^*$ is chosen to minimize $(\boldsymbol{X}_1-\boldsymbol{X}_0\boldsymbol{W})'\boldsymbol{V}(\boldsymbol{X}_1-\boldsymbol{X}_0\boldsymbol{W})$ subject to $w_i\geq0$ $(i = 1,2,\ldots,N-1)$ and $\sum_i^{N-1} w_i = 1$, and the vector $\boldsymbol{V}$ is chosen so that stock returns for the control portfolio during the estimation window are are close as possible to the event country.\footnote{See \citet{abadie2003economic} for further details.} 
 
-\newpage
+%\newpage
 
-\subsection{Volatility} \label{subsec: volatility}
+%\subsection{Volatility} \label{subsec: volatility}
 
-\begin{figure}[!htb]
-\includegraphics[scale = 0.75]{../figs/mean-volatility.pdf}
-\caption{Mean of volatility estimates from GARCH(1,1) models}
-\label{fig:volatility}
-\end{figure}
+%\newpage
 
-\newpage
-
-\subsection{Event-level estimates: coups} \label{subsec: coups appendix}
+\subsection{Event-level estimates} \label{subsec: coups appendix}
 
 \autoref{tab:AR-coups} shows abnormal returns for national stock indices both preceding and following coup d'etat. \autoref{tab:AR-coups} contains all coups presented in \autoref{tab:regime-changes}, with the exception of the Argentinian coup of March 24, 1976 which is excluded from our analysis because the stock market remained closed for twelve days following the event.\footnote{Treating this twelve day period as a single day CARs results in a positive abnormal return of 58\%, a fluctuation that seems qualitatively unreasonable.} 
 
@@ -568,7 +569,7 @@ Formally, let $\boldsymbol{R}_{k}$ be the vector of returns for the event countr
 \begin{table}[H]
 \caption{Abnormal returns following coups} \label{tab:AR-coups}
 \vspace{-5pt}
-\footnotesize
+\scriptsize
 \begin{center}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
@@ -590,12 +591,12 @@ Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of 
 \end{center}
 \end{table}
 
-\subsection{Event-level estimates: assassinations} \label{subsec: ass appendix}
+%\subsection{Event-level estimates: assassinations} \label{subsec: ass appendix}
 
 \begin{table}[H]
 \caption{Abnormal returns following assassinations} \label{tab:AR-ass}
 \vspace{-5pt}
-\footnotesize
+\scriptsize
 \begin{center}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
@@ -617,12 +618,12 @@ Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of 
 \end{center}
 \end{table}
 
-\subsection{Event-level estimates: resignations} \label{subsec: resignation appendix}
+%\subsection{Event-level estimates: resignations} \label{subsec: resignation appendix}
 
 \begin{table}[H]
 \caption{Abnormal returns following resignations} \label{tab:AR-resignations}
 \vspace{-5pt}
-\footnotesize
+\scriptsize
 \begin{center}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
@@ -644,16 +645,18 @@ Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of 
 \end{center}
 \end{table}
 
-\newpage
+%\newpage
 
 \subsection{Public Protests} \label{subsec: Public Protests}
 
-The resignations studied in this paper are those in which leaders left office because of poor performance, public discontent and popular protests. It is therefore not unreasonable to expect the political actions preceding the resignations to have similarly large effects on financial markets.\footnote{Indeed, corporate investors in the 2013 MIGA \textit{World Investment and Political Risk} ranked civil disturbances as the fourth most concerning type of political risk.} To examine this, we explore all resignations that were driven by significant popular demonstrations, riots, non-violent civil resistance and other forms of public discontent (see \autoref{tab:protest-list}).\footnote{The set of resignations includes all those listed in either the Coup d'etat Events Handbook or the Archigos Version 4.1 data set with available financial data. In practice, this is the 2011 Egyptian Revolution and the list of resignations in \autoref{tab:AR-resignations}.}
+%The resignations studied in this paper are those in which leaders left office because of poor performance, public discontent and popular protests. It is therefore not unreasonable to expect the political actions preceding the resignations to have similarly large effects on financial markets. To examine this, 
 
-\begin{table}[H]
+We explore all resignations that were driven by significant popular demonstrations, riots, non-violent civil resistance and other forms of public discontent (see \autoref{tab:protest-list}).\footnote{The set of resignations includes all those listed in either the Coup d'etat Events Handbook or the Archigos Version 4.1 data set with available financial data. In practice, this is the 2011 Egyptian Revolution and the list of resignations in \autoref{tab:AR-resignations}.}
+
+\begin{table}[!htb]
 \caption{List of public protests preceding resignations} \label{tab:protest-list}
 \vspace{-5pt}
-\footnotesize
+\scriptsize
 \begin{center}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}llll}
@@ -680,31 +683,34 @@ Egypt & Egyptian Revolution & 1/25/2011 & 2/11/2001\\
 \end{center}
 \end{table}
 
-A recent example of a popular uprising preceding a resignation is the 2011 Egyptian Revolution that resulted in the overthrow of President Hosni Mubarak's regime.\footnote{Abnormal returns for this event are not shown in \autoref{tab:AR-resignations} because the stock market was closed on the day of Mubarak's resignation.} Clashes between security forces and protestors led to the deaths of hundreds of citizens and injuries to thousands more. The uprising began on January 25, 2011 when millions of protestors demanded the overthrow of the Egyptian leadership. Examples of public discontent included demonstrations, marches, riots, non-violent civil disobedience, and labor strikes.
-
-The short-term impact of the Egyptian Revolution on the economy was disastrous. As shown in \autoref{fig:CAR-Egypt}, abnormal returns on the Egyptian Stock Exchange Index (EGX 30) were around -7\% on January 26th and -10\% the day after. To prevent further decline during the uprising, the Egyptian Stock Exchange closed at the end of trading on January 27th. President Mubarak resigned on February 11, but the market remained closed until March 23, when CARs declined by another 9\%, before rebounding slightly thereafter.
-
-\begin{figure}[!ht]
-\includegraphics{../figs/egypt-revolution-2011.pdf}
-\caption{Cumulative abnormal returns during the Egyptian revolution}
-\label{fig:CAR-Egypt}
-\end{figure}
-
-An important question is whether other popular uprisings have had similar adverse economic consequences. To examine this, we explore all resignations that were driven by significant public protests.\footnote{The set of resignations includes all those listed in either the Coup d'etat Events Handbook or the Archigos Version 4.1 data set with available financial data. In practice, this is the 2011 Egyptian Revolution and the list or resignations in \autoref{tab:AR-resignations}.} Public protests include popular demonstrations, riots, non-violent civil resistance and other forms of public discontent. We find that both volatility and the absolute value of returns increase during times of protest. Similarly to coups, however, the direction of returns is dependent upon the nature of the protest in question. 
+%A recent example of a popular uprising preceding a resignation is the 2011 Egyptian Revolution that resulted in the overthrow of President Hosni Mubarak's regime.\footnote{Abnormal returns for this event are not shown in \autoref{tab:AR-resignations} because the stock market was closed on the day of Mubarak's resignation.} Clashes between security forces and protestors led to the deaths of hundreds of citizens and injuries to thousands more. The uprising began on January 25, 2011 when millions of protestors demanded the overthrow of the Egyptian leadership. Examples of public discontent included demonstrations, marches, riots, non-violent civil disobedience, and labor strikes.
+%
+%The short-term impact of the Egyptian Revolution on the economy was disastrous. As shown in \autoref{fig:CAR-Egypt}, abnormal returns on the Egyptian Stock Exchange Index (EGX 30) were around -7\% on January 26th and -10\% the day after. To prevent further decline during the uprising, the Egyptian Stock Exchange closed at the end of trading on January 27th. President Mubarak resigned on February 11, but the market remained closed until March 23, when CARs declined by another 9\%, before rebounding slightly thereafter.
+%
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width = 0.6\textwidth]{../figs/egypt-revolution-2011.pdf}
+%\caption{Cumulative abnormal returns during the Egyptian revolution}
+%\label{fig:CAR-Egypt}
+%\end{figure}
+%
+%An important question is whether other popular uprisings have had similar adverse economic consequences. To examine this, we explore all resignations that were driven by significant public protests.\footnote{The set of resignations includes all those listed in either the Coup d'etat Events Handbook or the Archigos Version 4.1 data set with available financial data. In practice, this is the 2011 Egyptian Revolution and the list or resignations in \autoref{tab:AR-resignations}.} Public protests include popular demonstrations, riots, non-violent civil resistance and other forms of public discontent. We find that both volatility and the absolute value of returns increase during times of protest. Similarly to coups, however, the direction of returns is dependent upon the nature of the protest in question. 
 
 The start and end dates in \autoref{tab:protest-stocks} are the dates that protests began and leader's resigned respectively. Resignations caused by popular uprisings were identified by examining the descriptions in the Coup d'etat Events Handbook and Archigos Version 4.1. Additional Lexis Nexis searches were used to verify these descriptions.
 
 In \autoref{tab:protest-stocks}, we examine whether public protests influence stock prices. The variable \textit{Protest} is equal to 1 during the dates in which citizens participate in political activities demanding the resignation of the executive and 0 otherwise. Non-protest dates are the 250 days prior to the start dates and after the end dates listed in Table A.1.\footnote{The volatility estimates used as the dependent variable in column (4) are estimated on the 250 days prior to the start date, the protest dates, and the 250 days following the end date.}
 
-Column (1) suggests that public protests have no effect on stock returns. However, this occurs because some political movements increase stock prices while others decrease them. As shown in column (2), the absolute value of stock returns are approximately 1.5\% higher during public protests. These estimates would be biased if protest dates are correlated with higher world or regional stock market indices. To address this potential confounder, column (3) controls for returns on the S\&P/IFC Emerging Markets Investable Composite Stock Index. The coefficient on \textit{Protest} barely changes and the absolute value of returns are still about 1.5\% higher during public protests. Finally, column (4) shows that stock volatility is approximately 1 percentage point higher during political movements.\footnote{Volatility estimation methodology is described in detail in \nameref{subsec: Volatility}.}
+Column (1) suggests that public protests have no effect on stock returns. However, this occurs because some political movements increase stock prices while others decrease them. As shown in column (2), the absolute value of stock returns are approximately 1.5\% higher during public protests. These estimates would be biased if protest dates are correlated with higher world or regional stock market indices. To address this potential confounder, column (3) controls for returns on the S\&P/IFC Emerging Markets Investable Composite Stock Index. The coefficient on \textit{Protest} barely changes and the absolute value of returns are still about 1.5\% higher during public protests. Finally, column (4) shows that stock volatility is approximately 1 percentage point higher during political movements.
+
+%\footnote{Volatility estimation methodology is described in detail in \nameref{subsec: Volatility}.}
  
 
 We therefore find that both volatility and the absolute value of returns increase during times of protest. Similarly to coups, however, the direction of returns is dependent upon the nature of the protest in question. 
 
-\begin{table}[!ht]
+\begin{table}[!htb]
 \caption{Effect of public protests on stock prices} \label{tab:protest-stocks}
 \vspace{-5pt}
-\footnotesize
+\scriptsize
 \begin{center}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}d{1.3}d{1.3}d{1.3}d{1.3}}
@@ -724,16 +730,16 @@ Notes: Standard errors clustered by event are in parentheses.
 \end{center}
 \end{table}
 
-\clearpage
-\pagebreak
-\newpage
+%\clearpage
+%\pagebreak
+%\newpage
 
-\subsection{Event-level estimates: democratic vs. authoritarian regime changes}
+%\subsection{Event-level estimates: democratic vs. authoritarian regime changes}
 
-\begin{table}[!ht]
+\begin{table}[!htb]
 \caption{Abnormal returns following authoritarian regime changes} \label{tab:AR-auth}
 \vspace{-5pt}
-\footnotesize
+\scriptsize
 \begin{center}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
@@ -755,10 +761,10 @@ Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of 
 \end{center}
 \end{table}
 
-\begin{table}[!ht]
+\begin{table}[!htb]
 \caption{Abnormal returns following democratic regime changes} \label{tab:AR-dem}
 \vspace{-5pt}
-\footnotesize
+\scriptsize
 \begin{center}
 \begin{threeparttable}
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
@@ -780,13 +786,9 @@ Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of 
 \end{center}
 \end{table}
 
-\clearpage
-\pagebreak
-\newpage
-
-
-
-
+%\clearpage
+%\pagebreak
+%\newpage
 
 
 \subsection{Robustness details} \label{subsec: robustness appendix}
@@ -799,22 +801,23 @@ There are a few instances in which there are statistically significant (at the 5
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[max size={\textwidth}{.8\textheight}]{../figs/mean-car-by-regime-change-type-placebo.pdf}
+\includegraphics[max size={0.75\textwidth}]{../figs/mean-car-by-regime-change-type-placebo.pdf}
 \caption{Event date shifted forward by one year} \label{subfig:mean-car-by-regime-change-placebo}
 \end{figure}
 
 \begin{figure}[!htb]
-\includegraphics{../figs/mean-ar-by-regime-change-type-placebo.pdf}
+\centering
+\includegraphics[width = 0.75\textwidth]{../figs/mean-ar-by-regime-change-type-placebo.pdf}
 \caption{Time-shifted placebo sensitivity analysis of mean event day abnormal return by type of regime change}
 \label{fig:mean-event-day-ar-by-regime-change}
 \end{figure}
 
 As shown in \autoref{tab:non-parametric}, the mean event day abnormal returns for coups, assassinations and resignations are all statistically different from zero at the 1\% level using the rank test statistic and the abnormal returns for coups and assassinations are significant at at least the 10\% level using the sign test. In addition, abnormal absolute returns for all events are statistically significant at at least the 5\% level using both the rank and sign tests. On the other hand, the event day abnormal returns for the control portfolio are never statistically different from zero at even the 10\% level using the rank or sign tests. Finally, the difference in means between the regime change country and the control portfolio are statistically different from zero for coups (1\% level), assassinations (10\% level), resignations (5\% level), and all events combined (1\% level) when using two-sided p-values from the Wilcoxon rank test.\footnote{The Wilcoxon rank test is a non-parametric statistical technique that can be used to compare differences between matched samples.} 
+%
+%\clearpage
+%\pagebreak
 
-\clearpage
-\pagebreak
-
-\subsection{Graphical depictions of additional events}
+%\subsection{Graphical depictions of additional events}
 
 %\begin{figure}[!htb]
 %\centering
@@ -825,12 +828,12 @@ As shown in \autoref{tab:non-parametric}, the mean event day abnormal returns fo
 %\end{figure}
 
 
-\begin{figure}[!htb]
-\centering
-\includegraphics[scale=0.75]{../figs/turkey_coup_attempt_2016.pdf}
-\caption{Abnormal returns surrounding the 2016 Turkish coup attempt}
-\label{fig:AR-Turkey-2016}
-\end{figure}
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics[scale=0.75]{../figs/turkey_coup_attempt_2016.pdf}
+%\caption{Abnormal returns surrounding the 2016 Turkish coup attempt}
+%\label{fig:AR-Turkey-2016}
+%\end{figure}
 
 
 %\pagebreak
