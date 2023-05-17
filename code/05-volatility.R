@@ -22,8 +22,9 @@ for (i in 1:n.rc){
 } 
 nobs <- do.call("c", lapply(dat, nrow))
 
-# GARCH MODEL ------------------------------------------------------------------
-# model spects
+# GARCH MODELS -----------------------------------------------------------------
+# Garch (1,1)
+# model specs
 garch.spec <- ugarchspec(mean.model = list(armaOrder = c(0,0)), 
                          distribution.model = "norm")
 
@@ -35,10 +36,34 @@ for (i in 1:n.rc){
   print(i)
 }
 
+# EGARCH
+# model specs
+egarch.spec = ugarchspec(variance.model=list(model="eGARCH",garchOrder=c(1,1)), 
+                         mean.model=list(armaOrder=c(0,0))) 
+
+# run models
+for (i in 1:n.rc){
+  rc.egarchfit <- ugarchfit(spec = egarch.spec, data = dat[[i]]$dr)
+  dat[[i]]$egarch_volatility <- rc.egarchfit@fit$sigma
+  print(i)
+}
+
+#TGARCH
+tgarch.spec = ugarchspec(variance.model = list(model="fGARCH", submodel="TGARCH", garchOrder=c(1,1)), 
+                           mean.model = list(armaOrder=c(0,0)))
+
+for (i in 1:n.rc){
+  rc.tgarchfit <- ugarchfit(spec = tgarch.spec, data = dat[[i]]$dr)
+  dat[[i]]$tgarch_volatility <- rc.tgarchfit@fit$sigma
+  print(i)
+}
+
 # VOLATILITY PLOTS -------------------------------------------------------------
 dat <- rbindlist(dat, fill = TRUE)
-volatility.mean <- dat[, .(mean_garch_volatility = mean(garch_volatility, na.rm = TRUE)),
-                             by = c("td")]
+
+# GARCH
+volatility.mean <- dat[, .(mean_garch_volatility = mean(garch_volatility, na.rm = TRUE)), by = c("td")]
+
 p.volatility <- 
   ggplot(volatility.mean[td >= -250 & td <= 250],
          aes(x = td, y = mean_garch_volatility)) + 
@@ -49,4 +74,37 @@ p.volatility <-
                      breaks = round(seq(min(1), max(2.5), by = 0.5),1)) +
   theme_classic()
 
-ggsave("figs/mean-volatility.pdf", p.volatility, height = 5, width = 7)
+#ggsave("figs/mean-volatility.pdf", p.volatility, height = 5, width = 7)
+
+# EGARCH
+volatility.mean <- dat[, .(mean_egarch_volatility = mean(egarch_volatility, na.rm = TRUE)),
+                       by = c("td")]
+
+e.volatility <- 
+  ggplot(volatility.mean[td >= -250 & td <= 250],
+         aes(x = td, y = mean_egarch_volatility)) + 
+  geom_line(color = "grey48") + 
+  xlab("Trading days") + 
+  ylab("Mean volatility") +
+  scale_y_continuous(limits = c(1, 2.5),
+                     breaks = round(seq(min(1), max(2.5), by = 0.5),1)) +
+  theme_classic()
+
+#ggsave("figs/mean-volatility-egarch.pdf", e.volatility, height = 5, width = 7)
+
+# TGARCH
+volatility.mean <- dat[, .(mean_tgarch_volatility = mean(tgarch_volatility, na.rm = TRUE)),
+                       by = c("td")]
+
+t.volatility <- 
+  ggplot(volatility.mean[td >= -250 & td <= 250],
+         aes(x = td, y = mean_tgarch_volatility)) + 
+  geom_line(color = "grey48") + 
+  xlab("Trading days") + 
+  ylab("Mean volatility") +
+  scale_y_continuous(limits = c(1, 2.5),
+                     breaks = round(seq(min(1), max(2.5), by = 0.5),1)) +
+  theme_classic()
+
+ggsave("figs/mean-volatility-tgarch.pdf", t.volatility, height = 5, width = 7)
+
