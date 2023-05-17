@@ -58,6 +58,18 @@ for (i in 1:n.rc){
   print(i)
 }
 
+#FIGARCH
+figarch.spec <-ugarchspec(variance.model = list(model = "fiGARCH", garchOrder = c(1, 1))) 
+
+for (i in 1:n.rc){
+  rc.figarchfit <- ugarchfit(spec = figarch.spec, data = dat[[i]]$dr)
+  dat[[i]]$figarch_volatility <- rc.figarchfit@fit$sigma
+  print(i)
+}
+
+# FRACTIONAL INTEGRATION -------------------------------------------------------
+
+
 # VOLATILITY PLOTS -------------------------------------------------------------
 dat <- rbindlist(dat, fill = TRUE)
 
@@ -108,3 +120,16 @@ t.volatility <-
 
 ggsave("figs/mean-volatility-tgarch.pdf", t.volatility, height = 5, width = 7)
 
+# FiGARCH
+volatility.mean <- dat[, .(mean_figarch_volatility = mean(figarch_volatility, na.rm = TRUE)),
+                       by = c("td")]
+
+fi.volatility <- 
+  ggplot(volatility.mean[td >= -250 & td <= 250],
+         aes(x = td, y = mean_figarch_volatility)) + 
+  geom_line(color = "grey48") + 
+  xlab("Trading days") + 
+  ylab("Mean volatility") +
+  scale_y_continuous(limits = c(1, 3),
+                     breaks = round(seq(min(1), max(3), by = 0.5),1)) +
+  theme_classic()
