@@ -28,6 +28,18 @@ artable.coups <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, coup.index],
 myprint.xtable(artable.coups$car, file = "tables/artable-coups-car.txt")
 myprint.xtable(artable.coups$car.mean, file = "tables/artable-coups-car-mean.txt")
 
+# coups - insignificant 7 day pre-trends only
+coup.index.pre <- which(regime.change$type == "Coup" & regime.change$stock_date != "1977-10-20")
+artable.coups.pre <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, coup.index.pre],
+                          sigma = rc.es$sigma.treat[coup.index.pre], 
+                          dtr = rc.es$dtr.treat[coup.index.pre],
+                          country = regime.change[coup.index.pre, country],
+                          date = regime.change[coup.index.pre, stock_date], 
+                          coup = FALSE)
+
+myprint.xtable(artable.coups.pre$car, file = "tables/artable-coups-car-pre.txt")
+myprint.xtable(artable.coups.pre$car.mean, file = "tables/artable-coups-car-mean-pre.txt")
+
 # assassinations
 ass.index <- which(regime.change$type == "Assassination")
 artable.ass <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, ass.index],
@@ -38,6 +50,20 @@ artable.ass <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, ass.index],
 myprint.xtable(artable.ass$car, file = "tables/artable-ass-car.txt")
 myprint.xtable(artable.ass$car.mean, file = "tables/artable-ass-car-mean.txt")
 
+# assassinations - insignificant 7 day pre-trends only
+ass.index.pre <- which(regime.change$type == "Assassination" &
+                         regime.change$stock_date != "1963-11-22" &
+                         regime.change$stock_date != "1984-11-05")
+
+artable.ass.pre <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, ass.index.pre],
+                        sigma = rc.es$sigma.treat[ass.index.pre], 
+                        dtr = rc.es$dtr.treat[ass.index.pre],
+                        country = regime.change[ass.index.pre, country],
+                        date = regime.change[ass.index.pre, stock_date])
+
+myprint.xtable(artable.ass.pre$car, file = "tables/artable-ass-car-pre.txt")
+myprint.xtable(artable.ass.pre$car.mean, file = "tables/artable-ass-car-mean-pre.txt")
+
 # resignations
 res.index <- which(regime.change$type == "Resignation")
 artable.res <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, res.index],
@@ -47,6 +73,21 @@ artable.res <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, res.index],
                         date = regime.change[res.index, stock_date])
 myprint.xtable(artable.res$car, file = "tables/artable-res-car.txt")
 myprint.xtable(artable.res$car.mean, file = "tables/artable-res-car-mean.txt")
+
+# resignations - insignificant 7 day pre-trends only
+res.index.pre <- which(regime.change$type == "Resignation" &
+                         regime.change$stock_date != "1982-06-18" &
+                         regime.change$stock_date != "2001-12-20" &
+                         regime.change$stock_date != "2011-01-31")
+
+artable.res.pre <- ar_table(td = rc.es$td, ar = rc.es$ar.treat[, res.index.pre],
+                            sigma = rc.es$sigma.treat[res.index.pre], 
+                            dtr = rc.es$dtr.treat[res.index.pre],
+                            country = regime.change[res.index.pre, country],
+                            date = regime.change[res.index.pre, stock_date])
+
+myprint.xtable(artable.res.pre$car, file = "tables/artable-res-car-pre.txt")
+myprint.xtable(artable.res.pre$car.mean, file = "tables/artable-res-car-mean-pre.txt")
 
 # Authoritarian
 auth.index <- which(regime.change$`auth shift` == 1)

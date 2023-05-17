@@ -117,6 +117,7 @@
 \usepackage{chngcntr}
 \usepackage{etoolbox}
 \usepackage{lipsum}
+\usepackage{etoc}
 
 
 % file paths and definitions
@@ -134,7 +135,7 @@
 \titleformat{\subsection}
   {\itshape\large}{\thesubsection}{1em}{}
 
-\setcounter{tocdepth}{1}
+%\setcounter{tocdepth}{1}
 \begin{document}
 \author{Devin Incerti\thanks{Independent researcher. devin.incerti@gmail.com} and Trevor Incerti\thanks{Corresponding author. Assistant Professor, Department of Political Science, University of Amsterdam.  t.n.incerti@uva.nl.}}
 \title{\textbf{Are regime changes always bad economics? Evidence from daily financial data \thanks{We are grateful to Peter Aronow, Matthew Graham, and Frances Rosenbluth for helpful feedback and suggestions. Authors are listed in alphabetic order, implying equal authorship. Any and all errors are our own.}}}
@@ -619,7 +620,28 @@ There are a number potential avenues for future research. First, more research i
 \renewcommand\thetable{\Alph{section}.\arabic{table}}
 \renewcommand\thefigure{\Alph{section}.\arabic{figure}}
 
+\newpage
+
+\begin{centering}
+\LARGE
+\textbf{\textit{Supplementary Appendix:}} \\
+ \vspace{0.5cm}
+\textbf{Are regime changes always bad economics? Evidence from daily financial data} \\
+
+\vspace{0.5cm}
+
+\large
+Devin Incerti and Trevor Incerti
+ 
+\end{centering}
+
 \section{Appendix} \label{sec: appendix}
+
+\localtableofcontents
+\pagenumbering{arabic}% resets `page` counter to 1
+\renewcommand*{\thepage}{A\arabic{page}}
+
+\newpage
 
 
 \subsection{Public Protests} \label{subsec: Public Protests}
@@ -704,9 +726,90 @@ Notes: Standard errors clustered by event are in parentheses.
 \pagebreak
 \newpage
 
-\subsection{Time-shifted placebo test}
+\subsection{Additional robustness tests}
 
-\begin{figure}[!htb]
+\subsubsection{Abnormal returns for events with insignificant 7-day pre-trends only}
+
+
+\begin{table}[H]
+\caption{Abnormal returns following coups} \label{tab:AR-coups-pre}
+\vspace{-5pt}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
+  \hline
+  \hline
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Post-Event CAR} & \multicolumn{2}{c}{Pre-Event CAR} & \multicolumn{1}{c}{\multirow{2}{*}{Days to}}\\
+\cmidrule(r){3-5} \cmidrule(r){6-7}
+\multicolumn{1}{c}{Country} & \multicolumn{1}{c}{Event Date} & \multicolumn{1}{c}{(0,0)} & \multicolumn{1}{c}{(0,6)} & \multicolumn{1}{c}{(0,19)} & \multicolumn{1}{c}{(-1,-7)} & \multicolumn{1}{c}{(-1,-20)} & \multicolumn{1}{c}{rebound}\\
+  \hline
+\ExpandableInput{../tables/artable-coups-car-pre.txt}
+  \hline
+\ExpandableInput{../tables/artable-coups-car-mean-pre.txt}
+   \hline
+   \hline
+\end{tabular*}
+\scriptsize
+Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of trading days following a negative stock return for the national stock index to return to pre-event level (it is calculated if the price decreases on the event day, not if the event day abnormal return is negative). Returns are inflation adjusted. 
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{table}[H]
+\caption{Abnormal returns following assassinations} \label{tab:AR-ass-pre}
+\vspace{-5pt}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
+  \hline
+  \hline
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Post-Event CAR} & \multicolumn{2}{c}{Pre-Event CAR} & \multicolumn{1}{c}{\multirow{2}{*}{Days to}}\\
+\cmidrule(r){3-5} \cmidrule(r){6-7}
+\multicolumn{1}{c}{Country} & \multicolumn{1}{c}{Event Date} & \multicolumn{1}{c}{(0,0)} & \multicolumn{1}{c}{(0,6)} & \multicolumn{1}{c}{(0,19)} & \multicolumn{1}{c}{(-1,-7)} & \multicolumn{1}{c}{(-1,-20)} & \multicolumn{1}{c}{rebound}\\
+  \hline
+\ExpandableInput{../tables/artable-ass-car-pre.txt}
+  \hline
+\ExpandableInput{../tables/artable-ass-car-mean-pre.txt}
+   \hline
+   \hline
+\end{tabular*}
+\scriptsize
+Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of trading days following a negative stock return for the national stock index to return to pre-event level (it is calculated if the price decreases on the event day, not if the event day abnormal return is negative). Returns are inflation adjusted. 
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{table}[H]
+\caption{Abnormal returns following resignations} \label{tab:AR-resignations-pre}
+\vspace{-5pt}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}ld{4}d{4}d{4}d{4}d{4}d{2}}
+  \hline
+  \hline
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Post-Event CAR} & \multicolumn{2}{c}{Pre-Event CAR} & \multicolumn{1}{c}{\multirow{2}{*}{Days to}}\\
+\cmidrule(r){3-5} \cmidrule(r){6-7}
+\multicolumn{1}{c}{Country} & \multicolumn{1}{c}{Event Date} & \multicolumn{1}{c}{(0,0)} & \multicolumn{1}{c}{(0,6)} & \multicolumn{1}{c}{(0,19)} & \multicolumn{1}{c}{(-1,-7)} & \multicolumn{1}{c}{(-1,-20)} & \multicolumn{1}{c}{rebound}\\
+  \hline
+\ExpandableInput{../tables/artable-res-car-pre.txt}
+  \hline
+\ExpandableInput{../tables/artable-res-car-mean-pre.txt}
+   \hline
+   \hline
+\end{tabular*}
+\scriptsize
+Notes: Standard errors are in parentheses. ``Days to rebound'' is the number of trading days following a negative stock return for the national stock index to return to pre-event level (it is calculated if the price decreases on the event day, not if the event day abnormal return is negative). Returns are inflation adjusted. 
+\end{threeparttable}
+\end{center}
+\end{table}
+
+
+\subsubsection{Time-shifted placebo test}
+
+\begin{figure}[H]
 \includegraphics{../figs/mean-ar-by-regime-change-type-placebo.pdf}
 \caption{Time-shifted placebo sensitivity analysis of mean event day abnormal return by type of regime change}
 \label{fig:mean-event-day-ar-by-regime-change}
