@@ -708,9 +708,10 @@ The start and end dates in \autoref{tab:protest-stocks} are the dates that prote
 In \autoref{tab:protest-stocks}, we examine whether public protests influence stock prices. The variable \textit{Protest} is equal to 1 during the dates in which citizens participate in political activities demanding the resignation of the executive and 0 otherwise. Non-protest dates are the 250 days prior to the start dates and after the end dates listed in Table A.1.\footnote{The volatility estimates used as the dependent variable in column (4) are estimated on the 250 days prior to the start date, the protest dates, and the 250 days following the end date.}
 
 Column (1) suggests that public protests have no effect on stock returns. However, this occurs because some political movements increase stock prices while others decrease them. As shown in column (2), the absolute value of stock returns are approximately 1.5\% higher during public protests. These estimates would be biased if protest dates are correlated with higher world or regional stock market indices. To address this potential confounder, column (3) controls for returns on the S\&P/IFC Emerging Markets Investable Composite Stock Index. The coefficient on \textit{Protest} barely changes and the absolute value of returns are still about 1.5\% higher during public protests. Finally, column (4) shows that stock volatility is approximately 1 percentage point higher during political movements.\footnote{Volatility estimation methodology is described in detail in \nameref{subsec: Volatility}.}
- 
 
 We therefore find that both volatility and the absolute value of returns increase during times of protest. Similarly to coups, however, the direction of returns is dependent upon the nature of the protest in question. 
+
+In addition, we independently plot the CARs during each period of protest preceding a resignation for each event.\footnote{An expception is the 1998 Yellow Revolution in the Philippines, as markets remained closed from the start of the protest until after Marcos' resignation}. This analysis also shows that volatility and the absolute value of returns increase during times of protest, but also reveals that the resignations themselves constitute distinct events that are clearly distinguishable from the general period of protest. 
 
 \begin{table}[!ht]
 \caption{Effect of public protests on stock prices} \label{tab:protest-stocks}
@@ -734,6 +735,57 @@ Notes: Standard errors clustered by event are in parentheses.
 \end{threeparttable}
 \end{center}
 \end{table}
+
+
+
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.8]{../figs/bangla-1990.pdf}
+\caption{CARs during the 1998 Indonesian revolution}
+\label{fig:CAR-Egypt}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.8]{../figs/indonesia-1998.pdf}
+\caption{CARs during the 1998 Indonesian revolution}
+\label{fig:CAR-Egypt}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.8]{../figs/phil-2001.pdf}
+\caption{CARs during the 1998 Indonesian revolution}
+\label{fig:CAR-Egypt}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.8]{../figs/argentina-2001.pdf}
+\caption{CARs during the 2001 Argentinian riots}
+\label{fig:CAR-Egypt}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.8]{../figs/ukraine-2004.pdf}
+\caption{CARs during the 2004 Orange Revolution}
+\label{fig:CAR-Egypt}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.8]{../figs/ecuador-2005.pdf}
+\caption{CARs during the 2006 Nepalese Democracy Movement}
+\label{fig:CAR-Egypt}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.8]{../figs/nepal-2006.pdf}
+\caption{CARs during the 2006 Nepalese Democracy Movement}
+\label{fig:CAR-Egypt}
+\end{figure}
+
+\begin{figure}[!ht]
+\includegraphics[scale=0.8]{../figs/tunisia-2011.pdf}
+\caption{CARs during the 2011 Tunisian Revolution}
+\label{fig:CAR-Egypt}
+\end{figure}
 
 \clearpage
 \pagebreak
