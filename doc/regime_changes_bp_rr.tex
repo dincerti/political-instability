@@ -170,7 +170,7 @@ In this study, we examine the impact of ``irregular'' regime changes and public 
 
 %Beyond the large changes in real wealth created by extreme stock market volatility, empirical research has tied future production growth rates to variation in stock returns \citep{schwert1990stock, fama1990stock}.
 
-We also provide methodological advancements when compared to the aforementioned cross country studies. Specifically, we conduct event studies of daily financial data, which estimate a local average treatment effect of an unexpected event on stock prices \textit{at the exact time of the event}. This interrupted time-series approach mitigates the endogeneity problems in previous cross country regressions---confounding events would need to occur on the same day as instability, and do so for a large portion of all of our independently tested events in order to influence our estimates.\footnote{A growing body of work uses event studies to assess political phenomenon.  For example, political events have been used to estimate the effect of political connections on firm value \citep[e.g.][]{fisman2001estimating,faccio2006politically,goldman2009politically}. Studies in ``forensic economics" have used abnormal returns from political events to locate or examine transactions such as insider trading \citep{dube2011coups}, illegal arms trading \citep{dellavigna2010detecting}, and the impact of hostilities on the financial performance of diamond mining firms in Angola \citep{guidolin2007diamonds}.} In addition, we integrate synthetic control and event study methods and demonstrate how ``synthetic'' control portfolios can be used to apply market-model event studies even when a suitable control portfolio is absent.
+We also provide methodological advancements when compared to the aforementioned cross country studies. Specifically, we conduct event studies of daily financial data, which estimate a local average treatment effect of an unexpected event on stock prices \textit{at the exact time of the event}. This interrupted time-series approach mitigates the endogeneity problems in previous cross country regressions---confounding events would need to occur on the same day as instability, and do so for a large portion of all of our independently tested events in order to influence our estimates.\footnote{A growing body of work uses event studies to assess political phenomenon.  For example, political events have been used to estimate the effect of political connections on firm value \citep[e.g.][]{fisman2001estimating,faccio2006politically,goldman2009politically}. Studies in ``forensic economics" have used abnormal returns from political events to locate or examine transactions such as insider trading \citep{dube2011coups}, illegal arms trading \citep{dellavigna2010detecting}, and the impact of hostilities on the financial performance of diamond mining firms in Angola \citep{guidolin2007diamonds}.} In addition, we integrate synthetic control and event study methods and demonstrate how ``synthetic'' control portfolios can be used to apply a method akin to market-model event studies even when a suitable control portfolio is absent.
 
 We analyze the full sample of politically unstable events for which national-level daily financial data is available---13 successful coups, 8 assassinations, 15 forced resignations, and 11 public protests.\footnote{We recognize that this does not represent a full list of historical coups, assassinations, resignations, and public protests, but are restricted to the sample of events for which national-level daily financial data is available.} We also examine the failed 2002 Venezuelan coup, as it provides a case that allows us to estimate the effects of both a seemingly successful pro-business coup, and the immediate reinstatement of a left-wing populist. Our study therefore not only uses an event-study approach to enhance the reliability of our estimates, but simultaneously examines a relatively large sample that enhances external validity and allows us to show that different types of political events have disparate effects. 
 
@@ -318,7 +318,7 @@ To gain perspective on the relationship between irregular regime changes and the
 
 \textcolor{red}{The focus on \textit{immediate} fluctuations in daily financial data implies that we are examining the effect of ``one shot'' regime changes akin to a sudden day-of shock. Our estimates therefore capture the effect of these sudden, unexpected shocks on stock prices on the same day of the shock. Importantly, this implies that we are not estimating the effect of any larger underlying political conditions surrounding the event, but rather only the immediate event itself, independent of other surrounding conditions. Further, as this approach provides an estimate \textit{at the exact time of the event}, confounding events would need to occur on the same day, and do so for a large portion of all of our independently tested events in order to influence our estimates. We recognize that broader definitions of political instability may encompass broader political volatility over a wider range of time. In an attempt to address this concern, we also examine the impact of periods of protest on financial returns in the appendix.}
 
-\textcolor{red}{The key identifying assumption behind our interrupted time-series approach is that the events are unpredicted in an immediate temporal sense. In other words, for an event to be plausibly exogenous, the exact timing of the event must be unknown to investors. If information about the event has leaked prior to occurrence of the event, a portion of the change in investment will already be priced into the stock during the estimation window.}
+\textcolor{red}{The key identifying assumption behind our interrupted time-series approach is that the events are unpredicted in an immediate temporal sense. In other words, for an event to be plausibly exogenous, the exact timing of the event must be unknown to investors. If information about the event has leaked prior to occurrence of the event, a portion of the change in investment will already be priced into the index during the estimation window.}
 
 \subsection{Volatility} \label{subsec: Volatility_estimation}
 
@@ -341,7 +341,7 @@ R_{it}=\mu_{i}+\epsilon_{it},
 \end{align}
 where $R_{it}$ is the logged return of national stock index $i$ on trading day $t$ and $\epsilon_{it}$ is the error term. We calculate abnormal returns (ARs), in an ``event window'' surrounding the date of each coup, $AR_{i\tau}=R_{i\tau}-\widehat{\mu}_i$, where $\tau$ is a date in the event window, and $\widehat{\mu}_i$ is estimated in an ``estimation window'' preceding the event window with \autoref{eqn:market-model}. We use a 41 day event window (i.e. 20 pre-event trading days, the event day, and 20 post-event trading days). The estimation window is the 250 trading days prior to the start of the event window. The abnormal returns are then used to generate cumulative abnormal returns (CARs) between event day $\tau_1$ and event day $\tau_2$: $CAR(\tau_1,\tau_2)=\sum_{\tau=\tau_1}^{\tau_2}AR_{i\tau}$.
 
-A constant mean return model is used instead of a market model in order to maximize the number of observations and because our unit of analysis is country-wide market indices rather than firms.\footnote{Plausible market indices such as the MSCI World Index and the S\&P/IFC Emerging Markets Investable Composite Index only begin in 1976 and 1995, respectively.} To address concerns regarding use of a constant mean return model, we also create a synthetic control portfolio for each event and compare observed returns to the synthetic returns. 
+A constant mean return model is used instead of a market model in order to maximize the number of observations and because our unit of analysis is country-wide market indices rather than firms.\footnote{Plausible market indices such as the MSCI World Index and the S\&P/IFC Emerging Markets Investable Composite Index only begin in 1976 and 1995, respectively.} To address concerns regarding use of a constant mean return model, we also create a synthetic control portfolio for each event and compare observed returns to the synthetic returns as a robustness check. 
 
 We define the event date as the first trading day in which the market could have reacted to news of the event. For example, during the October 12, 1999 coup d'etat in Pakistan led by General Pervez Musharraf, the army announced that Prime Minister Nawaz Sharif had been dismissed after market hours at 10:15 pm. We code October 14th, the day in which the market re-opened, as the event day. When events occurred on weekends, we change the event date to the following Monday.
 
@@ -355,7 +355,7 @@ As we hypothesize that different types of regime changes will have disparate eff
 \subsection{Volatility} \label{subsec: Volatility}
 
 
-\autoref{fig:volatility} shows the mean volatility ($\overline{\sigma_t}$) estimates from the GARCH (1,1) model across all irregular regime changes for 250 trading days prior to and 250 days after each event. As expected, the volatility estimates stay between a narrow range at nearly all dates except those surrounding the regime change. Volatility appears to increase slowly just before the regime change, albeit not to a degree out of line with previous fluctuations in volatility. This may suggest that investors sometimes have information about the events before they occur. Nonetheless, there is still an enormous volatility jump on the day of the regime change. Volatility then decreases to normal levels within a month of the event.
+\autoref{fig:volatility} shows the mean volatility ($\overline{\sigma_t}$) estimates from the GARCH (1,1) model across all irregular regime changes for 250 trading days prior to and 250 days after each event.\footnote{Robustness checks using exponential GARCH and threshold GARCH models can be found in \autoref{fig:egarch} and \autoref{fig:tgarch}, respectively.} As expected, the volatility estimates stay between a narrow range at nearly all dates except those surrounding the regime change. Volatility appears to increase slowly just before the regime change, albeit not to a degree out of line with previous fluctuations in volatility. This may suggest that investors sometimes have information about the events before they occur. Nonetheless, there is still an enormous volatility jump on the day of the regime change. Volatility then decreases to normal levels within a month of the event.
 
 \begin{figure}[!htb]
 \includegraphics[scale = 0.9]{../figs/mean-volatility.pdf}
@@ -399,7 +399,7 @@ The only events with positive ARs are the 1971 coup in Argentina and the 2002 co
 
 \subsubsection{Assassinations} \label{subsec: Assassinations}
 
-The results in \autoref{tab:AR-ass} are produced from analyses identical to those in \autoref{tab:AR-coups} but for successful assassinations rather than coups. Like the majority of coups, there is evidence that assassinations decrease stock prices. The mean event day abnormal return is negative and statistically different than zero. However, the result is driven by five events: the shooting of U.S. President William McKinley on September 6, 1901; the assassination of U.S. President John F. Kennedy on November 22, 1963; the assassination of Indian Prime Minister Indira Gandhi on October 31, 1984; the suicide bombing that killed Sri Lankan president Ranasinghe Premadasa on May 1, 1993; and the assassination of Israeli Prime Minister Yitzhak Rabin on the evening of November 4, 1995.
+The results in \autoref{tab:AR-ass} are produced from analyses identical to those in \autoref{tab:AR-coups} but for assassinations rather than coups. Like the majority of coups, there is evidence that assassinations decrease stock prices. The mean event day abnormal return is negative and statistically different than zero. However, the result is driven by five events: the shooting of U.S. President William McKinley on September 6, 1901; the assassination of U.S. President John F. Kennedy on November 22, 1963; the assassination of Indian Prime Minister Indira Gandhi on October 31, 1984; the suicide bombing that killed Sri Lankan president Ranasinghe Premadasa on May 1, 1993; and the assassination of Israeli Prime Minister Yitzhak Rabin on the evening of November 4, 1995.
 
 \begin{table}[!ht]
 \caption{Abnormal returns following assassinations} \label{tab:AR-ass}
@@ -568,7 +568,7 @@ To ensure that results of the placebo test based on 1-year did not occur by chan
 
 These figures also provide evidence on the extent to which regime changes appear to be unexpected. For instance, the CARs prior to assassinations and coups presented in \autoref{subfig:mean-car-by-regime-change-actual} tend to be close to zero, suggesting that investors were unaware that a negative event was likely to occur in the coming days. For resignations, CARs trend downward in the 10 days prior to the event; however, if investors were aware that a resignation were about to occur one would expect the pre-event CARs to be positive given the positive CARs observed in the post-event window. \textcolor{red}{For coups, there is suggestive evidence of a negative pre-trend in the run up to the event. However, the overall 7-day and 20-day pre-trends are both insignificant at conventional levels. There is also a much larger jump in negative CARs on the day of the event. This therefore implies that even if investors had some expectation of a negative event occurring, they were unaware of its timing, and at worst a portion of the negative change in investment was already priced into the day-of shift.}There is thus little evidence that the CARs in the post-event window are not capturing most of the effect caused by the regime changes.
 
-Second, we create a synthetic control portfolio for each event based on the techniques introduced in \citet{abadie2003economic} and \citet{abadie2010synthetic}. \textcolor{red}{This approach creates a ``synthetic'' time series of daily financial returns based on the returns in a basket of countries which did \textit{not} experience tumultuous political events on the day of the event. We are then able to compare the returns in the country which experienced the unexpected regime change with the actual returns of a reference market---in this case all countries that did not experience an unexpected regime change.} Each country is given a weight which represents its influence in the synthetic control portfolio. The weight is chosen so that the daily returns and the variance of the daily returns of the control portfolio and the event country are most similar in the estimation window.\footnote{See ``Synthetic Control Portfolio'' in the Appendix for mathematical formalization.} The set of possible countries in the control portfolio consists of all countries listed in \autoref{tab:stock-list}. \textcolor{red}{In contrast with the large and significant abnormal returns in the actual countries of study, the returns in the synthetic control portfolio are [add percentage difference in magnitude] and never significantly different from zero for coups, assassinations, or resignations (or overall).}
+Second, we create a synthetic control portfolio for each event based on the techniques introduced in \citet{abadie2003economic} and \citet{abadie2010synthetic}. \textcolor{red}{This approach creates a ``synthetic'' time series of daily financial returns based on the returns in a basket of countries which did \textit{not} experience tumultuous political events on the day of the event. We are then able to compare the returns in the country which experienced the unexpected regime change with the actual returns of a reference market---in this case all countries that did not experience an unexpected regime change.} Each country is given a weight which represents its influence in the synthetic control portfolio. The weight is chosen so that the daily returns and the variance of the daily returns of the control portfolio and the event country are most similar in the estimation window.\footnote{See ``Synthetic Control Portfolio'' in the Appendix for mathematical formalization.} The set of possible countries in the control portfolio consists of all countries listed in \autoref{tab:stock-list}. \textcolor{red}{In contrast with the large and significant abnormal returns in the actual countries of study, the returns in the synthetic control portfolio are never significantly different from zero for coups, assassinations, or resignations (or overall).}
 
 Non-parametric statistical techniques that are free from distributional assumptions are used to address concerns about inferences from small sample sizes. We employ the sign and the rank tests, which are based on the sign and the rank of the event day ARs respectively.\footnote{See section 8 in \citet{mackinlay1997event} for more details.} Both tests are less influenced by departures from normality than statistics based on traditional t-tests such as those reported earlier in this paper. \autoref{tab:non-parametric} compares event day ARs as well as ``abnormal absolute returns'' between the event country and the synthetic control portfolio using the non-parametric methods discussed above. The ``abnormal absolute returns'' are abnormal returns for the absolute value of stock returns. This is done to combine events since resignations tend to increase returns while assassinations and coups tend to decrease them. The idea that the absolute value of returns might increase during irregular regime changes is similar to the finding that volatility increases and is consistent with \autoref{fig:AV-DR}.
 
@@ -614,9 +614,9 @@ The results are consistent with the idea that perceptions of government competen
 
 A test of mechanisms suggests that democratic regime changes are typically preferable to authoritarian regime changes to investors. However, the returns surrounding the failed 2002 coup that temporarily ousted Hugo Chavez from power in Venezuela show that even democratically subversive coups can have positive effects if the instigators are clearly pro-business. These results are consistent with previous research showing that the coup replacing Allende in Chile increased stock market valuations \citep{girardi2018institution}. 
 
-\textcolor{red}{Our findings have a number of potential implications for policymakers. First, our finding that even democratically subversive irregular regime changes can have a positive impact on investment when the replacement government is clearly pro-business  implies that investor goals and actions may be at odds with regime stability. Second, the immediate nature and large magnitude of the financial outflows we observe in the wake of the majority of coups and assassinations suggests that a weakened financial system and economy are likely to accompany these kinds of regime changes. More optimistically, however, we also find suggestive evidence that in the event of a democratic extra-legal regime change, clearly signalling a commitment to democracy may result in increased investment in a country's firms.}
+\textcolor{red}{Our findings have a number of potential implications for policymakers. First, our finding that even democratically subversive irregular regime changes can have a positive impact on investment when the replacement government is clearly pro-business  implies that investor goals and actions may be at odds with regime stability. Second, the immediate nature and large magnitude of the financial outflows we observe in the wake of the majority of coups and assassinations suggests that a weakened financial system and economy are likely to accompany these kinds of regime changes. More optimistically, however, we also find suggestive evidence that in the event of a democratic regime change or revolution, clearly signalling a commitment to democracy may result in increased investment in a country's firms.}
 
-There are a number potential avenues for future research. First, more research is needed to identify the pro and anti market characteristics of regime changes. There may be pro or anti market features of regime changes that are more nuanced than those identified in this paper. Similarly, it would be useful to identify additional mechanisms through which regime changes effect investment. In the case of Chile,  \citet{girardi2018institution} show that increasing stock market valuations were caused by changes in private property rights rather than economic growth prospects or wage costs. Research focusing on the mechanisms in other settings would help generalize these findings. Lastly, it would be helpful to determine the extent to which stock market returns translate to broader economic development outcomes. \citet{meyersson2016political} has made progress on this front by examining the impact of coups on a number of outcomes in addition to economic growth including investment, debt, inflation, infant mortality, and years of schooling. It would be fruitful to examine whether the direction of the effects of different types of regime changes on these outcomes are consistent with their stock market effects, or if investor perceptions are at odds with certain development goals. Such research can help enlarge the body of evidence on the extent to which regime changes cause institutional and political change, and, in turn, have significant consequences for economic development.
+There are a number potential avenues for future research. First, more research is needed to identify the pro and anti market characteristics of regime changes. There may be pro or anti market features of regime changes that are more nuanced than those identified in this paper. Similarly, it would be useful to identify additional mechanisms through which regime changes effect investment. In the case of Chile,  \citet{girardi2018institution} show that increasing stock market valuations were caused by changes in private property rights rather than economic growth prospects or wage costs. Research focusing on the mechanisms in other settings would help generalize these findings. \textcolor{red}{Second, it remains unclear how markets react to successful irregular regime change conditional on attempt. A future study could therefore examine how markets react to successful assassinations or coups when compared to failed attempts.} Lastly, it would be helpful to determine the extent to which stock market returns translate to broader economic development outcomes. \citet{meyersson2016political} has made progress on this front by examining the impact of coups on a number of outcomes in addition to economic growth including investment, debt, inflation, infant mortality, and years of schooling. It would be fruitful to examine whether the direction of the effects of different types of regime changes on these outcomes are consistent with their stock market effects, or if investor perceptions are at odds with certain development goals. Such research can help enlarge the body of evidence on the extent to which regime changes cause institutional and political change, and, in turn, have significant consequences for economic development.
 
 \newpage
 
@@ -740,48 +740,56 @@ Notes: Standard errors clustered by event are in parentheses.
 
 
 \begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{../figs/bangla-1990.pdf}
-\caption{CARs during the 1998 Indonesian revolution}
+\caption{CARs during the 1990 Bangladesh uprising}
 \label{fig:CAR-Egypt}
 \end{figure}
 
 \begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{../figs/indonesia-1998.pdf}
 \caption{CARs during the 1998 Indonesian revolution}
 \label{fig:CAR-Egypt}
 \end{figure}
 
 \begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{../figs/phil-2001.pdf}
-\caption{CARs during the 1998 Indonesian revolution}
+\caption{CARs during the Philippines Second People Power Revolution}
 \label{fig:CAR-Egypt}
 \end{figure}
 
 \begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{../figs/argentina-2001.pdf}
-\caption{CARs during the 2001 Argentinian riots}
+\caption{CARs during the 2001 Argentine crisis}
 \label{fig:CAR-Egypt}
 \end{figure}
 
 \begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{../figs/ukraine-2004.pdf}
 \caption{CARs during the 2004 Orange Revolution}
 \label{fig:CAR-Egypt}
 \end{figure}
 
 \begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{../figs/ecuador-2005.pdf}
-\caption{CARs during the 2006 Nepalese Democracy Movement}
+\caption{CARs during the Ecuadorian Revolution of 2005}
 \label{fig:CAR-Egypt}
 \end{figure}
 
 \begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{../figs/nepal-2006.pdf}
 \caption{CARs during the 2006 Nepalese Democracy Movement}
 \label{fig:CAR-Egypt}
 \end{figure}
 
 \begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{../figs/tunisia-2011.pdf}
 \caption{CARs during the 2011 Tunisian Revolution}
 \label{fig:CAR-Egypt}
@@ -796,13 +804,13 @@ Notes: Standard errors clustered by event are in parentheses.
 \begin{figure}[H]
 \includegraphics[scale = 0.75]{../figs/mean-volatility-egarch.pdf}
 \caption{Mean of volatility estimates from exponential GARCH models}
-\label{fig:volatility}
+\label{fig:egarch}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[scale = 0.75]{../figs/mean-volatility-tgarch.pdf}
 \caption{Mean of volatility estimates from threshold GARCH models}
-\label{fig:volatility}
+\label{fig:tgarch}
 \end{figure}
 
 \subsubsection{Abnormal returns for events with insignificant 7-day pre-trends only}
