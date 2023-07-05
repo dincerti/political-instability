@@ -355,7 +355,7 @@ As we hypothesize that different types of regime changes will have disparate eff
 \subsection{Volatility} \label{subsec: Volatility}
 
 
-\autoref{fig:volatility} shows the mean volatility ($\overline{\sigma_t}$) estimates from the GARCH (1,1) model across all irregular regime changes for 250 trading days prior to and 250 days after each event.\footnote{Robustness checks using exponential GARCH and threshold GARCH models can be found in \autoref{fig:egarch} and \autoref{fig:tgarch}, respectively.} As expected, the volatility estimates stay between a narrow range at nearly all dates except those surrounding the regime change. Volatility appears to increase slowly just before the regime change, albeit not to a degree out of line with previous fluctuations in volatility. This may suggest that investors sometimes have information about the events before they occur. Nonetheless, there is still an enormous volatility jump on the day of the regime change. Volatility then decreases to normal levels within a month of the event.
+\autoref{fig:volatility} shows the mean volatility ($\overline{\sigma_t}$) estimates from the GARCH (1,1) model across all irregular regime changes for 250 trading days prior to and 250 days after each event.\footnote{Robustness checks using exponential GARCH, threshold GARCH, and GARCH(1,1) controlling for structural breaks can be found in \autoref{fig:egarch}, \autoref{fig:tgarch}, and \autoref{fig:garch_sb}, respectively.} As expected, the volatility estimates stay between a narrow range at nearly all dates except those surrounding the regime change. Volatility appears to increase slowly just before the regime change, albeit not to a degree out of line with previous fluctuations in volatility. This may suggest that investors sometimes have information about the events before they occur. Nonetheless, there is still an enormous volatility jump on the day of the regime change. Volatility then decreases to normal levels within a month of the event.
 
 \begin{figure}[!htb]
 \includegraphics[scale = 0.9]{../figs/mean-volatility.pdf}
@@ -811,6 +811,12 @@ Notes: Standard errors clustered by event are in parentheses.
 \includegraphics[scale = 0.75]{../figs/mean-volatility-tgarch.pdf}
 \caption{Mean of volatility estimates from threshold GARCH models}
 \label{fig:tgarch}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale = 0.75]{../figs/mean-volatility-sb.pdf}
+\caption{Mean of volatility estimates from GARCH(1,1) models, with adjustment for structural breaks}
+\label{fig:garch_sb}
 \end{figure}
 
 \subsubsection{Abnormal returns for events with insignificant 7-day pre-trends only}
