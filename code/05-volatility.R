@@ -79,11 +79,11 @@ p.volatility <-
   geom_line(color = "grey48") + 
   xlab("Trading days") + 
   ylab("Mean volatility") +
-  scale_y_continuous(limits = c(1, 2.5),
-                     breaks = round(seq(min(1), max(2.5), by = 0.5),1)) +
+  scale_y_continuous(limits = c(1, 3),
+                     breaks = round(seq(min(1), max(3), by = 0.5),1)) +
   theme_classic()
 
-#ggsave("figs/mean-volatility.pdf", p.volatility, height = 5, width = 7)
+ggsave("figs/mean-volatility.pdf", p.volatility, height = 5, width = 7)
 
 # EGARCH
 volatility.mean <- dat[, .(mean_egarch_volatility = mean(egarch_volatility, na.rm = TRUE)),
@@ -95,11 +95,11 @@ e.volatility <-
   geom_line(color = "grey48") + 
   xlab("Trading days") + 
   ylab("Mean volatility") +
-  scale_y_continuous(limits = c(1, 2.5),
-                     breaks = round(seq(min(1), max(2.5), by = 0.5),1)) +
+  scale_y_continuous(limits = c(1, 3),
+                     breaks = round(seq(min(1), max(3), by = 0.5),1)) +
   theme_classic()
 
-#ggsave("figs/mean-volatility-egarch.pdf", e.volatility, height = 5, width = 7)
+ggsave("figs/mean-volatility-egarch.pdf", e.volatility, height = 5, width = 7)
 
 # TGARCH
 volatility.mean <- dat[, .(mean_tgarch_volatility = mean(tgarch_volatility, na.rm = TRUE)),
@@ -111,8 +111,8 @@ t.volatility <-
   geom_line(color = "grey48") + 
   xlab("Trading days") + 
   ylab("Mean volatility") +
-  scale_y_continuous(limits = c(1, 2.5),
-                     breaks = round(seq(min(1), max(2.5), by = 0.5),1)) +
+  scale_y_continuous(limits = c(1, 3),
+                     breaks = round(seq(min(1), max(3), by = 0.5),1)) +
   theme_classic()
 
 ggsave("figs/mean-volatility-tgarch.pdf", t.volatility, height = 5, width = 7)
@@ -130,3 +130,6 @@ fi.volatility <-
   scale_y_continuous(limits = c(1, 3),
                      breaks = round(seq(min(1), max(3), by = 0.5),1)) +
   theme_classic()
+
+ggsave("figs/mean-volatility-figarch.pdf", fi.volatility, height = 5, width = 7)
+
