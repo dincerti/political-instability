@@ -67,9 +67,6 @@ for (i in 1:n.rc){
   print(i)
 }
 
-# FRACTIONAL INTEGRATION -------------------------------------------------------
-
-
 # VOLATILITY PLOTS -------------------------------------------------------------
 dat <- rbindlist(dat, fill = TRUE)
 

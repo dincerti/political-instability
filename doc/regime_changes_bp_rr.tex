@@ -331,7 +331,7 @@ where $\mu_i$ is a constant and,
 \sigma_{it}^2&=\gamma_{i}+\alpha_{i}\epsilon_{i,t-1}^2+\beta_{i}\sigma_{i,t-1}^2.
 \end{align*}
 
-The key parameter of interest is the conditional variance, $\sigma_{it}^2$. The one-period-ahead volatility forecasts, $\sigma_{it}$, are larger when $\epsilon_{i,t-1}^2$ and $\sigma_{i,t-1}^2$ are larger. In other words, the model predicts that large shocks will be followed by other large shocks. \textcolor{red}{As robustness checks, we also estimate volatility using exponential GARCH, threshold GARCH, and fractionally integrated GARCH models in the appendix}. 
+The key parameter of interest is the conditional variance, $\sigma_{it}^2$. The one-period-ahead volatility forecasts, $\sigma_{it}$, are larger when $\epsilon_{i,t-1}^2$ and $\sigma_{i,t-1}^2$ are larger. In other words, the model predicts that large shocks will be followed by other large shocks. \textcolor{red}{As robustness checks, we also estimate volatility using exponential GARCH, threshold GARCH, fractionally integrated GARCH, and GARCH(1,1) accounting for structural breaks in the time series data in the appendix}. 
 
 \subsection{Abnormal Returns} \label{subsec:abnormal-returns_estimation}
 
@@ -355,7 +355,7 @@ As we hypothesize that different types of regime changes will have disparate eff
 \subsection{Volatility} \label{subsec: Volatility}
 
 
-\autoref{fig:volatility} shows the mean volatility ($\overline{\sigma_t}$) estimates from the GARCH (1,1) model across all irregular regime changes for 250 trading days prior to and 250 days after each event.\footnote{Robustness checks using exponential GARCH, threshold GARCH, and GARCH(1,1) controlling for structural breaks can be found in \autoref{fig:egarch}, \autoref{fig:tgarch}, and \autoref{fig:garch_sb}, respectively.} As expected, the volatility estimates stay between a narrow range at nearly all dates except those surrounding the regime change. Volatility appears to increase slowly just before the regime change, albeit not to a degree out of line with previous fluctuations in volatility. This may suggest that investors sometimes have information about the events before they occur. Nonetheless, there is still an enormous volatility jump on the day of the regime change. Volatility then decreases to normal levels within a month of the event.
+\autoref{fig:volatility} shows the mean volatility ($\overline{\sigma_t}$) estimates from the GARCH (1,1) model across all irregular regime changes for 250 trading days prior to and 250 days after each event.\footnote{Robustness checks using exponential GARCH, threshold GARCH, FIGARCH, and GARCH(1,1) controlling for structural breaks can be found in \autoref{fig:egarch}, \autoref{fig:tgarch}, \autoref{fig:figarch}, and \autoref{fig:garch_sb}, respectively.} As expected, the volatility estimates stay between a narrow range at nearly all dates except those surrounding the regime change. Volatility appears to increase slowly just before the regime change, albeit not to a degree out of line with previous fluctuations in volatility. This may suggest that investors sometimes have information about the events before they occur. Nonetheless, there is still an enormous volatility jump on the day of the regime change. Volatility then decreases to normal levels within a month of the event.
 
 \begin{figure}[!htb]
 \includegraphics[scale = 0.9]{../figs/mean-volatility.pdf}
@@ -801,6 +801,8 @@ Notes: Standard errors clustered by event are in parentheses.
 
 \subsection{Additional robustness tests}
 
+\subsubsection{Volatility}
+
 \begin{figure}[H]
 \includegraphics[scale = 0.75]{../figs/mean-volatility-egarch.pdf}
 \caption{Mean of volatility estimates from exponential GARCH models}
@@ -814,8 +816,14 @@ Notes: Standard errors clustered by event are in parentheses.
 \end{figure}
 
 \begin{figure}[H]
+\includegraphics[scale = 0.75]{../figs/mean-volatility-figarch.pdf}
+\caption{Mean of volatility estimates from FIGARCH models}
+\label{fig:figarch}
+\end{figure}
+
+\begin{figure}[H]
 \includegraphics[scale = 0.75]{../figs/mean-volatility-sb.pdf}
-\caption{Mean of volatility estimates from GARCH(1,1) models, with adjustment for structural breaks}
+\caption{Mean of volatility estimates from GARCH(1,1) models with adjustment for structural breaks}
 \label{fig:garch_sb}
 \end{figure}
 
