@@ -127,8 +127,8 @@ sb.volatility <-
   geom_line(color = "grey48") + 
   xlab("Trading days") + 
   ylab("Mean volatility") +
-  scale_y_continuous(limits = c(1, 2.5),
-                     breaks = round(seq(min(1), max(2.5), by = 0.5),1)) +
+  scale_y_continuous(limits = c(1, 3),
+                     breaks = round(seq(min(1), max(3), by = 0.5),1)) +
   theme_classic()
 
 ggsave("figs/mean-volatility-sb.pdf", sb.volatility, height = 5, width = 7)
