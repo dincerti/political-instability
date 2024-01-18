@@ -1,0 +1,25 @@
+country,ticker,date,stock_date,colpus_success,colpus_type,type
+Argentina,_IBGD,10/08/1971,10/11/1971,2,failed reshuffling coup,Failed coup
+Argentina,_IBGD,12/18/1975,12/19/1975,2,failed regime change coup,Failed coup
+Bangladesh,BDDSEXD,05/20/1996,05/20/1996,2,failed regime change coup,Failed coup
+Ecuador,_BVGD,01/21/2000,01/21/2000,2,failed regime change coup,Failed coup
+Paraguay,PYPDVGD,04/22/1996,04/22/1996,2,failed regime change coup,Failed coup
+Paraguay,PYPDVGD,05/18/2000,05/19/2000,2,failed regime change coup,Failed coup
+Peru,_SPBLPGPT,11/13/1992,11/13/1992,2,failed regime change coup,Failed coup
+Peru,_SPBLPGPT,10/30/2000,10/30/2000,2,failed regime change coup,Failed coup
+Philippines,_PSID,07/06/1986,07/07/1986,2,failed regime change coup,Failed coup
+Philippines,_PSID,01/27/1987,01/27/1987,2,failed regime change coup,Failed coup
+Philippines,_PSID,04/18/1987,04/18/1987,2,failed regime change coup,Failed coup
+Philippines,_PSID,08/27/1987,08/27/1987,2,failed regime change coup,Failed coup
+Philippines,_PSID,12/01/1989,12/11/1989,2,failed regime change coup,Failed coup
+Philippines,_PSID,10/04/1990,10/04/1990,2,failed regime change coup,Failed coup
+Philippines,_PSID,07/27/2003,07/28/2003,2,failed regime change coup,Failed coup
+Philippines,_PSID,11/29/2007,11/29/2007,2,failed regime change coup,Failed coup
+Spain,_SMSID,02/23/1981,02/24/1981,2,failed regime change coup,Failed coup
+Thailand,_SETID,03/26/1977,03/28/1977,2,failed reshuffling coup,Failed coup
+Thailand,_SETID,04/01/1981,04/01/1981,2,failed reshuffling coup,Failed coup
+Thailand,_SETID,09/09/1985,09/09/1985,2,failed reshuffling coup,Failed coup
+Turkey,_XU100D,07/15/2016,07/18/2016,2,failed regime change coup,Failed coup
+Venezuela,_VE1,02/04/1992,02/04/1992,2,failed regime change coup,Failed coup
+Venezuela,_VE1,11/27/1992,11/27/1992,2,failed regime change coup,Failed coup
+Venezuela,_IBCD,04/12/2002,04/12/2002,2,failed regime change coup,Failed coup

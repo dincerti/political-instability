@@ -17,6 +17,9 @@ setnames(indices, c("date","ticker","p","dr","real_p"))
 # regime changes
 event <- fread("data-raw/event_list.csv")
 
+# Failed coups
+failed <- fread("data-raw/colpus_failed.csv")
+
 # revolution dates
 rev <- fread("data-raw/revolutions.csv")
 rev[, num := seq(1, length(country), 1)]
@@ -31,6 +34,7 @@ indices[, day := as.numeric(format(date, format = "%d"))]
 indices[, year := as.numeric(format(date, format = "%Y"))]
 indices[, dow := day.of.week(month, day, year)]
 event[, stock_date := as.Date(stock_date,"%m/%d/%Y")]
+failed[, stock_date := as.Date(stock_date,"%m/%d/%Y")]
 
 # Remove non-daily values from indices dataframe
 indice_info <- read.csv("data-raw/indices.csv", nrows = 45, header = TRUE, 
@@ -100,5 +104,5 @@ regime.change <- event[type == "Coup" | type == "Assassination" |
 regime.change <- regime.change[stock_date != '1976-04-05'] 
 
 # SAVE DATA --------------------------------------------------------------------
-save(country.lookup, event, index, regime.change, rev,
+save(country.lookup, event, index, regime.change, failed, rev,
      file = "data/data-clean.RData")
