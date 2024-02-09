@@ -25,3 +25,9 @@
 *-blx.bib
 *.run.xml
 *.bbl
+
+# MacOS
+.DS_Store
+
+# Folders
+doc/archive/
